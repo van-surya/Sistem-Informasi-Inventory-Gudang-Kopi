@@ -1,7 +1,7 @@
 <!-- breadcrumb -->
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="<?= base_url('admin/beranda'); ?>">Beranda</a></li>
+        <li class="breadcrumb-item"><a href="<?= base_url('gudang/beranda'); ?>">Beranda</a></li>
         <li class="breadcrumb-item active" aria-current="page"><?= $title; ?></li>
     </ol>
 </nav>
@@ -64,7 +64,7 @@
             </div>
     </div>
     <div class="card-footer text-md-right">
-        <a href="<?= base_url('admin/beranda'); ?>" class="btn btn-secondary">Batal</a>
+        <a href="<?= base_url('purchasing/beranda'); ?>" class="btn btn-secondary">Batal</a>
         <button type="submit" class="btn btn-primary">Simpan</button>
     </div>
     </form>

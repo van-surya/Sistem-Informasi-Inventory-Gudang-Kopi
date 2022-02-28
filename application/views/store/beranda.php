@@ -6,12 +6,11 @@
     </ol>
 </nav>
 
-<!-- Card Profile User  -->
-<div class="card shadow mb-4 col-12">
+
+<!-- Card Profile User -->
+<div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">
-            Profile
-        </h6>
+        <h6 class="m-0 font-weight-bold text-primary">Profile</h6>
     </div>
     <div class="card-body">
         <div class="row">
@@ -26,6 +25,9 @@
                 <tr>
                     <td>Email &emsp;&emsp;: <?= $store['email']; ?></td>
                 </tr>
+                <tr>
+                    <td>level &emsp;&emsp;: <?= $store['level']; ?></td>
+                </tr>
             </table>
         </div>
     </div>
@@ -38,9 +40,8 @@
         </a>
     </div>
 </div>
-
-
 <!-- End Card Profile User  -->
+
 
 <!-- pesan berhasil  -->
 <?php if ($this->session->flashdata('pesan')) : ?>
