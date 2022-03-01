@@ -59,9 +59,7 @@ class Managementuser extends CI_Controller
     }
 
     public function ubah($id_user)
-    {
-        // jalankan model Muser
-        $this->load->model("Muser");
+    { 
         //terima inputan dari formulir
 
         $inputan = $this->input->post();

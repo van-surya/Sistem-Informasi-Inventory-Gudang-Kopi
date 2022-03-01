@@ -11,67 +11,47 @@
             return $ambil->result_array();
         }
 
-        function simpan_user($inputan)
-
+        function kode_supplier()
         {
-            // ambil pass dari inputan
-            $pass_inputan = $inputan['password'];
-            // enkripsi pakai SHA1
-            $pass_enkrip = sha1($pass_inputan);
+            $this->db->select('RIGHT(supplier.kode_supplier,3) as kode_supplier', FALSE);
+            $this->db->order_by('kode_supplier', 'DESC');
+            $this->db->limit(1);
 
-            // masukan pass yg sudah dienkrip ke dalam array inputan index password 
-            $inputan['password'] = $pass_enkrip;
-
-            //query insert ke tabel user_petugas
-            $this->db->insert('user_petugas', $inputan);
-        }
-
-        function detail_user($id_user)
-        {
-            $this->db->where('id_user', $id_user);
-            $ambil = $this->db->get('user_petugas');
-            return $ambil->row_array();
-        }
-
-        function ubah_user($inputan, $id_user)
-        {
-            // jika inputan['password'] kosong
-            if (empty($inputan['password'])) {
-                // buang dari array inputan agar tidak di update
-                unset($inputan['password']);
+            $query = $this->db->get('supplier');
+            if ($query->num_rows() <> 0) {
+                $data = $query->row();
+                $kode = intval($data->kode_supplier) + 1;
             } else {
-
-                // ambil pass dari inputan
-                $pass_inputan = $inputan['password'];
-
-                // enkripsi pakai SHA1
-                $pass_enkrip = sha1($pass_inputan);
-
-                // masukan pass yg sudah di enkrip ke dalam array inputan index password
-                $inputan['password'] = $pass_enkrip;
+                $kode = 1;
             }
 
-            $this->db->where('id_user', $id_user);
-            $this->db->update('user_petugas', $inputan);
-
-            // ambil data user_petugas yg sedang barusan di ubah
-            $user_petugas = $this->detail_user($id_user);
-            // update session user_petugas dengan data user_petugas yang ter update
-            $this->session->set_userdata('user_petugas', $user_petugas);
+            $batas = str_pad($kode, 3, "0", STR_PAD_LEFT);
+            $kodetampil = "S" . $batas;
+            return $kodetampil;
         }
 
-        function hapus_user($id_user)
+        function simpan_supplier($inputan)
         {
-            $this->db->where('id_user', $id_user);
-            $this->db->delete('user_petugas');
+            $kode_supplier = $inputan['kode_supplier'];
+            $nama_supplier = $inputan['nama_supplier'];
+            $alamat_supplier = $inputan['alamat_supplier'];
+
+            $this->db->where('kode_supplier', $kode_supplier);
+            $this->db->where('nama_supplier', $nama_supplier);
+            $this->db->where('alamat_supplier', $alamat_supplier);
+
+            $supplier = $this->db->get('supplier')->row_array();
+            if (empty($supplier)) {
+                $this->db->insert('supplier', $inputan);
+                return 'sukses';
+            } else {
+                return 'gagal';
+            }
         }
 
-        function hitung_user()
+        function hapus_supplier($id_supplier)
         {
-            $this->db->select('id_user');
-            $this->db->from('user_petugaS');
-            $query = $this->db->get();
-            $total = $query->num_rows();
-            return $total;
+            $this->db->where('id_supplier', $id_supplier);
+            $this->db->delete('supplier');
         }
     }

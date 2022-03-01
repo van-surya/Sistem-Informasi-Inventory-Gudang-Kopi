@@ -28,7 +28,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Kode Barang</th>
+                        <th>Kode</th>
                         <th>Nama Barang</th>
                         <th>Kategori</th>
                         <th>Supplier</th>
@@ -40,9 +40,9 @@
                         <tr>
                             <td><?= $key + 1; ?></td>
                             <td><?= $value['kode_barang']; ?></td>
-                            <td><?= $value['nama_barang']; ?></td>
-                            <td><?= $value['nama_kategori']; ?></td>
-                            <td><?= $value['nama_supplier']; ?></td>
+                            <td><?= substr($value['nama_barang'], 0, 20); ?></td>
+                            <td><?= substr($value['nama_kategori'], 0, 20); ?></td>
+                            <td><?= substr($value['nama_supplier'], 0, 20); ?></td>
                             <td>
                                 <div class="text-center">
                                     <!-- Button trigger -->
@@ -52,7 +52,12 @@
                                         </span>
                                         <span class="text">Detail</span>
                                     </a>
-                                    <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_barang']; ?>">
+                                    <a href="<?= base_url('purchasing/managementbarang/ubah/' . $value['id_barang']) ?>" class="btn btn-warning btn-icon-split btn-sm">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-edit"></i>
+                                        </span>
+                                        <span class="text">Ubah</span>
+                                    </a> </a> <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_barang']; ?>">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-trash"></i>
                                         </span>
@@ -100,7 +105,7 @@
                         //disini ajax hapus data
                         $.ajax({
                             type: 'post',
-                            url: "<?= base_url("admin/managementuser/hapus"); ?>",
+                            url: "<?= base_url("purchasing/managementbarang/hapus"); ?>",
                             data: 'id=' + idnya,
                             success: function() {
                                 swal("Data berhasil terhapus!", {
@@ -108,7 +113,7 @@
                                     button: true
                                 }).then((oke) => {
                                     if (oke) {
-                                        location = "<?= base_url("admin/managementuser/"); ?>"
+                                        location = "<?= base_url("purchasing/managementbarang/"); ?>"
                                     }
                                 });
                             }

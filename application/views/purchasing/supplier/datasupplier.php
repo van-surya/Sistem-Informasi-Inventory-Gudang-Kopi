@@ -10,10 +10,10 @@
     <div class="card-header py-3">
         <div class="row justify-content-between">
             <div class="col-md-6">
-                <h4 class="m-0 font-weight-bold text-primary">Data Kategori</h4>
+                <h4 class="m-0 font-weight-bold text-primary">Data Supplier</h4>
             </div>
             <div class="col-md-6 text-md-right mt-2 mt-md-0">
-                <a href="<?= base_url('purchasing/kategori/tambah') ?>" class="btn btn-primary btn-icon-split btn-sm">
+                <a href="<?= base_url('purchasing/supplier/tambah') ?>" class="btn btn-primary btn-icon-split btn-sm">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
                     </span>
@@ -28,20 +28,23 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Kategori</th>
+                        <th>Supplier</th>
+                        <th>Nama</th>
+                        <th>Alamat</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($kategori as $key => $value) : ?>
+                    <?php foreach ($supplier as $key => $value) : ?>
                         <tr>
                             <td><?= $key + 1; ?></td>
-                            <td><?= $value['nama_kategori']; ?></td>
+                            <td><?= $value['kode_supplier']; ?></td>
+                            <td><?= substr($value['nama_supplier'], 0, 35); ?></td>
+                            <td><?= substr($value['alamat_supplier'], 0, 50); ?></td>
                             <td>
                                 <div class="text-center">
                                     <!-- Button trigger -->
-
-                                    </a> <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_kategori']; ?>">
+                                    </a> <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_supplier']; ?>">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-trash"></i>
                                         </span>
@@ -89,7 +92,7 @@
                         //disini ajax hapus data
                         $.ajax({
                             type: 'post',
-                            url: "<?= base_url("purchasing/kategori/hapus"); ?>",
+                            url: "<?= base_url("purchasing/supplier/hapus"); ?>",
                             data: 'id=' + idnya,
                             success: function() {
                                 swal("Data berhasil terhapus!", {
@@ -97,7 +100,7 @@
                                     button: true
                                 }).then((oke) => {
                                     if (oke) {
-                                        location = "<?= base_url("purchasing/kategori"); ?>"
+                                        location = "<?= base_url("purchasing/supplier"); ?>"
                                     }
                                 });
                             }

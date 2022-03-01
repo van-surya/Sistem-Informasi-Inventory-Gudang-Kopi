@@ -38,12 +38,16 @@
             $id_supplier = $inputan['id_supplier'];
             $kode_barang = $inputan['kode_barang'];
             $nama_barang = $inputan['nama_barang'];
+            $stock_toko = $inputan['stock_toko'];
+            $stock_gudang = $inputan['stock_gudang'];
             $satuan = $inputan['satuan'];
 
             $this->db->where('id_kategori', $id_kategori);
             $this->db->where('id_supplier', $id_supplier);
             $this->db->where('kode_barang', $kode_barang);
             $this->db->where('nama_barang', $nama_barang);
+            $this->db->where('stock_toko', $stock_toko);
+            $this->db->where('stock_gudang', $stock_gudang);
             $this->db->where('satuan', $satuan);
 
             $barang = $this->db->get('barang')->row_array();
@@ -62,5 +66,29 @@
             $this->db->where('id_barang', $id_barang);
             $ambil = $this->db->get('barang');
             return $ambil->row_array();
+        }
+
+        function ubah_barang($inputan, $id_barang)
+        {
+            $this->db->where('kode_barang', $inputan['kode_barang']);
+            $this->db->where('id_kategori', $inputan['id_kategori']);
+            $this->db->where('id_supplier', $inputan['id_supplier']);
+            $this->db->where('stock_toko', $inputan['stock_toko']);
+            $this->db->where('stock_gudang', $inputan['stock_gudang']);
+            $this->db->where('satuan', $inputan['satuan']);
+
+            $barang = $this->db->get('barang')->row_array();
+            if (empty($barang)) {
+                $this->db->where('id_barang', $id_barang);
+                $this->db->update('barang', $inputan);
+                return 'sukses';
+            } else {
+                return 'gagal';
+            }
+        }
+        function hapus_barang($id_barang)
+        {
+            $this->db->where('id_barang', $id_barang);
+            $this->db->delete('barang');
         }
     }
