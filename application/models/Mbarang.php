@@ -86,6 +86,7 @@
                 return 'gagal';
             }
         }
+        
         function hapus_barang($id_barang)
         {
             $this->db->where('id_barang', $id_barang);

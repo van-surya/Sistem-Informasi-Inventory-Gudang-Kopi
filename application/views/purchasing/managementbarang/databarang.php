@@ -57,7 +57,8 @@
                                             <i class="fas fa-edit"></i>
                                         </span>
                                         <span class="text">Ubah</span>
-                                    </a> </a> <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_barang']; ?>">
+                                    </a>
+                                    </a> <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_barang']; ?>">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-trash"></i>
                                         </span>
