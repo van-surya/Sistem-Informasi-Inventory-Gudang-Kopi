@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Managementuser extends CI_Controller
+class Managemenuser extends CI_Controller
 {
 
     public function __construct()
@@ -18,11 +18,11 @@ class Managementuser extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Management User';
+        $data['title'] = 'Managemen User';
         $data['user_petugas'] = $this->Muser->tampil_user();
         $this->load->view('header', $data);
         $this->load->view('admin/navbar', $data);
-        $this->load->view('admin/managementuser/datauser', $data);
+        $this->load->view('admin/managemenuser/datauser', $data);
         $this->load->view('footer');
     }
 
@@ -42,9 +42,9 @@ class Managementuser extends CI_Controller
         if ($this->form_validation->run() == TRUE) {
             //Muser jalankan fungsi simpan_user($inputan)
             $this->Muser->simpan_user($inputan);
-            //tampilkan admin/managementuser/index
+            //tampilkan admin/managemenuser/index
             $this->session->set_flashdata('pesan', 'Data berhasil ditambah!');
-            redirect('admin/managementuser', 'refresh');
+            redirect('admin/managemenuser', 'refresh');
         }
         // selain itu gagal  
         else {
@@ -54,12 +54,12 @@ class Managementuser extends CI_Controller
         $data['title'] = 'Tambah User';
         $this->load->view('header', $data);
         $this->load->view('admin/navbar', $data);
-        $this->load->view('admin/managementuser/tambahuser', $data);
+        $this->load->view('admin/managemenuser/tambahuser', $data);
         $this->load->view('footer');
     }
 
     public function ubah($id_user)
-    { 
+    {
         //terima inputan dari formulir
 
         $inputan = $this->input->post();
@@ -84,7 +84,7 @@ class Managementuser extends CI_Controller
                 //jalankan method ubah user data dari formulir berdasarkan id pada url 
                 $this->Muser->ubah_user($inputan, $id_user);
                 $this->session->set_flashdata('pesan', 'Data berhasil diubah!');
-                redirect('admin/managementuser', 'refresh');
+                redirect('admin/managemenuser', 'refresh');
             }
             // jika salah maka 
             $data['gagal'] = validation_errors();
@@ -95,7 +95,7 @@ class Managementuser extends CI_Controller
 
         $this->load->view('header', $data);
         $this->load->view('admin/navbar', $data);
-        $this->load->view('admin/managementuser/edituser', $data);
+        $this->load->view('admin/managemenuser/edituser', $data);
         $this->load->view('footer');
     }
 

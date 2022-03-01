@@ -13,7 +13,7 @@
                 <h4 class="m-0 font-weight-bold text-primary">Data Barang</h4>
             </div>
             <div class="col-md-6 text-md-right mt-2 mt-md-0">
-                <a href="<?= base_url('purchasing/managementbarang/tambah') ?>" class="btn btn-primary btn-icon-split btn-sm">
+                <a href="<?= base_url('purchasing/managemenbarang/tambah') ?>" class="btn btn-primary btn-icon-split btn-sm">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
                     </span>
@@ -46,13 +46,13 @@
                             <td>
                                 <div class="text-center">
                                     <!-- Button trigger -->
-                                    <a href="<?= base_url('purchasing/managementbarang/detail/' . $value['id_barang']) ?>" class="btn btn-info btn-icon-split btn-sm">
+                                    <a href="<?= base_url('purchasing/managemenbarang/detail/' . $value['id_barang']) ?>" class="btn btn-info btn-icon-split btn-sm">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-info"></i>
                                         </span>
                                         <span class="text">Detail</span>
                                     </a>
-                                    <a href="<?= base_url('purchasing/managementbarang/ubah/' . $value['id_barang']) ?>" class="btn btn-warning btn-icon-split btn-sm">
+                                    <a href="<?= base_url('purchasing/managemenbarang/ubah/' . $value['id_barang']) ?>" class="btn btn-warning btn-icon-split btn-sm">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-edit"></i>
                                         </span>
@@ -106,7 +106,7 @@
                         //disini ajax hapus data
                         $.ajax({
                             type: 'post',
-                            url: "<?= base_url("purchasing/managementbarang/hapus"); ?>",
+                            url: "<?= base_url("purchasing/managemenbarang/hapus"); ?>",
                             data: 'id=' + idnya,
                             success: function() {
                                 swal("Data berhasil terhapus!", {
@@ -114,7 +114,7 @@
                                     button: true
                                 }).then((oke) => {
                                     if (oke) {
-                                        location = "<?= base_url("purchasing/managementbarang/"); ?>"
+                                        location = "<?= base_url("purchasing/managemenbarang/"); ?>"
                                     }
                                 });
                             }

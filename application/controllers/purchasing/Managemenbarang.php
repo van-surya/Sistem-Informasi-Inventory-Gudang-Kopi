@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Managementbarang extends CI_Controller
+class Managemenbarang extends CI_Controller
 {
 
     public function __construct()
@@ -21,11 +21,11 @@ class Managementbarang extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Management Barang';
+        $data['title'] = 'Managemen Barang';
         $data['barang'] = $this->Mbarang->tampil_barang();
         $this->load->view('header', $data);
         $this->load->view('purchasing/navbar', $data);
-        $this->load->view('purchasing/managementbarang/databarang', $data);
+        $this->load->view('purchasing/managemenbarang/databarang', $data);
         $this->load->view('footer');
     }
 
@@ -44,9 +44,9 @@ class Managementbarang extends CI_Controller
         if ($this->form_validation->run() == TRUE) {
             //Mbarang jalankan fungsi simpan_barang($inputan)
             $this->Mbarang->simpan_barang($inputan);
-            //tampilkan purchasing/managementbarang/index
+            //tampilkan purchasing/managemenbarang/index
             $this->session->set_flashdata('pesan', 'Data berhasil ditambah!');
-            redirect('purchasing/managementbarang', 'refresh');
+            redirect('purchasing/managemenbarang', 'refresh');
         }
         // selain itu gagal  
         else {
@@ -59,7 +59,7 @@ class Managementbarang extends CI_Controller
         $data['title'] = 'Tambah Barang';
         $this->load->view('header', $data);
         $this->load->view('purchasing/navbar', $data);
-        $this->load->view('purchasing/managementbarang/tambahbarang', $data);
+        $this->load->view('purchasing/managemenbarang/tambahbarang', $data);
         $this->load->view('footer');
     }
 
@@ -69,7 +69,7 @@ class Managementbarang extends CI_Controller
         $data['title'] = 'Detail Barang';
         $this->load->view('header', $data);
         $this->load->view('purchasing/navbar', $data);
-        $this->load->view('purchasing/managementbarang/detailbarang', $data);
+        $this->load->view('purchasing/managemenbarang/detailbarang', $data);
         $this->load->view('footer');
     }
 
@@ -100,7 +100,7 @@ class Managementbarang extends CI_Controller
                 //jalankan method ubah user data dari formulir berdasarkan id pada url 
                 $this->Mbarang->ubah_barang($inputan, $id_barang);
                 $this->session->set_flashdata('pesan', 'Data berhasil diubah!');
-                redirect('purchasing/managementbarang', 'refresh');
+                redirect('purchasing/managemenbarang', 'refresh');
             }
             // jika salah maka 
             $data['gagal'] = validation_errors();
@@ -113,7 +113,7 @@ class Managementbarang extends CI_Controller
 
         $this->load->view('header', $data);
         $this->load->view('purchasing/navbar', $data);
-        $this->load->view('purchasing/managementbarang/editbarang', $data);
+        $this->load->view('purchasing/managemenbarang/editbarang', $data);
         $this->load->view('footer');
     }
 
@@ -122,5 +122,4 @@ class Managementbarang extends CI_Controller
         $idnya = $this->input->post("id");
         $this->Mbarang->hapus_barang($idnya);
     }
-
 }

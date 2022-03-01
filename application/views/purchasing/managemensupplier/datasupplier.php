@@ -10,10 +10,10 @@
     <div class="card-header py-3">
         <div class="row justify-content-between">
             <div class="col-md-6">
-                <h4 class="m-0 font-weight-bold text-primary">Data Supplier</h4>
+                <h4 class="m-0 font-weight-bold text-primary">Managemen Supplier</h4>
             </div>
             <div class="col-md-6 text-md-right mt-2 mt-md-0">
-                <a href="<?= base_url('purchasing/supplier/tambah') ?>" class="btn btn-primary btn-icon-split btn-sm">
+                <a href="<?= base_url('purchasing/managemensupplier/tambah') ?>" class="btn btn-primary btn-icon-split btn-sm">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
                     </span>
@@ -28,8 +28,8 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Supplier</th>
-                        <th>Nama</th>
+                        <th>Kode</th>
+                        <th>Nama Supplier</th>
                         <th>Alamat</th>
                         <th>Aksi</th>
                     </tr>
@@ -44,13 +44,13 @@
                             <td>
                                 <div class="text-center">
                                     <!-- Button trigger -->
-                                    <a href="<?= base_url('purchasing/supplier/detail/' . $value['id_supplier']) ?>" class="btn btn-info btn-icon-split btn-sm">
+                                    <a href="<?= base_url('purchasing/managemensupplier/detail/' . $value['id_supplier']) ?>" class="btn btn-info btn-icon-split btn-sm">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-info"></i>
                                         </span>
                                         <span class="text">Detail</span>
                                     </a>
-                                    <a href="<?= base_url('purchasing/supplier/ubah/' . $value['id_supplier']) ?>" class="btn btn-warning btn-icon-split btn-sm">
+                                    <a href="<?= base_url('purchasing/managemensupplier/ubah/' . $value['id_supplier']) ?>" class="btn btn-warning btn-icon-split btn-sm">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-edit"></i>
                                         </span>
@@ -104,7 +104,7 @@
                         //disini ajax hapus data
                         $.ajax({
                             type: 'post',
-                            url: "<?= base_url("purchasing/supplier/hapus"); ?>",
+                            url: "<?= base_url("purchasing/managemensupplier/hapus"); ?>",
                             data: 'id=' + idnya,
                             success: function() {
                                 swal("Data berhasil terhapus!", {
@@ -112,7 +112,7 @@
                                     button: true
                                 }).then((oke) => {
                                     if (oke) {
-                                        location = "<?= base_url("purchasing/supplier"); ?>"
+                                        location = "<?= base_url("purchasing/managemensupplier"); ?>"
                                     }
                                 });
                             }

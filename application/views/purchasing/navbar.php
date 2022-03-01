@@ -23,24 +23,36 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Nav Item - Management Barang  -->
+            <!-- Nav Item - Managemen Barang  -->
             <li class="nav-item ">
-                <a class="nav-link" href="#" data-toggle="collapse" data-target="#managementbarang" aria-expanded="false">
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#managemenbarang" aria-expanded="false">
                     <i class="fas fa-fw fa-archive"></i>
-                    <span>Management Barang</span>
+                    <span>Managemen Barang</span>
                 </a>
-                <div id="managementbarang" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="managemenbarang" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="<?= base_url('purchasing/managementbarang'); ?>">Barang</a>
+                        <a class="collapse-item" href="<?= base_url('purchasing/managemenbarang'); ?>">Barang</a>
                         <a class="collapse-item" href="<?= base_url('purchasing/kategori'); ?>">Kategori</a>
                     </div>
                 </div>
             </li>
-            <!-- Nav Item - Barang -->
+            <!-- Nav Item - Managemen-->
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('purchasing/supplier'); ?>">
+                <a class="nav-link" href="<?= base_url('purchasing/managemensupplier'); ?>">
                     <i class="fas fa-fw fa-street-view"></i>
-                    <span>Supplier</span></a>
+                    <span>Managemen Supplier</span></a>
+            </li>
+            <!-- Nav Item - Supplier -->
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('purchasing/pembuatanpo'); ?>">
+                    <i class="fas fa-fw fa-cart-plus"></i>
+                    <span>Pembuatan PO</span></a>
+            </li>
+            <!-- Nav Item - Barang Masuk -->
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('purchasing/'); ?>">
+                    <i class="fas fa-fw fa-folder-open"></i>
+                    <span>Barang Masuk</span></a>
             </li>
             <!-- Nav Item - Logout -->
             <li class="nav-item">

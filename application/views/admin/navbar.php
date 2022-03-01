@@ -24,11 +24,11 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Nav Item - Management User -->
+            <!-- Nav Item - Managemen User -->
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('admin/managementuser') ?>">
+                <a class="nav-link" href="<?= base_url('admin/managemenuser') ?>">
                     <i class="fas fa-fw fa-users"></i>
-                    <span>Management User</span></a>
+                    <span>Managemen User</span></a>
             </li>
 
             <!-- Nav Item - Logout -->
