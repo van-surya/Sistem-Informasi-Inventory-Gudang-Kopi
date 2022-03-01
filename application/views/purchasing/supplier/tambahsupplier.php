@@ -38,7 +38,7 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label>Alamat Supplier</label>
-                    <input type="text" class="form-control" id="alamat_supplier" name="alamat_supplier" placeholder="Alamat Supplier">
+                    <textarea class="form-control" id="alamat_supplier" name="alamat_supplier" rows="3" placeholder="Alamat Supplier"></textarea>
                 </div>
             </div>
     </div>

@@ -44,6 +44,18 @@
                             <td>
                                 <div class="text-center">
                                     <!-- Button trigger -->
+                                    <a href="<?= base_url('purchasing/supplier/detail/' . $value['id_supplier']) ?>" class="btn btn-info btn-icon-split btn-sm">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-info"></i>
+                                        </span>
+                                        <span class="text">Detail</span>
+                                    </a>
+                                    <a href="<?= base_url('purchasing/supplier/ubah/' . $value['id_supplier']) ?>" class="btn btn-warning btn-icon-split btn-sm">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-edit"></i>
+                                        </span>
+                                        <span class="text">Ubah</span>
+                                    </a>
                                     </a> <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_supplier']; ?>">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-trash"></i>

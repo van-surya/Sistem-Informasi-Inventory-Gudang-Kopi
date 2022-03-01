@@ -37,12 +37,35 @@
             $alamat_supplier = $inputan['alamat_supplier'];
 
             $this->db->where('kode_supplier', $kode_supplier);
-            $this->db->where('nama_supplier', $nama_supplier);
+            $this->db->where('nama_supplier', $nama_supplier); 
             $this->db->where('alamat_supplier', $alamat_supplier);
 
             $supplier = $this->db->get('supplier')->row_array();
             if (empty($supplier)) {
                 $this->db->insert('supplier', $inputan);
+                return 'sukses';
+            } else {
+                return 'gagal';
+            }
+        }
+
+        function detail_supplier($id_supplier)
+        {
+            $this->db->where('id_supplier', $id_supplier);
+            $ambil = $this->db->get('supplier');
+            return $ambil->row_array();
+        }
+
+        function ubah_supplier($inputan, $id_supplier)
+        {
+            $this->db->where('kode_supplier', $inputan['kode_supplier']);
+            $this->db->where('nama_supplier', $inputan['nama_supplier']);
+            $this->db->where('alamat_supplier', $inputan['alamat_supplier']);
+
+            $supplier = $this->db->get('supplier')->row_array();
+            if (empty($supplier)) {
+                $this->db->where('id_supplier', $id_supplier);
+                $this->db->update('supplier', $inputan);
                 return 'sukses';
             } else {
                 return 'gagal';

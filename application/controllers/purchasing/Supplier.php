@@ -31,7 +31,11 @@ class Supplier extends CI_Controller
     {
         //gunakan lib form_validation untuk me required
         $this->form_validation->set_rules('kode_supplier', 'Kode Supplier', 'required');
-        $this->form_validation->set_rules('nama_supplier', 'Nama', 'required');
+        $this->form_validation->set_rules(
+            'nama_supplier',
+            'Nama',
+            'required|is_unique[supplier.nama_supplier]'
+        );
         $this->form_validation->set_rules('alamat_supplier', 'Alamat', 'required');
         //dapatkan inputan dari formulir
 
@@ -56,6 +60,56 @@ class Supplier extends CI_Controller
         $this->load->view('header', $data);
         $this->load->view('purchasing/navbar', $data);
         $this->load->view('purchasing/supplier/tambahsupplier', $data);
+        $this->load->view('footer');
+    }
+
+
+    public function detail($id_supplier)
+    {
+        $data['supplier'] = $this->Msupplier->detail_supplier($id_supplier);
+        $data['title'] = 'Detail Supplier';
+        $this->load->view('header', $data);
+        $this->load->view('purchasing/navbar', $data);
+        $this->load->view('purchasing/supplier/detailsupplier', $data);
+        $this->load->view('footer');
+    }
+
+
+    public function ubah($id_supplier)
+    {
+        $inputan = $this->input->post();
+        // jk submit maka lakukan
+
+        if ($inputan) {
+            //mengambil detail dari Model Msupplier
+            $detail = $this->Msupplier->detail_supplier($id_supplier);
+
+            //jika ada inputan ada maka jalankan validasi 
+            if ($inputan['nama_supplier'] == $detail['nama_supplier']) {
+                $this->form_validation->set_rules('nama_supplier', 'Nama ', 'required');
+            } else {
+                $this->form_validation->set_rules('nama_supplier', 'Nama ', 'required|is_unique[supplier.nama_supplier]');
+            }
+            //jika ada inputan ada maka jalankan validasi 
+            $this->form_validation->set_rules('alamat_supplier', 'Alamat', 'required');
+
+            // jalankan validasi jika benar
+            if ($this->form_validation->run() == TRUE) {
+                //jalankan method ubah supplier data dari formulir berdasarkan id pada url 
+                $this->Msupplier->ubah_supplier($inputan, $id_supplier);
+                $this->session->set_flashdata('pesan', 'Data berhasil diubah!');
+                redirect('purchasing/supplier', 'refresh');
+            }
+            // jika salah maka 
+            $data['gagal'] = validation_errors();
+        }
+
+        $data["datasupplier"] = $this->Msupplier->detail_supplier($id_supplier);
+        $data['title'] = 'Ubah Data Supplier';
+
+        $this->load->view('header', $data);
+        $this->load->view('purchasing/navbar', $data);
+        $this->load->view('purchasing/supplier/editsupplier', $data);
         $this->load->view('footer');
     }
 
