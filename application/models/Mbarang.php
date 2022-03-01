@@ -86,10 +86,19 @@
                 return 'gagal';
             }
         }
-        
+
         function hapus_barang($id_barang)
         {
             $this->db->where('id_barang', $id_barang);
             $this->db->delete('barang');
+        }
+
+        function hitung_barang()
+        {
+            $this->db->select('id_barang');
+            $this->db->from('barang');
+            $query = $this->db->get();
+            $total = $query->num_rows();
+            return $total;
         }
     }

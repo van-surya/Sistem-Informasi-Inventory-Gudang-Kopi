@@ -54,4 +54,14 @@
             $this->db->where('id_supplier', $id_supplier);
             $this->db->delete('supplier');
         }
+
+        function hitung_supplier()
+        {
+            $this->db->select('id_supplier');
+            $this->db->from('supplier');
+            $query = $this->db->get();
+            $total = $query->num_rows();
+            return $total;
+        }
+
     }

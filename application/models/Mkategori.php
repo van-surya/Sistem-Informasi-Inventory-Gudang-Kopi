@@ -47,7 +47,6 @@
             }
         }
 
-
         function hapus_kategori($id_kategori)
         {
             $this->db->where('id_kategori', $id_kategori);
