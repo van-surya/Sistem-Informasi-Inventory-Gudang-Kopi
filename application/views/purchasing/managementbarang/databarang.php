@@ -10,10 +10,10 @@
     <div class="card-header py-3">
         <div class="row justify-content-between">
             <div class="col-md-6">
-                <h4 class="m-0 font-weight-bold text-primary">Data User</h4>
+                <h4 class="m-0 font-weight-bold text-primary">Data Barang</h4>
             </div>
             <div class="col-md-6 text-md-right mt-2 mt-md-0">
-                <a href="<?= base_url('admin/managementuser/tambah') ?>" class="btn btn-primary btn-icon-split btn-sm">
+                <a href="<?= base_url('purchasing/managementbarang/tambah') ?>" class="btn btn-primary btn-icon-split btn-sm">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
                     </span>
@@ -28,31 +28,31 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama</th>
-                        <th>Jabatan</th>
-                        <th>Email</th>
-                        <th>Level</th>
+                        <th>Kode Barang</th>
+                        <th>Nama Barang</th>
+                        <th>Kategori</th>
+                        <th>Supplier</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($user_petugas as $key => $value) : ?>
+                    <?php foreach ($barang as $key => $value) : ?>
                         <tr>
                             <td><?= $key + 1; ?></td>
-                            <td><?= $value['nama']; ?></td>
-                            <td><?= $value['jabatan']; ?></td>
-                            <td><?= $value['email']; ?></td>
-                            <td><?= $value['level']; ?></td>
+                            <td><?= $value['kode_barang']; ?></td>
+                            <td><?= $value['nama_barang']; ?></td>
+                            <td><?= $value['nama_kategori']; ?></td>
+                            <td><?= $value['nama_supplier']; ?></td>
                             <td>
                                 <div class="text-center">
                                     <!-- Button trigger -->
-                                    <a href="<?= base_url('admin/managementuser/ubah/' . $value['id_user']) ?>" class="btn btn-info btn-icon-split btn-sm">
+                                    <a href="<?= base_url('purchasing/managementbarang/detail/' . $value['id_barang']) ?>" class="btn btn-info btn-icon-split btn-sm">
                                         <span class="icon text-white-50">
-                                            <i class="fas fa-edit"></i>
+                                            <i class="fas fa-info"></i>
                                         </span>
-                                        <span class="text">Ubah</span>
+                                        <span class="text">Detail</span>
                                     </a>
-                                    <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_user']; ?>">
+                                    <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_barang']; ?>">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-trash"></i>
                                         </span>

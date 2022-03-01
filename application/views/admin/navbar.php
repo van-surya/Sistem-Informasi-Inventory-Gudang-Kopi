@@ -27,7 +27,7 @@
             <!-- Nav Item - Management User -->
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('admin/managementuser') ?>">
-                    <i class="fas fa-fw fa-user-alt"></i>
+                    <i class="fas fa-fw fa-users"></i>
                     <span>Management User</span></a>
             </li>
 

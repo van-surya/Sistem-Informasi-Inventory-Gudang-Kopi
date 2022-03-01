@@ -20,12 +20,28 @@
                     <i class="fas fa-fw fa-home"></i>
                     <span>Beranda</span></a>
             </li>
-
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-
-
+            <!-- Nav Item - Management Barang  -->
+            <li class="nav-item ">
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#managementbarang" aria-expanded="false">
+                    <i class="fas fa-fw fa-archive"></i>
+                    <span>Management Barang</span>
+                </a>
+                <div id="managementbarang" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="<?= base_url('purchasing/managementbarang'); ?>">Barang</a>
+                        <a class="collapse-item" href="<?= base_url('purchasing/kategori'); ?>">Kategori</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Barang -->
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('purchasing/supplier'); ?>">
+                    <i class="fas fa-fw fa-street-view"></i>
+                    <span>Supplier</span></a>
+            </li>
             <!-- Nav Item - Logout -->
             <li class="nav-item">
                 <a class="nav-link btn-logout" href="">
