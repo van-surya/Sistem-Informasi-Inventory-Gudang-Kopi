@@ -50,7 +50,6 @@
             }
         }
 
-
         function detail_po($id_po)
         {
             $this->db->join('user_petugas', 'user_petugas.id_user = po.id_user', 'left');
@@ -58,7 +57,6 @@
             $ambil = $this->db->get('po');
             return $ambil->row_array();
         }
-
 
         function hapus_po($id_po)
         {
