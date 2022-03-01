@@ -50,7 +50,7 @@ class Pembuatanpo extends CI_Controller
             $data['gagal'] = validation_errors();
         }
         //tampilkan kode PO pada inputan
-        $data['title'] = 'Tambah Pembuatan Po';
+        $data['title'] = 'Tambah Pembuatan PO';
         $data['kodepo'] = $this->Mpo->kode_po();
 
         $this->load->view('header', $data);
@@ -70,10 +70,7 @@ class Pembuatanpo extends CI_Controller
         $this->load->view('footer');
     }
 
-
-
-
-
+    
     public function hapus()
     {
         $idnya = $this->input->post("id");

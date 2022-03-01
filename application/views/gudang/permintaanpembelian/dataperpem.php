@@ -10,10 +10,10 @@
     <div class="card-header py-3">
         <div class="row justify-content-between">
             <div class="col-md-6">
-                <h4 class="m-0 font-weight-bold text-primary">Pembuatan PO</h4>
+                <h4 class="m-0 font-weight-bold text-primary">Permintaan Pembelian</h4>
             </div>
             <div class="col-md-6 text-md-right mt-2 mt-md-0">
-                <a href="<?= base_url('purchasing/pembuatanpo/tambah') ?>" class="btn btn-primary btn-icon-split btn-sm">
+                <a href="<?= base_url('gudang/permintaanpembelian/tambah') ?>" class="btn btn-primary btn-icon-split btn-sm">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
                     </span>
@@ -28,37 +28,35 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Kode PO</th>
+                        <th>Kode Permintaan Pembelian</th>
                         <th>Nama Pembuat</th>
-                        <th>Kode Pembelian</th>
                         <th>Tanggal</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($po as $key => $value) : ?>
+                    <?php foreach ($permintaanpembelian as $key => $value) : ?>
                         <tr>
                             <td><?= $key + 1; ?></td>
-                            <td><?= $value['kode_po']; ?></td>
+                            <td><?= $value['kode_permintaanpembelian']; ?></td>
                             <td><?= substr($value['nama'], 0, 20); ?></td>
-                            <td><?= $value['id_permintaanpembelian']; ?></td>
-                            <td><?= tanggal($value['tgl_po']); ?></td>
+                            <td><?= tanggal($value['tgl_permintaanpembelian']); ?></td>
                             <td>
                                 <div class="text-center">
                                     <!-- Button trigger -->
-                                    <a href="<?= base_url('purchasing/pembuatanpo/detail/' . $value['id_po']) ?>" class="btn btn-info btn-icon-split btn-sm">
+                                    <a href="<?= base_url('gudang/permintaanpembelian/detail/' . $value['id_permintaanpembelian']) ?>" class="btn btn-info btn-icon-split btn-sm">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-info"></i>
                                         </span>
                                         <span class="text">Detail</span>
                                     </a>
-                                    <a href="<?= base_url('purchasing/pembuatanpo/ubah/' . $value['id_po']) ?>" class="btn btn-warning btn-icon-split btn-sm">
+                                    <a href="<?= base_url('gudang/permintaanpembelian/ubah/' . $value['id_permintaanpembelian']) ?>" class="btn btn-warning btn-icon-split btn-sm">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-edit"></i>
                                         </span>
                                         <span class="text">Ubah</span>
                                     </a>
-                                    </a> <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_po']; ?>">
+                                    </a> <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_permintaanpembelian']; ?>">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-trash"></i>
                                         </span>
@@ -106,7 +104,7 @@
                         //disini ajax hapus data
                         $.ajax({
                             type: 'post',
-                            url: "<?= base_url("purchasing/pembuatanpo/hapus"); ?>",
+                            url: "<?= base_url("gudang/permintaanpembelian/hapus"); ?>",
                             data: 'id=' + idnya,
                             success: function() {
                                 swal("Data berhasil terhapus!", {
@@ -114,7 +112,7 @@
                                     button: true
                                 }).then((oke) => {
                                     if (oke) {
-                                        location = "<?= base_url("purchasing/pembuatanpo/"); ?>"
+                                        location = "<?= base_url("gudang/permintaanpembelian/"); ?>"
                                     }
                                 });
                             }

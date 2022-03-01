@@ -22,7 +22,11 @@
             </div>
             <div class="form-group col-md-6">
                 <label>Tanggal PO</label>
-                <input type="text" class="form-control" value="<?= $po['tgl_po']; ?>" readonly>
+                <input type="text" class="form-control" value="<?= tanggal($po['tgl_po']); ?>" readonly>
+            </div>
+            <div class="form-group col-md-6">
+                <label>Kode Permintaan Pembelian</label>
+                <input type="text" class="form-control" value="<?= $po['id_permintaanpembelian']; ?>" readonly>
             </div>
         </div>
     </div>
