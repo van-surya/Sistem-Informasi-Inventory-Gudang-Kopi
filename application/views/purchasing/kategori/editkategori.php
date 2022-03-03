@@ -14,7 +14,6 @@
         </button>
         <?= $gagal ?>
     </div>
-
     <script>
         $(".alert").alert();
     </script>

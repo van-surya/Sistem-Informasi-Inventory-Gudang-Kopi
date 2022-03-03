@@ -36,23 +36,11 @@
                     </div>
                 </div>
             </li>
-            <!-- Nav Item - Managemen-->
+            <!-- Nav Item - Managemen Supplier-->
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('purchasing/managemensupplier'); ?>">
                     <i class="fas fa-fw fa-street-view"></i>
                     <span>Managemen Supplier</span></a>
-            </li>
-            <!-- Nav Item - Supplier -->
-            <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('purchasing/pembuatanpo'); ?>">
-                    <i class="fas fa-fw fa-cart-plus"></i>
-                    <span>Pembuatan PO</span></a>
-            </li>
-            <!-- Nav Item - Barang Masuk -->
-            <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('purchasing/'); ?>">
-                    <i class="fas fa-fw fa-folder-open"></i>
-                    <span>Barang Masuk</span></a>
             </li>
             <!-- Nav Item - Logout -->
             <li class="nav-item">

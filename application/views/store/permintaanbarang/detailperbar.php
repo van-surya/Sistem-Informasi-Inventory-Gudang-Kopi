@@ -10,7 +10,18 @@
 <!-- Card Edit Data  -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Permintaan Barang <?= $permintaanbarang['kode_permintaanbarang']; ?></h6>
+        <div class="row justify-content-between">
+            <div class="col-md-6">
+                <h6 class="m-0 font-weight-bold text-primary">Permintaan Barang <?= $permintaanbarang['kode_permintaanbarang']; ?></h6>
+            </div>
+            <div class="col-md-6 text-md-right mt-2 mt-md-0">
+                <button type="button" class="btn btn-primary btn-icon-split btn-sm" data-toggle="modal" data-target="#tambah_data">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-plus"></i></span>
+                    <span class="text">Tambah Barang</span>
+                </button>
+            </div>
+        </div>
         <div class="row py-3">
             <div class="form-group col-md-6">
                 <label>Kode Permintaan Barang</label>
@@ -27,15 +38,158 @@
         </div>
     </div>
     <div class="card-body">
-        <form method="post" enctype="multipart/form-data">
-            <div class="row">
-
-
-            </div>
+        <div class="row">
+            <?php if (!empty($barang)) :  ?>
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Kode</th>
+                                <th>Nama Barang</th>
+                                <th>kategori</th>
+                                <th>Stock</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($barang as $key => $value) : ?>
+                                <tr>
+                                    <td><?= $key + 1; ?></td>
+                                    <td><?= $value['kode_barang']; ?></td>
+                                    <td><?= substr($value['nama_barang'], 0, 30); ?></td>
+                                    <td><?= $value['nama_kategori']; ?></td>
+                                    <td><?= $value['jumlah_permintaanbarang'] . '   ' . $value['satuan']; ?></td>
+                                    <td class="text-center">
+                                        </a>
+                                        <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_barang']; ?>">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                            <span class="text">Hapus</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php else : ?>
+                <div class="col-md-12 text-center">
+                    <div class="alert alert-warning" role="alert">
+                        Tidak ada permintaan barang, Tambahkan barang terlebih dahulu !!
+                    </div>
+                </div>
+            <?php endif; ?>
+        </div>
     </div>
     <div class="card-footer text-md-right">
         <a href="<?= base_url('store/permintaanbarang'); ?>" class="btn btn-secondary">Kembali</a>
-        <button type="submit" class="btn btn-primary">Simpan</button>
     </div>
-    </form>
 </div>
+
+
+<!-- Modal Tambah -->
+<div class="modal fade" id="tambah_data" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Permintaan Barang</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <?php if ($this->session->flashdata('errors')) : ?>
+                    <div class="alert alert-danger alert-dismissible fade show">
+                        <?= $this->session->flashdata('errors') ?>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <?php endif ?>
+                <?= form_open_multipart('store/permintaanbarang/tambah_detailpermintaanbarang'); ?>
+                <div class="form-group">
+                    <label>Pilih Barang</label>
+                    <select class="form-control" id="id_barang" name="id_barang">
+                        <option value="">--Pilih Barang--</option>
+                        <?php foreach ($barang_tidakterpilih as $key => $tidakterpilih) : ?>
+                            <option value="<?= $tidakterpilih['id_barang'] ?>"><?= $tidakterpilih['nama_barang'] . ' | Stock : ' . $tidakterpilih['stock_toko'] . ' ' . $tidakterpilih['satuan']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Jumlah Permintaan</label>
+                    <input type="hidden" readonly class="form-control" name="id_permintaanbarang" id="id_permintaanbarang" value="<?= $permintaanbarang['id_permintaanbarang']; ?>">
+                    <input type="number" class="form-control" name="jumlah_permintaanbarang" id="jumlah_permintaanbarang" placeholder="Masukan Jumlah Permintaan">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+            </div>
+            <?=
+            form_close();
+            ?>
+        </div>
+    </div>
+</div>
+
+
+<!-- hapus data -->
+<script>
+    $(document).ready(function() {
+        $(".btn-hapus").on("click", function(e) {
+            e.preventDefault();
+            var idnya = $(this).attr("idnya");
+            swal({
+                    title: "Apakah kamu yakin ?",
+                    text: "untuk menghapus data ini",
+                    icon: "warning",
+                    buttons: ["Batal", "Hapus Data!"],
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        //disini ajax hapus data
+                        $.ajax({
+                            type: 'post',
+                            url: "<?= base_url("store/permintaanbarang/hapus_detailpermintaanbarang"); ?>",
+                            data: 'id=' + idnya,
+                            success: function() {
+                                swal("Data berhasil terhapus!", {
+                                    icon: "success",
+                                    button: true
+                                }).then((oke) => {
+                                    if (oke) {
+                                        location = "<?= base_url("store/permintaanbarang/detail/" . $permintaanbarang['id_permintaanbarang']); ?>"
+                                    }
+                                });
+                            }
+                        })
+                    }
+                });
+        })
+    })
+</script>
+
+<!-- pesan berhasil  -->
+<?php if ($this->session->flashdata('pesan')) : ?>
+    <script>
+        swal({
+            icon: "success",
+            title: "Berhasil!",
+            text: "<?= $this->session->flashdata('pesan') ?>",
+            button: false,
+            timer: 2000,
+        });
+    </script>
+<?php endif; ?>
+
+<?php if ($this->session->flashdata('errors')) : ?>
+    <script>
+        $(document).ready(function() {
+            $("#tambah_data").modal("show");
+        })
+    </script>
+<?php endif; ?>

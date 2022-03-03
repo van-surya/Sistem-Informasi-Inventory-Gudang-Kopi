@@ -12,7 +12,7 @@
             $ambil = $this->db->get('barang');
             return $ambil->result_array();
         }
-
+ 
         function kode_barang()
         {
             $this->db->select('RIGHT(barang.kode_barang,3) as kode_barang', FALSE);
@@ -101,4 +101,12 @@
             $total = $query->num_rows();
             return $total;
         }
+
+
+        function pengurangan_bahanbaku($inputan, $id_barang)
+        {
+            $this->db->where('id_barang', $id_barang);
+            $this->db->update('barang', $inputan);
+        }
+
     }

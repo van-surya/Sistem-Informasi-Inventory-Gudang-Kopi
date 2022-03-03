@@ -57,8 +57,8 @@
                     </select>
                 </div>
                 <!-- inputan hidden -->
-                <input type="text" class="form-control" id="stock_toko" name="stock_toko" hidden>
-                <input type="text" class="form-control" id="stock_gudang" name="stock_gudang" hidden>
+                <input type="text" class="form-control" id="stock_toko" name="stock_toko" value="0" hidden>
+                <input type="text" class="form-control" id="stock_gudang" name="stock_gudang" value="0" hidden>
                 <div class="col-sm-12 col-md-6 col-lg-6 md-2">
                     <label>Satuan</label>
                     <select class="custom-select" name="satuan">

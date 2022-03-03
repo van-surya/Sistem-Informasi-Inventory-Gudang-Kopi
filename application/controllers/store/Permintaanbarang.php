@@ -10,6 +10,7 @@ class Permintaanbarang extends CI_Controller
         parent::__construct();
 
         $this->load->model('Mpermintaanbarang');
+        $this->load->model('Mbarang');
         $this->load->model('Muser');
         if (!$this->session->userdata("store")) {
             $this->session->set_flashdata('pesan', 'Anda harus login');
@@ -62,11 +63,37 @@ class Permintaanbarang extends CI_Controller
 
     public function detail($id_permintaanbarang)
     {
+        $data['barang_tidakterpilih'] = $this->Mpermintaanbarang->tampil_barangtidakterpilih($id_permintaanbarang);
+        $data['barang'] = $this->Mpermintaanbarang->tampil_detail_permintaanbarang($id_permintaanbarang);
         $data['permintaanbarang'] = $this->Mpermintaanbarang->detail_permintaanbarang($id_permintaanbarang);
         $data['title'] = 'Detail Permintaan Barang';
         $this->load->view('header', $data);
         $this->load->view('store/navbar', $data);
         $this->load->view('store/permintaanbarang/detailperbar', $data);
         $this->load->view('footer');
+    }
+
+    public function tambah_detailpermintaanbarang()
+    {
+        $inputan = $this->input->post();
+        $id_permintaanbarang = $inputan['id_permintaanbarang'];
+        //buat rule
+        $this->form_validation->set_rules('id_barang', 'Barang', 'required');
+        $this->form_validation->set_rules('jumlah_permintaanbarang', 'Jumlah Permintaan Barang', 'required');
+        //jk validation benar maka jalankan
+        if ($this->form_validation->run() == TRUE) {
+            $this->Mpermintaanbarang->simpan_detailpermintaanbarang($inputan);
+            $this->session->set_flashdata('pesan', 'Data berhasil ditambah!');
+            redirect('store/permintaanbarang/detail/' . $id_permintaanbarang, 'refresh');
+        }
+        $this->session->set_flashdata('errors', validation_errors());
+        redirect('store/permintaanbarang/detail/' . $id_permintaanbarang, 'refresh');
+    }
+
+
+    public function hapus_detailpermintaanbarang()
+    {
+        $idnya = $this->input->post("id");
+        $this->Mpermintaanbarang->hapus_detailpermintaanbarang($idnya);
     }
 }

@@ -24,11 +24,11 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Nav Item - Permintaan Pembelian -->
+            <!-- Nav Item - Barang Keluar -->
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('gudang/permintaanpembelian'); ?>">
-                    <i class="fas fa-fw fa-shopping-cart"></i>
-                    <span>Permintaan Pembelian</span></a>
+                <a class="nav-link" href="<?= base_url('gudang/barangkeluar'); ?>">
+                    <i class="fas fa-fw fa-file"></i>
+                    <span>Barang Keluar</span></a>
             </li>
             <!-- Nav Item - Logout -->
             <li class="nav-item">

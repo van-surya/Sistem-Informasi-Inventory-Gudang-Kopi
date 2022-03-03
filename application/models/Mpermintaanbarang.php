@@ -52,9 +52,38 @@
 
         function detail_permintaanbarang($id_permintaanbarang)
         {
-            $this->db->join('user_petugas', 'user_petugas.id_user = permintaan_barang.id_user', 'left');
+            $this->db->join('user_petugas', 'user_petugas.id_user = permintaan_barang.id_user', 'left'); 
             $this->db->where('id_permintaanbarang', $id_permintaanbarang);
             $ambil = $this->db->get('permintaan_barang');
             return $ambil->row_array();
+        }
+
+
+        function tampil_detail_permintaanbarang($id_permintaanbarang)
+        {
+            $this->db->join('barang', 'barang.id_barang = detail_permintaanbarang.id_barang', 'left');
+            $this->db->join('kategori', 'kategori.id_kategori = barang.id_kategori', 'left');
+            $this->db->where('id_permintaanbarang', $id_permintaanbarang);
+            $ambil = $this->db->get('detail_permintaanbarang');
+            return $ambil->result_array();
+        }
+
+        function simpan_detailpermintaanbarang($inputan)
+        {
+            $this->db->insert('detail_permintaanbarang', $inputan);
+        }
+
+        function tampil_barangtidakterpilih($id_permintaanbarang)
+        {
+            $query = $this->db->query("SELECT id_barang,nama_barang, stock_toko, satuan FROM barang
+                    LEFT JOIN kategori ON kategori.id_kategori = barang.id_kategori
+                    WHERE id_barang NOT IN (SELECT id_barang FROM detail_permintaanbarang WHERE id_permintaanbarang = '$id_permintaanbarang')");
+            return $query->result_array();
+        }
+
+        function hapus_detailpermintaanbarang($id_barang)
+        {
+            $this->db->where('id_barang', $id_barang);
+            $this->db->delete('detail_permintaanbarang');
         }
     }
