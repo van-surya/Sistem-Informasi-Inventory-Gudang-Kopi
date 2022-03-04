@@ -28,7 +28,7 @@
             }
 
             $batas = str_pad($kode, 3, "0", STR_PAD_LEFT);
-            $kodetampil = "B" . $batas;
+            $kodetampil = "BR" . $batas;
             return $kodetampil;
         }
 
@@ -101,7 +101,6 @@
             $total = $query->num_rows();
             return $total;
         }
-
 
         function pengurangan_bahanbaku($inputan, $id_barang)
         {

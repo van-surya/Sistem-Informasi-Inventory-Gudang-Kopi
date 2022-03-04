@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Managemensupplier extends CI_Controller
+class Supplier extends CI_Controller
 {
 
     public function __construct()
@@ -19,11 +19,11 @@ class Managemensupplier extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Managemen Supplier';
+        $data['title'] = 'Data Supplier';
         $data['supplier'] = $this->Msupplier->tampil_supplier();
         $this->load->view('header', $data);
         $this->load->view('purchasing/navbar', $data);
-        $this->load->view('purchasing/managemensupplier/datasupplier', $data);
+        $this->load->view('purchasing/supplier/datasupplier', $data);
         $this->load->view('footer');
     }
 
@@ -31,11 +31,7 @@ class Managemensupplier extends CI_Controller
     {
         //gunakan lib form_validation untuk me required
         $this->form_validation->set_rules('kode_supplier', 'Kode Supplier', 'required');
-        $this->form_validation->set_rules(
-            'nama_supplier',
-            'Nama',
-            'required|is_unique[supplier.nama_supplier]'
-        );
+        $this->form_validation->set_rules('nama_supplier', 'Nama', 'required|is_unique[supplier.nama_supplier]');
         $this->form_validation->set_rules('alamat_supplier', 'Alamat', 'required|max_length[200]');
         //dapatkan inputan dari formulir
 
@@ -47,7 +43,7 @@ class Managemensupplier extends CI_Controller
             $this->Msupplier->simpan_supplier($inputan);
             //tampilkan purchasing/supplier/index
             $this->session->set_flashdata('pesan', 'Data berhasil ditambah!');
-            redirect('purchasing/managemensupplier', 'refresh');
+            redirect('purchasing/supplier', 'refresh');
         }
         // selain itu gagal  
         else {
@@ -59,7 +55,7 @@ class Managemensupplier extends CI_Controller
 
         $this->load->view('header', $data);
         $this->load->view('purchasing/navbar', $data);
-        $this->load->view('purchasing/managemensupplier/tambahsupplier', $data);
+        $this->load->view('purchasing/supplier/tambahsupplier', $data);
         $this->load->view('footer');
     }
 
@@ -70,7 +66,7 @@ class Managemensupplier extends CI_Controller
         $data['title'] = 'Detail Supplier';
         $this->load->view('header', $data);
         $this->load->view('purchasing/navbar', $data);
-        $this->load->view('purchasing/managemensupplier/detailsupplier', $data);
+        $this->load->view('purchasing/supplier/detailsupplier', $data);
         $this->load->view('footer');
     }
 
@@ -98,7 +94,7 @@ class Managemensupplier extends CI_Controller
                 //jalankan method ubah supplier data dari formulir berdasarkan id pada url 
                 $this->Msupplier->ubah_supplier($inputan, $id_supplier);
                 $this->session->set_flashdata('pesan', 'Data berhasil diubah!');
-                redirect('purchasing/managemensupplier', 'refresh');
+                redirect('purchasing/supplier', 'refresh');
             }
             // jika salah maka 
             $data['gagal'] = validation_errors();
@@ -109,7 +105,7 @@ class Managemensupplier extends CI_Controller
 
         $this->load->view('header', $data);
         $this->load->view('purchasing/navbar', $data);
-        $this->load->view('purchasing/managemensupplier/editsupplier', $data);
+        $this->load->view('purchasing/supplier/editsupplier', $data);
         $this->load->view('footer');
     }
 

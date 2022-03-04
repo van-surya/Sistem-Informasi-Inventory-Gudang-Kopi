@@ -36,11 +36,11 @@
                     </div>
                 </div>
             </li>
-            <!-- Nav Item - Managemen Supplier-->
+            <!-- Nav Item -Supplier-->
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('purchasing/managemensupplier'); ?>">
+                <a class="nav-link" href="<?= base_url('purchasing/supplier'); ?>">
                     <i class="fas fa-fw fa-street-view"></i>
-                    <span>Managemen Supplier</span></a>
+                    <span>Supplier</span></a>
             </li>
             <!-- Nav Item - Logout -->
             <li class="nav-item">
@@ -48,7 +48,6 @@
                     <i class="fas fa-fw fa-sign-out-alt"></i>
                     <span>Logout</span></a>
             </li>
-
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 

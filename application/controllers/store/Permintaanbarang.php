@@ -32,9 +32,15 @@ class Permintaanbarang extends CI_Controller
     public function tambah()
     {
         //gunakan lib form_validation untuk me required
-        $this->form_validation->set_rules('kode_permintaanbarang', 'Kode Permintaan Barang', 'required');
         $this->form_validation->set_rules('id_user', 'Pembuat', 'required');
+        $this->form_validation->set_rules(
+            'kode_permintaanbarang',
+            'Kode',
+            'required'
+        );
         $this->form_validation->set_rules('tgl_permintaanbarang', 'Tanggal', 'required');
+        $this->form_validation->set_rules('id_barang', 'Barang', 'required');
+        $this->form_validation->set_rules('jumlah_permintaanbarang', 'Jumlah Permintaan', 'required|is_natural_no_zero');
 
         $inputan = $this->input->post();
         //jk ada inputan dari formulir
@@ -52,48 +58,19 @@ class Permintaanbarang extends CI_Controller
         }
         //tampilkan kode permintaanbarang pada inputan
         $data['kodepermintaanbarang'] = $this->Mpermintaanbarang->kode_permintaanbarang();
+        $data['barang'] = $this->Mbarang->tampil_barang();
         $data['title'] = 'Tambah Permintaan Barang';
-
         $this->load->view('header', $data);
         $this->load->view('store/navbar', $data);
         $this->load->view('store/permintaanbarang/tambahperbar', $data);
         $this->load->view('footer');
     }
 
-
-    public function detail($id_permintaanbarang)
-    {
-        $data['barang_tidakterpilih'] = $this->Mpermintaanbarang->tampil_barangtidakterpilih($id_permintaanbarang);
-        $data['barang'] = $this->Mpermintaanbarang->tampil_detail_permintaanbarang($id_permintaanbarang);
-        $data['permintaanbarang'] = $this->Mpermintaanbarang->detail_permintaanbarang($id_permintaanbarang);
-        $data['title'] = 'Detail Permintaan Barang';
-        $this->load->view('header', $data);
-        $this->load->view('store/navbar', $data);
-        $this->load->view('store/permintaanbarang/detailperbar', $data);
-        $this->load->view('footer');
-    }
-
-    public function tambah_detailpermintaanbarang()
-    {
-        $inputan = $this->input->post();
-        $id_permintaanbarang = $inputan['id_permintaanbarang'];
-        //buat rule
-        $this->form_validation->set_rules('id_barang', 'Barang', 'required');
-        $this->form_validation->set_rules('jumlah_permintaanbarang', 'Jumlah Permintaan Barang', 'required');
-        //jk validation benar maka jalankan
-        if ($this->form_validation->run() == TRUE) {
-            $this->Mpermintaanbarang->simpan_detailpermintaanbarang($inputan);
-            $this->session->set_flashdata('pesan', 'Data berhasil ditambah!');
-            redirect('store/permintaanbarang/detail/' . $id_permintaanbarang, 'refresh');
-        }
-        $this->session->set_flashdata('errors', validation_errors());
-        redirect('store/permintaanbarang/detail/' . $id_permintaanbarang, 'refresh');
-    }
-
-
-    public function hapus_detailpermintaanbarang()
+    public function hapus()
     {
         $idnya = $this->input->post("id");
-        $this->Mpermintaanbarang->hapus_detailpermintaanbarang($idnya);
+        $this->Mpermintaanbarang->hapus_permintaanbarang($idnya);
     }
+ 
+
 }

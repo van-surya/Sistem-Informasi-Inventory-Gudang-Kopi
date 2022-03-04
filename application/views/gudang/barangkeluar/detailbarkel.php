@@ -1,7 +1,7 @@
 <!-- breadcrumb -->
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="<?= base_url('store/permintaanbarang'); ?>">Permintaan Barang</a></li>
+        <li class="breadcrumb-item"><a href="<?= base_url('gudang/barangkeluar'); ?>">Barang Keluar</a></li>
         <li class="breadcrumb-item active" aria-current="page"><?= $title; ?></li>
     </ol>
 </nav>
@@ -12,7 +12,7 @@
     <div class="card-header py-3">
         <div class="row justify-content-between">
             <div class="col-md-6">
-                <h6 class="m-0 font-weight-bold text-primary">Permintaan Barang <?= $permintaanbarang['kode_permintaanbarang']; ?></h6>
+                <h6 class="m-0 font-weight-bold text-primary">Barang Keluar <?= $barangkeluar['kode_barangkeluar']; ?></h6>
             </div>
             <div class="col-md-6 text-md-right mt-2 mt-md-0">
                 <button type="button" class="btn btn-primary btn-icon-split btn-sm" data-toggle="modal" data-target="#tambah_data">
@@ -24,16 +24,16 @@
         </div>
         <div class="row py-3">
             <div class="form-group col-md-6">
-                <label>Kode Permintaan Barang</label>
-                <input type="text" class="form-control" value="<?= $permintaanbarang['kode_permintaanbarang']; ?>" readonly>
+                <label>Kode Barang Keluar</label>
+                <input type="text" class="form-control" value="<?= $barangkeluar['kode_barangkeluar']; ?>" readonly>
             </div>
             <div class="form-group col-md-6">
                 <label>Pembuat</label>
-                <input type="text" class="form-control" value="<?= $permintaanbarang['nama']; ?>" readonly>
+                <input type="text" class="form-control" value="<?= $barangkeluar['nama']; ?>" readonly>
             </div>
             <div class="form-group col-md-6">
                 <label>Tanggal</label>
-                <input type="text" class="form-control" value="<?= tanggal($permintaanbarang['tgl_permintaanbarang']); ?>" readonly>
+                <input type="text" class="form-control" value="<?= tanggal($barangkeluar['tgl_barangkeluar']); ?>" readonly>
             </div>
         </div>
     </div>
@@ -77,64 +77,16 @@
             <?php else : ?>
                 <div class="col-md-12 text-center">
                     <div class="alert alert-warning" role="alert">
-                        Tidak ada permintaan barang, Tambahkan barang terlebih dahulu !!
+                        Tambahkan Permintaan Barang
                     </div>
                 </div>
             <?php endif; ?>
         </div>
     </div>
     <div class="card-footer text-md-right">
-        <a href="<?= base_url('store/permintaanbarang'); ?>" class="btn btn-secondary">Kembali</a>
+        <a href="<?= base_url('gudang/barangkeluar'); ?>" class="btn btn-secondary">Kembali</a>
     </div>
 </div>
-
-
-<!-- Modal Tambah -->
-<div class="modal fade" id="tambah_data" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Permintaan Barang</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <?php if ($this->session->flashdata('errors')) : ?>
-                    <div class="alert alert-danger alert-dismissible fade show">
-                        <?= $this->session->flashdata('errors') ?>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                <?php endif ?>
-                <?= form_open_multipart('store/permintaanbarang/tambah_detailpermintaanbarang'); ?>
-                <div class="form-group">
-                    <label>Pilih Barang</label>
-                    <select class="form-control" id="id_barang" name="id_barang">
-                        <option value="">--Pilih Barang--</option>
-                        <?php foreach ($barang_tidakterpilih as $key => $tidakterpilih) : ?>
-                            <option value="<?= $tidakterpilih['id_barang'] ?>"><?= $tidakterpilih['nama_barang'] . ' | Stock : ' . $tidakterpilih['stock_toko'] . ' ' . $tidakterpilih['satuan']; ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Jumlah Permintaan</label>
-                    <input type="hidden" readonly class="form-control" name="id_permintaanbarang" id="id_permintaanbarang" value="<?= $permintaanbarang['id_permintaanbarang']; ?>">
-                    <input type="number" class="form-control" name="jumlah_permintaanbarang" id="jumlah_permintaanbarang" placeholder="Masukan Jumlah Permintaan">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
-            </div>
-            <?=
-            form_close();
-            ?>
-        </div>
-    </div>
-</div>
-
 
 <!-- hapus data -->
 <script>
@@ -154,7 +106,7 @@
                         //disini ajax hapus data
                         $.ajax({
                             type: 'post',
-                            url: "<?= base_url("store/permintaanbarang/hapus_detailpermintaanbarang"); ?>",
+                            url: "<?= base_url("gudang/barangkeluar/hapus_detailpermintaanbarang"); ?>",
                             data: 'id=' + idnya,
                             success: function() {
                                 swal("Data berhasil terhapus!", {
@@ -162,7 +114,7 @@
                                     button: true
                                 }).then((oke) => {
                                     if (oke) {
-                                        location = "<?= base_url("store/permintaanbarang/detail/" . $permintaanbarang['id_permintaanbarang']); ?>"
+                                        location = "<?= base_url("gudang/barangkeluar/detail/" . $permintaanbarang['id_permintaanbarang']); ?>"
                                     }
                                 });
                             }

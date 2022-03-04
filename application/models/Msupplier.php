@@ -26,7 +26,7 @@
             }
 
             $batas = str_pad($kode, 3, "0", STR_PAD_LEFT);
-            $kodetampil = "S" . $batas;
+            $kodetampil = "SP" . $batas;
             return $kodetampil;
         }
 

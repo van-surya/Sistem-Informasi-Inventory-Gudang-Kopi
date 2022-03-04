@@ -10,10 +10,10 @@
     <div class="card-header py-3">
         <div class="row justify-content-between">
             <div class="col-md-6">
-                <h4 class="m-0 font-weight-bold text-primary">Managemen Supplier</h4>
+                <h4 class="m-0 font-weight-bold text-primary"><?= $title; ?></h4>
             </div>
             <div class="col-md-6 text-md-right mt-2 mt-md-0">
-                <a href="<?= base_url('purchasing/managemensupplier/tambah') ?>" class="btn btn-primary btn-icon-split btn-sm">
+                <a href="<?= base_url('gudang/barangkeluar/tambah') ?>" class="btn btn-primary btn-icon-split btn-sm">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
                     </span>
@@ -27,43 +27,23 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>No</th>
                         <th>Kode</th>
-                        <th>Nama Supplier</th>
-                        <th>Alamat</th>
-                        <th>Aksi</th>
+                        <th>Nama Barang</th>
+                        <th>Jumlah</th>
+                        <th>Tanggal</th>
+                        <th>Pembuat</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($supplier as $key => $value) : ?>
+                    <?php foreach ($barangkeluar as $key => $value) : ?>
                         <tr>
-                            <td><?= $key + 1; ?></td>
-                            <td><?= $value['kode_supplier']; ?></td>
-                            <td><?= substr($value['nama_supplier'], 0, 35); ?></td>
-                            <td><?= substr($value['alamat_supplier'], 0, 50); ?></td>
-                            <td>
-                                <div class="text-center">
-                                    <!-- Button trigger -->
-                                    <a href="<?= base_url('purchasing/managemensupplier/detail/' . $value['id_supplier']) ?>" class="btn btn-info btn-icon-split btn-sm">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-info"></i>
-                                        </span>
-                                        <span class="text">Detail</span>
-                                    </a>
-                                    <a href="<?= base_url('purchasing/managemensupplier/ubah/' . $value['id_supplier']) ?>" class="btn btn-warning btn-icon-split btn-sm">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-edit"></i>
-                                        </span>
-                                        <span class="text">Ubah</span>
-                                    </a>
-                                    </a> <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_supplier']; ?>">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-trash"></i>
-                                        </span>
-                                        <span class="text">Hapus</span>
-                                    </a>
-                                </div>
-                            </td>
+                            <td><?= $value['kode_barangkeluar']; ?></td>
+                            <td><?= $value['nama_barang']; ?></td>
+                            <td><?= $value['jumlah_barangkeluar']; ?></td>
+                            <td><?= tanggal($value['tgl_barangkeluar']); ?></td>
+                            <td><?= $value['nama']; ?></td>
+                            <td><?= $value['status_barangkeluar']; ?></td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>
@@ -104,7 +84,7 @@
                         //disini ajax hapus data
                         $.ajax({
                             type: 'post',
-                            url: "<?= base_url("purchasing/managemensupplier/hapus"); ?>",
+                            url: "<?= base_url("gudang/barangkeluar/hapus"); ?>",
                             data: 'id=' + idnya,
                             success: function() {
                                 swal("Data berhasil terhapus!", {
@@ -112,7 +92,7 @@
                                     button: true
                                 }).then((oke) => {
                                     if (oke) {
-                                        location = "<?= base_url("purchasing/managemensupplier"); ?>"
+                                        location = "<?= base_url("gudang/barangkeluar"); ?>"
                                     }
                                 });
                             }

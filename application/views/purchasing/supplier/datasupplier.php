@@ -10,10 +10,10 @@
     <div class="card-header py-3">
         <div class="row justify-content-between">
             <div class="col-md-6">
-                <h4 class="m-0 font-weight-bold text-primary"><?= $title; ?></h4>
+                <h4 class="m-0 font-weight-bold text-primary">Managemen Supplier</h4>
             </div>
             <div class="col-md-6 text-md-right mt-2 mt-md-0">
-                <a href="<?= base_url('store/permintaanbarang/tambah') ?>" class="btn btn-primary btn-icon-split btn-sm">
+                <a href="<?= base_url('purchasing/supplier/tambah') ?>" class="btn btn-primary btn-icon-split btn-sm">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
                     </span>
@@ -27,42 +27,41 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
+                        <th>No</th>
                         <th>Kode</th>
-                        <th>Nama Barang</th>
-                        <th>Tanggal</th>
-                        <th>Jumlah Permintaan</th>
-                        <th>Oleh</th>
+                        <th>Nama Supplier</th>
+                        <th>Alamat</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($permintaanbarang as $key => $value) : ?>
+                    <?php foreach ($supplier as $key => $value) : ?>
                         <tr>
-                            <td><?= $value['kode_permintaanbarang']; ?></td>
-                            <td><?= $value['nama_barang']; ?></td>
-                            <td><?= tanggal($value['tgl_permintaanbarang']); ?></td>
-                            <td><?= $value['jumlah_permintaanbarang'] . ' ' . $value['satuan']; ?></td>
-                            <td><?= $value['nama']; ?></td>
+                            <td><?= $key + 1; ?></td>
+                            <td><?= $value['kode_supplier']; ?></td>
+                            <td><?= substr($value['nama_supplier'], 0, 35); ?></td>
+                            <td><?= substr($value['alamat_supplier'], 0, 50); ?></td>
                             <td>
                                 <div class="text-center">
-                                    <?php if ($value['status_permintaanbarang'] == 'Meminta') : ?>
-                                        <a href="<?= base_url('store/permintaanbarang/ubah/' . $value['id_permintaanbarang']) ?>" class="btn btn-warning btn-icon-split btn-sm">
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-edit"></i>
-                                            </span>
-                                            <span class="text">Ubah</span>
-                                        </a>
-                                        </a> <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_permintaanbarang']; ?>">
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-trash"></i>
-                                            </span>
-                                            <span class="text">Hapus</span>
-                                        </a>
-                                    <?php elseif ($value['status_permintaanbarang'] == 'Setuju') : ?>
-                                        <button type="button" class="btn btn-success btn-sm" disabled>Selesai</button>
-                                    <?php else : ?>
-                                        <button type="button" class="btn btn-danger btn-sm" disabled>Ditolak</button>
-                                    <?php endif; ?>
+                                    <!-- Button trigger -->
+                                    <a href="<?= base_url('purchasing/supplier/detail/' . $value['id_supplier']) ?>" class="btn btn-info btn-icon-split btn-sm">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-info"></i>
+                                        </span>
+                                        <span class="text">Detail</span>
+                                    </a>
+                                    <a href="<?= base_url('purchasing/supplier/ubah/' . $value['id_supplier']) ?>" class="btn btn-warning btn-icon-split btn-sm">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-edit"></i>
+                                        </span>
+                                        <span class="text">Ubah</span>
+                                    </a>
+                                    </a> <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_supplier']; ?>">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-trash"></i>
+                                        </span>
+                                        <span class="text">Hapus</span>
+                                    </a>
                                 </div>
                             </td>
                         </tr>
@@ -105,7 +104,7 @@
                         //disini ajax hapus data
                         $.ajax({
                             type: 'post',
-                            url: "<?= base_url("store/permintaanbarang/hapus"); ?>",
+                            url: "<?= base_url("purchasing/supplier/hapus"); ?>",
                             data: 'id=' + idnya,
                             success: function() {
                                 swal("Data berhasil terhapus!", {
@@ -113,7 +112,7 @@
                                     button: true
                                 }).then((oke) => {
                                     if (oke) {
-                                        location = "<?= base_url("store/permintaanbarang"); ?>"
+                                        location = "<?= base_url("purchasing/supplier"); ?>"
                                     }
                                 });
                             }

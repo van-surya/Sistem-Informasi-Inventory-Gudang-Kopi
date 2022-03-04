@@ -6,6 +6,25 @@
     </ol>
 </nav>
 
+<!-- Card Tampil Permintaan Barang Baru -->
+<?php if (!empty($permintaanbarang)) : ?>
+    <div class="card shadow mb-4 ">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Permintaan Barang</h6>
+        </div>
+        <div class="card-body">
+            <?php foreach ($permintaanbarang as $key => $permintaanbaru) : ?>
+                <div class="alert alert-danger" role="alert">
+                    <p>
+                        Kode &emsp; &emsp; : <?= $permintaanbaru['kode_permintaanbarang']; ?><br>
+                        Pembuat&emsp;: <?= $permintaanbaru['nama']; ?><br>
+                        Tanggal &emsp; : <?= tanggal($permintaanbaru['tgl_permintaanbarang']); ?>
+                    </p>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+<?php endif; ?>
 
 <!-- Card Profile User -->
 <div class="card shadow mb-4">

@@ -18,7 +18,7 @@ class Bahanbaku extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Pengurangan Bahan Baku';
+        $data['title'] = 'Bahan Baku';
         $data['barang'] = $this->Mbarang->tampil_barang();
         $this->load->view('header', $data);
         $this->load->view('store/navbar', $data);
@@ -50,7 +50,7 @@ class Bahanbaku extends CI_Controller
         }
 
         $data["databarang"] = $this->Mbarang->detail_barang($id_barang);
-        $data['title'] = 'Pengurangan Bahan Baku';
+        $data['title'] = 'Bahan Baku';
 
         $this->load->view('header', $data);
         $this->load->view('store/navbar', $data);

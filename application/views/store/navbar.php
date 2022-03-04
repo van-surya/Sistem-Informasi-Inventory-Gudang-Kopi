@@ -24,17 +24,17 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Nav Item - Permintaan Barang -->
-            <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('store/permintaanbarang'); ?>">
-                    <i class="fas fa-fw fa-cart-plus"></i>
-                    <span>Permintaan Barang</span></a>
-            </li>
-            <!-- Nav Item - Permintaan Barang -->
+            <!-- Nav Item - Bahan Baku -->
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('store/bahanbaku'); ?>">
                     <i class="fas fa-fw fa-archive"></i>
-                    <span>Pengurangan Bahan Baku</span></a>
+                    <span>Bahan Baku</span></a>
+            </li>
+            <!-- Nav Item - Permintaan Barang -->
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('store/permintaanbarang'); ?>">
+                    <i class="fas fa-fw fa-file"></i>
+                    <span>Permintaan Barang</span></a>
             </li>
             <!-- Nav Item - Logout -->
             <li class="nav-item">
