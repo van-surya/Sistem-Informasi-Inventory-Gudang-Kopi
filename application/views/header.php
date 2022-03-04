@@ -19,12 +19,16 @@
     <link href="<?= base_url('assets/css/sb-admin-2.min.css'); ?>" rel="stylesheet">
     <link href="<?= base_url('assets/vendor/chat/chat.css'); ?>" rel="stylesheet">
     <link href="<?= base_url('assets/vendor/datatables/dataTables.bootstrap4.min.css'); ?>" rel="stylesheet">
+    <link rel="stylesheet" href="<?= base_url('assets/datatables/DataTables-1.11.5/css/dataTables.bootstrap4.min.css'); ?>">
+
     <!-- custom -->
 
     <script src="<?= base_url('assets/vendor/jquery/jquery-3.5.1.min.js'); ?>"></script>
 
     <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
     <script src="<?= base_url('assets/vendor/sweetalert/sweetalert.min.js'); ?>"></script>
+
+
 
 
 </head>

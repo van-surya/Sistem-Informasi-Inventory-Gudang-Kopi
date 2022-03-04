@@ -66,6 +66,17 @@ class Permintaanbarang extends CI_Controller
         $this->load->view('footer');
     }
 
+    public function detail($id_permintaanbarang)
+    {
+        $data['permintaanbarang'] = $this->Mpermintaanbarang->detail_permintaanbarang($id_permintaanbarang);
+        $data['title'] = 'Detail Permintaan Barang';
+        $this->load->view('header', $data);
+        $this->load->view('store/navbar', $data);
+        $this->load->view('store/permintaanbarang/detailperbar', $data);
+        $this->load->view('footer');
+    }
+
+
     public function hapus()
     {
         $idnya = $this->input->post("id");

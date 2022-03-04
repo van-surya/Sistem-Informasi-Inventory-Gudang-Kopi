@@ -21,7 +21,7 @@
 <?php endif ?>
 
 <!-- Card Tambah Data  -->
-<div class="card shadow mb-4">
+<div class="card shadow mb-4 col-lg-6 mx-auto">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Kode Barang Keluar : <?= $kode_barangkeluar; ?></h6>
     </div>
@@ -34,7 +34,7 @@
                 <input type="hidden" class="form-control" id="id_user" name="id_user" value="<?= $gudang['id_user']; ?>" readonly>
                 <input type="hidden" name="tgl_barangkeluar" id="tgl_barangkeluar" class="form-control" value="<?= date('Y-m-d') ?>" readonly>
 
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-12">
                     <label>Pilih Permintaan Barang</label>
                     <select class="form-control" name="id_permintaanbarang" id="id_permintaanbarang">
                         <option value="">--Pilih Permintaan Barang--</option>
@@ -43,13 +43,18 @@
                         <?php endforeach; ?>
                     </select>
                 </div>
-                <div class="form-group col-md-6">
-                    <label>Jumlah Permintaan Barang</label>
+
+                <div class="form-group col-md-12">
+                    <label>Permintaan Barang</label>
                     <input type="text" class="form-control" id="jumlah_barangkeluar" name="jumlah_barangkeluar" readonly />
                 </div>
-                <div class="form-group col-md-6">
-                    <label>Jumlah Stock Gudang</label>
+                <div class="form-group col-md-12">
+                    <label>Stock Gudang</label>
                     <input type="text" class="form-control" id="stockgudang" readonly />
+                </div>
+                <div class="form-group col-md-12">
+                    <label>Stock Gudang Sekarang</label>
+                    <input type="text" class="form-control" id="hasil" readonly />
                 </div>
                 <div class="col-md-6">
                     <label>Status</label>
@@ -79,8 +84,13 @@
         const jumperbar = $('#id_permintaanbarang option:selected').data('jumperbar');
         const stockgudang = $('#id_permintaanbarang option:selected').data('stockgudang');
 
+        //pengurangan
+        const total = (stockgudang - jumperbar);
+
         // tampilkan data ke element
         $('[name=jumlah_barangkeluar]').val(jumperbar);
         $('[id=stockgudang]').val(stockgudang);
+
+        $('[id=hasil]').val(total);
     });
 </script>

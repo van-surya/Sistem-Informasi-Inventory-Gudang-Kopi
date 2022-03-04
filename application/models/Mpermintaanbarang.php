@@ -71,4 +71,15 @@
             $ambil = $this->db->get('permintaan_barang');
             return $ambil->result_array();
         }
+
+        function detail_permintaanbarang($id_permintaanbarang)
+        {
+            $this->db->join('user_petugas', 'user_petugas.id_user = permintaan_barang.id_user', 'left');
+            $this->db->join('barang', 'barang.id_barang = permintaan_barang.id_barang', 'left');
+
+            $this->db->where('id_permintaanbarang', $id_permintaanbarang);
+            $ambil = $this->db->get('permintaan_barang');
+            return $ambil->row_array();
+        }
+
     }

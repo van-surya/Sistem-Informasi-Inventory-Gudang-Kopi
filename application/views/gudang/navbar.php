@@ -23,7 +23,12 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider">
-
+            <!-- Nav Item - Stock Barang -->
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('gudang/stockbarang'); ?>">
+                    <i class="fas fa-fw fa-archive"></i>
+                    <span>Stock Barang</span></a>
+            </li>
             <!-- Nav Item - Barang Keluar -->
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('gudang/barangkeluar'); ?>">

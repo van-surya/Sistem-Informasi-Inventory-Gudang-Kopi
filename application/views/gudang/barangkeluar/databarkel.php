@@ -40,7 +40,7 @@
                         <tr>
                             <td><?= $value['kode_barangkeluar']; ?></td>
                             <td><?= $value['nama_barang']; ?></td>
-                            <td><?= $value['jumlah_barangkeluar']; ?></td>
+                            <td><?= $value['jumlah_barangkeluar'] . '   ' . $value['satuan']; ?></td>
                             <td><?= tanggal($value['tgl_barangkeluar']); ?></td>
                             <td><?= $value['nama']; ?></td>
                             <td><?= $value['status_barangkeluar']; ?></td>

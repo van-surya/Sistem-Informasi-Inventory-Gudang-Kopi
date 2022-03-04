@@ -36,7 +36,7 @@ class Bahanbaku extends CI_Controller
             $detail = $this->Mbarang->detail_barang($id_barang);
 
             //jika ada inputan ada maka jalankan validasi  
-            $this->form_validation->set_rules('stock_toko', 'Jumlah', 'required|is_natural_no_zero');
+            $this->form_validation->set_rules('stock_toko', 'Jumlah', 'required|greater_than[-1]');
 
             // jalankan validasi jika benar
             if ($this->form_validation->run() == TRUE) {

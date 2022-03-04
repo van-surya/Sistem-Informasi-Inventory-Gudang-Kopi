@@ -42,6 +42,8 @@
 
 <!-- Page level custom scripts -->
 <script src="<?= base_url('assets/js/demo/datatables-demo.js'); ?>"></script>
+
+
 </body>
 
 </html>

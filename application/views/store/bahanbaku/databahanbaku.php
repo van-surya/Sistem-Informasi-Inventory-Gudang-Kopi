@@ -34,9 +34,9 @@
                         <tr>
                             <td><?= $key + 1; ?></td>
                             <td><?= $value['kode_barang']; ?></td>
-                            <td><?= substr($value['nama_barang'], 0, 20); ?></td>
-                            <td><?= substr($value['nama_kategori'], 0, 20); ?></td>
-                            <td><?= $value['stock_toko'] . ' ' . substr($value['satuan'], 0, 30); ?></td>
+                            <td><?= $value['nama_barang']; ?></td>
+                            <td><?= $value['nama_kategori']; ?></td>
+                            <td><?= $value['stock_toko'] . '  ' . $value['satuan']; ?></td>
                             <td>
                                 <div class="text-center">
                                     <!-- Button trigger -->

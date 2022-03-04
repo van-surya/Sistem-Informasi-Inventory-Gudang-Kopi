@@ -40,8 +40,8 @@
                         <tr>
                             <td><?= $key + 1; ?></td>
                             <td><?= $value['kode_barang']; ?></td>
-                            <td><?= substr($value['nama_barang'], 0, 20); ?></td>
-                            <td><?= substr($value['nama_kategori'], 0, 20); ?></td>
+                            <td><?= $value['nama_barang']; ?></td>
+                            <td><?= $value['nama_kategori']; ?></td>
                             <td><?= substr($value['nama_supplier'], 0, 20); ?></td>
                             <td>
                                 <div class="text-center">
