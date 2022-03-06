@@ -40,8 +40,31 @@
 <script src="<?= base_url('assets/vendor/datatables/jquery.dataTables.min.js'); ?>"></script>
 <script src="<?= base_url('assets/vendor/datatables/dataTables.bootstrap4.min.js'); ?>"></script>
 
+<!-- Custom DataTable  -->
+<script src="<?= base_url('assets/vendor/datatables/Buttons-2.2.2/js/dataTables.buttons.min.js'); ?>"></script>
+<script src="<?= base_url('assets/vendor/datatables/Buttons-2.2.2/js/buttons.bootstrap4.min.js'); ?>"></script>
+<script src="<?= base_url('assets/vendor/datatables/JSZip-2.5.0/jszip.min.js'); ?>"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="<?= base_url('assets/vendor/datatables/pdfmake-0.1.36/vfs_fonts.js'); ?>"></script>
+<script src="<?= base_url('assets/vendor/datatables/Buttons-2.2.2/js/buttons.html5.min.js'); ?>"></script>
+<script src="<?= base_url('assets/vendor/datatables/Buttons-2.2.2/js/buttons.print.min.js'); ?>"></script>
+<script src="<?= base_url('assets/vendor/datatables/Buttons-2.2.2/js/buttons.colVis.min.js'); ?>"></script>
+
 <!-- Page level custom scripts -->
 <script src="<?= base_url('assets/js/demo/datatables-demo.js'); ?>"></script>
+
+
+<script>
+    $(document).ready(function() {
+        var table = $('#custom-table').DataTable({
+            lengthChange: false,
+            buttons: ['excel', 'pdf', 'print', 'colvis'],
+
+        });
+        table.buttons().container()
+            .appendTo('#custom-table_wrapper .col-md-6:eq(0)');
+    });
+</script>
 
 
 </body>

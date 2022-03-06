@@ -20,6 +20,8 @@ class Permintaanbarang extends CI_Controller
 
     public function index()
     {
+
+      
         $data['title'] = 'Permintaan Barang';
         $data['permintaanbarang'] = $this->Mpermintaanbarang->tampil_permintaanbarang();
         $this->load->view('header', $data);
