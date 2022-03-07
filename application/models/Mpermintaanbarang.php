@@ -82,4 +82,10 @@
             return $ambil->row_array();
         }
 
+        function ubah_permintaanbarang($inputan, $id_permintaanbarang)
+        {
+            $this->db->where('id_permintaanbarang', $id_permintaanbarang);
+            $this->db->update('permintaan_barang', $inputan);
+        }
+
     }

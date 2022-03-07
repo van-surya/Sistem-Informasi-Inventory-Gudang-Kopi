@@ -13,7 +13,7 @@
                 <h4 class="m-0 font-weight-bold text-primary"><?= $title; ?></h4>
             </div>
             <div class="col-md-6 text-md-right mt-2 mt-md-0">
-                <a href="<?= base_url('gudang/barangkeluar/tambah') ?>" class="btn btn-primary btn-icon-split btn-sm">
+                <a href="<?= base_url('purchasing/po/tambah') ?>" class="btn btn-primary btn-icon-split btn-sm">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
                     </span>
@@ -37,34 +37,41 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($barangkeluar as $key => $value) : ?>
+                    <?php foreach ($po as $key => $value) : ?>
                         <tr>
-                            <td><?= $value['kode_barangkeluar']; ?></td>
+                            <td><?= $value['kode_po']; ?></td>
                             <td><?= $value['nama_barang']; ?></td>
-                            <td><?= $value['jumlah_barangkeluar'] . '   ' . $value['satuan']; ?></td>
-                            <td><?= tanggal($value['tgl_barangkeluar']); ?></td>
+                            <td><?= $value['jumlah_po'] . '   ' . $value['satuan']; ?></td>
+                            <td><?= tanggal($value['tgl_po']); ?></td>
                             <td><?= $value['nama']; ?></td>
                             <td class="text-center">
-                                <?php if ($value['status_barangkeluar'] == 'Setuju') : ?>
-                                    <button type="button" class="btn btn-sm btn-success" disabled>
-                                        Setuju
+                                <?php if ($value['status_po'] == 'Mengirim') : ?>
+                                    <button type="button" class="btn btn-sm btn-primary" disabled>
+                                        Mengirim
                                     </button>
-                                <?php elseif ($value['status_barangkeluar'] == 'Ditolak') : ?>
+                                <?php elseif ($value['status_po'] == 'Diterima') : ?>
+                                    <button type="button" class="btn btn-sm btn-success" disabled>
+                                        Diterima
+                                    </button>
+                                <?php elseif ($value['status_po'] == 'Ditolak') : ?>
                                     <button type="button" class="btn btn-sm btn-danger" disabled>
                                         Ditolak
                                     </button>
-                                <?php else : ?>
                                 <?php endif; ?>
                             </td>
                             <td class="text-center">
-                                <?php if ($value['status_barangkeluar'] == 'Setuju') : ?>
-                                    detail
-                                <?php elseif ($value['status_barangkeluar'] == 'Ditolak') : ?>
-                                    detail
-                                <?php else : ?>
+                                <?php if ($value['status_po'] == 'Mengirim') : ?>
+                                    ubah data
+                                <?php elseif ($value['status_po'] == 'Diterima') : ?>
+                                    <button type="button" class="btn btn-sm btn-success" disabled>
+                                        Diterima
+                                    </button>
+                                <?php elseif ($value['status_po'] == 'Ditolak') : ?>
+                                    <button type="button" class="btn btn-sm btn-danger" disabled>
+                                        ubah data
+                                    </button>
                                 <?php endif; ?>
                             </td>
-
                         </tr>
                     <?php endforeach ?>
                 </tbody>
@@ -105,7 +112,7 @@
                         //disini ajax hapus data
                         $.ajax({
                             type: 'post',
-                            url: "<?= base_url("gudang/barangkeluar/hapus"); ?>",
+                            url: "<?= base_url("purchasing/po/hapus"); ?>",
                             data: 'id=' + idnya,
                             success: function() {
                                 swal("Data berhasil terhapus!", {
@@ -113,7 +120,7 @@
                                     button: true
                                 }).then((oke) => {
                                     if (oke) {
-                                        location = "<?= base_url("gudang/barangkeluar"); ?>"
+                                        location = "<?= base_url("purchasing/po"); ?>"
                                     }
                                 });
                             }

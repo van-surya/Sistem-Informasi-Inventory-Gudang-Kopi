@@ -39,22 +39,29 @@
                     <select class="form-control" name="id_permintaanbarang" id="id_permintaanbarang">
                         <option value="">--Pilih Permintaan Barang--</option>
                         <?php foreach ($permintaanbarang as $key => $baru) : ?>
-                            <option value="<?= $baru['id_permintaanbarang'] ?>" data-jumperbar="<?= $baru['jumlah_permintaanbarang'] ?>" data-stockgudang="<?= $baru['stock_gudang'] ?>"><?= $baru['nama_barang'] ?></option>
+                            <option value="<?= $baru['id_permintaanbarang'] ?>" data-jumperbar="<?= $baru['jumlah_permintaanbarang'] ?>" data-stocktoko="<?= $baru['stock_toko'] ?>" data-stockgudang="<?= $baru['stock_gudang'] ?>"><?= $baru['nama_barang'] ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
-
                 <div class="form-group col-md-12">
-                    <label>Permintaan Barang</label>
+                    <label>Jumlah Permintaan Barang</label>
                     <input type="text" class="form-control" id="jumlah_barangkeluar" name="jumlah_barangkeluar" readonly />
                 </div>
-                <div class="form-group col-md-12">
-                    <label>Stock Gudang</label>
+                <div class="form-group col-md-6">
+                    <label>Stock Toko Sekarang</label>
+                    <input type="text" class="form-control" id="stocktoko" readonly />
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Stock toko + Permintaan</label>
+                    <input type="text" class="form-control" id="hasilstocktoko" readonly />
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Stock Gudang Sekarang</label>
                     <input type="text" class="form-control" id="stockgudang" readonly />
                 </div>
-                <div class="form-group col-md-12">
-                    <label>Stock Gudang Sekarang</label>
-                    <input type="text" class="form-control" id="hasil" readonly />
+                <div class="form-group col-md-6">
+                    <label>Stok Gudang - Permintaan</label>
+                    <input type="text" class="form-control" id="hasilstockgudang" readonly />
                 </div>
                 <div class="col-md-6">
                     <label>Status</label>
@@ -82,15 +89,21 @@
     $('#id_permintaanbarang').on('change', function() {
         // ambil data dari elemen option yang dipilih 
         const jumperbar = $('#id_permintaanbarang option:selected').data('jumperbar');
+        const stocktoko = $('#id_permintaanbarang option:selected').data('stocktoko');
         const stockgudang = $('#id_permintaanbarang option:selected').data('stockgudang');
 
         //pengurangan
-        const total = (stockgudang - jumperbar);
+        const tottoko = (stocktoko + jumperbar)
+        const totalgudang = (stockgudang - jumperbar)
 
         // tampilkan data ke element
         $('[name=jumlah_barangkeluar]').val(jumperbar);
-        $('[id=stockgudang]').val(stockgudang);
 
-        $('[id=hasil]').val(total);
+        $('[id=stocktoko]').val(stocktoko);
+        $('[id=hasilstocktoko]').val(tottoko);
+
+        $('[id=stockgudang]').val(stockgudang);
+        $('[id=hasilstockgudang]').val(totalgudang);
+
     });
 </script>

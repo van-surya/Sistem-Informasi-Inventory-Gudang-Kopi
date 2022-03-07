@@ -13,7 +13,7 @@
                 <h4 class="m-0 font-weight-bold text-primary"><?= $title; ?></h4>
             </div>
             <div class="col-md-6 text-md-right mt-2 mt-md-0">
-                <a href="<?= base_url('gudang/barangkeluar/tambah') ?>" class="btn btn-primary btn-icon-split btn-sm">
+                <a href="<?= base_url('gudang/permintaanpembelian/tambah') ?>" class="btn btn-primary btn-icon-split btn-sm">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
                     </span>
@@ -37,34 +37,60 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($barangkeluar as $key => $value) : ?>
+                    <?php foreach ($permintaanpembelian as $key => $value) : ?>
                         <tr>
-                            <td><?= $value['kode_barangkeluar']; ?></td>
+                            <td><?= $value['kode_permintaanpembelian']; ?></td>
                             <td><?= $value['nama_barang']; ?></td>
-                            <td><?= $value['jumlah_barangkeluar'] . '   ' . $value['satuan']; ?></td>
-                            <td><?= tanggal($value['tgl_barangkeluar']); ?></td>
+                            <td><?= $value['jumlah_permintaanpembelian'] . '   ' . $value['satuan']; ?></td>
+                            <td><?= tanggal($value['tgl_permintaanpembelian']); ?></td>
                             <td><?= $value['nama']; ?></td>
                             <td class="text-center">
-                                <?php if ($value['status_barangkeluar'] == 'Setuju') : ?>
+                                <?php if ($value['status_permintaanpembelian'] == 'Setuju') : ?>
                                     <button type="button" class="btn btn-sm btn-success" disabled>
                                         Setuju
                                     </button>
-                                <?php elseif ($value['status_barangkeluar'] == 'Ditolak') : ?>
+                                <?php elseif ($value['status_permintaanpembelian'] == 'Ditolak') : ?>
                                     <button type="button" class="btn btn-sm btn-danger" disabled>
                                         Ditolak
+                                    </button>
+                                <?php elseif ($value['status_permintaanpembelian'] == 'Meminta') : ?>
+                                    <button type="button" class="btn btn-sm btn-primary" disabled>
+                                        Meminta
                                     </button>
                                 <?php else : ?>
                                 <?php endif; ?>
                             </td>
                             <td class="text-center">
-                                <?php if ($value['status_barangkeluar'] == 'Setuju') : ?>
-                                    detail
-                                <?php elseif ($value['status_barangkeluar'] == 'Ditolak') : ?>
-                                    detail
+                                <?php if ($value['status_permintaanpembelian'] == 'Setuju') : ?>
+                                    <a href="<?= base_url('gudang/permintaanpembelian/detail/' . $value['id_permintaanpembelian']) ?>" class="btn btn-info btn-icon-split btn-sm">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-edit"></i>
+                                        </span>
+                                        <span class="text">Detail</span>
+                                    </a>
+                                <?php elseif ($value['status_permintaanpembelian'] == 'Ditolak') : ?>
+                                    <a href="<?= base_url('gudang/permintaanpembelian/detail/' . $value['id_permintaanpembelian']) ?>" class="btn btn-info btn-icon-split btn-sm">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-edit"></i>
+                                        </span>
+                                        <span class="text">Detail</span>
+                                    </a>
+                                <?php elseif ($value['status_permintaanpembelian'] == 'Meminta') : ?>
+                                    <a href="<?= base_url('gudang/permintaanpembelian/ubah/' . $value['id_permintaanpembelian']) ?>" class="btn btn-warning btn-icon-split btn-sm">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-edit"></i>
+                                        </span>
+                                        <span class="text">Ubah</span>
+                                    </a>
+                                    </a> <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_permintaanpembelian']; ?>">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-trash"></i>
+                                        </span>
+                                        <span class="text">Hapus</span>
+                                    </a>
                                 <?php else : ?>
                                 <?php endif; ?>
                             </td>
-
                         </tr>
                     <?php endforeach ?>
                 </tbody>
@@ -105,7 +131,7 @@
                         //disini ajax hapus data
                         $.ajax({
                             type: 'post',
-                            url: "<?= base_url("gudang/barangkeluar/hapus"); ?>",
+                            url: "<?= base_url("gudang/permintaanpembelian/hapus"); ?>",
                             data: 'id=' + idnya,
                             success: function() {
                                 swal("Data berhasil terhapus!", {
@@ -113,7 +139,7 @@
                                     button: true
                                 }).then((oke) => {
                                     if (oke) {
-                                        location = "<?= base_url("gudang/barangkeluar"); ?>"
+                                        location = "<?= base_url("gudang/permintaanpembelian"); ?>"
                                     }
                                 });
                             }

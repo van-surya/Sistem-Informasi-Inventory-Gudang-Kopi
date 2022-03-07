@@ -42,6 +42,13 @@
                     <i class="fas fa-fw fa-street-view"></i>
                     <span>Supplier</span></a>
             </li>
+
+            <!-- nav Item Purchase Order -->
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('purchasing/po'); ?>">
+                    <i class="fas fa-fw fa-file"></i>
+                    <span>Purchase Order</span></a>
+            </li>
             <!-- Nav Item - Logout -->
             <li class="nav-item">
                 <a class="nav-link btn-logout" href="">

@@ -79,6 +79,43 @@ class Permintaanbarang extends CI_Controller
     }
 
 
+    public function ubah($id_permintaanbarang)
+    {
+        $inputan = $this->input->post();
+        // jk submit maka lakukan
+
+        if ($inputan) {
+            //mengambil detail dari Model Mpermintaanbarang
+            $detail = $this->Mpermintaanbarang->detail_permintaanbarang($id_permintaanbarang);
+
+            //jika ada inputan ada maka jalankan validasi  
+            $this->form_validation->set_rules('id_user', 'Pembuat', 'required');
+            $this->form_validation->set_rules('kode_permintaanbarang', 'Kode', 'required');
+            $this->form_validation->set_rules('tgl_permintaanbarang', 'Tanggal', 'required');
+            $this->form_validation->set_rules('id_barang', 'Barang', 'required');
+            $this->form_validation->set_rules('jumlah_permintaanbarang', 'Jumlah Permintaan', 'required|is_natural_no_zero');
+
+            // jalankan validasi jika benar
+            if ($this->form_validation->run() == TRUE) {
+                //jalankan method ubah permintaanbarang dari formulir berdasarkan id pada url 
+                $this->Mpermintaanbarang->ubah_permintaanbarang($inputan, $id_permintaanbarang);
+                $this->session->set_flashdata('pesan', 'Data berhasil diubah!');
+                redirect('store/permintaanbarang', 'refresh');
+            }
+            // jika salah maka 
+            $data['gagal'] = validation_errors();
+        }
+
+        $data["datapermintaanbarang"] = $this->Mpermintaanbarang->detail_permintaanbarang($id_permintaanbarang);
+        $data['barang'] = $this->Mbarang->tampil_barang();
+        $data['title'] = 'Ubah Permintaan Barang';
+
+        $this->load->view('header', $data);
+        $this->load->view('store/navbar', $data);
+        $this->load->view('store/permintaanbarang/editperbar', $data);
+        $this->load->view('footer');
+    }
+
     public function hapus()
     {
         $idnya = $this->input->post("id");

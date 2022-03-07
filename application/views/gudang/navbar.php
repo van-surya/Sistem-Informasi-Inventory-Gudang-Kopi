@@ -29,12 +29,21 @@
                     <i class="fas fa-fw fa-archive"></i>
                     <span>Stock Barang</span></a>
             </li>
+
             <!-- Nav Item - Barang Keluar -->
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('gudang/barangkeluar'); ?>">
                     <i class="fas fa-fw fa-file"></i>
                     <span>Barang Keluar</span></a>
             </li>
+
+            <!-- Nav Item - Permintaan Pembelian -->
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('gudang/permintaanpembelian'); ?>">
+                    <i class="fas fa-fw fa-file"></i>
+                    <span>Permintaan Pembelian</span></a>
+            </li>
+
             <!-- Nav Item - Logout -->
             <li class="nav-item">
                 <a class="nav-link btn-logout" href="">

@@ -66,11 +66,11 @@
                             <td>
                                 <div class="text-center">
                                     <?php if ($value['status_permintaanbarang'] == 'Meminta') : ?>
-                                        <a href="<?= base_url('store/permintaanbarang/detail/' . $value['id_permintaanbarang']) ?>" class="btn btn-info btn-icon-split btn-sm">
+                                        <a href="<?= base_url('store/permintaanbarang/ubah/' . $value['id_permintaanbarang']) ?>" class="btn btn-warning btn-icon-split btn-sm">
                                             <span class="icon text-white-50">
                                                 <i class="fas fa-edit"></i>
                                             </span>
-                                            <span class="text">Detail</span>
+                                            <span class="text">Ubah</span>
                                         </a>
                                         </a> <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_permintaanbarang']; ?>">
                                             <span class="icon text-white-50">
@@ -81,14 +81,14 @@
                                     <?php elseif ($value['status_permintaanbarang'] == 'Setuju') : ?>
                                         <a href="<?= base_url('store/permintaanbarang/detail/' . $value['id_permintaanbarang']) ?>" class="btn btn-info btn-icon-split btn-sm">
                                             <span class="icon text-white-50">
-                                                <i class="fas fa-edit"></i>
+                                                <i class="fas fa-info"></i>
                                             </span>
                                             <span class="text">Detail</span>
                                         </a>
                                     <?php elseif ($value['status_permintaanbarang'] == 'Ditolak') : ?>
                                         <a href="<?= base_url('store/permintaanbarang/detail/' . $value['id_permintaanbarang']) ?>" class="btn btn-info btn-icon-split btn-sm">
                                             <span class="icon text-white-50">
-                                                <i class="fas fa-edit"></i>
+                                                <i class="fas fa-info"></i>
                                             </span>
                                             <span class="text">Detail</span>
                                         </a>
