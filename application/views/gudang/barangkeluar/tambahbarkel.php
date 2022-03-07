@@ -21,7 +21,7 @@
 <?php endif ?>
 
 <!-- Card Tambah Data  -->
-<div class="card shadow mb-4 col-lg-6 mx-auto">
+<div class="card shadow mb-4 col-lg-8 mx-auto">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Kode Barang Keluar : <?= $kode_barangkeluar; ?></h6>
     </div>

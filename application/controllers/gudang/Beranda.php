@@ -10,6 +10,7 @@ class Beranda extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Mpermintaanbarang');
+        $this->load->model('Mpo');
 
         $this->load->model('Muser');
         if (!$this->session->userdata("gudang")) {
@@ -21,6 +22,7 @@ class Beranda extends CI_Controller
     public function index()
     {
         $data = ['title' => 'Beranda'];
+        $data['po'] = $this->Mpo->tampil_pomengirim();
         $data['permintaanbarang'] = $this->Mpermintaanbarang->tampil_permintaanbarangbaru();
 
         $this->load->view('header', $data);

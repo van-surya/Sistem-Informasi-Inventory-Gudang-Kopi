@@ -100,4 +100,15 @@ class Permintaanpembelian extends CI_Controller
         $this->load->view('gudang/permintaanpembelian/editperpem', $data);
         $this->load->view('footer');
     }
+
+    public function detail($id_permintaanpembelian)
+    {
+        $data['permintaanpembelian'] = $this->Mpermintaanpembelian->detail_permintaanpembelian($id_permintaanpembelian);
+        $data['title'] = 'Detail Permintaan Pembelian';
+        $this->load->view('header', $data);
+        $this->load->view('gudang/navbar', $data);
+        $this->load->view('gudang/permintaanpembelian/detailperpem', $data);
+        $this->load->view('footer');
+    }
+ 
 }

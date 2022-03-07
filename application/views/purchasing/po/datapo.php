@@ -61,14 +61,35 @@
                             </td>
                             <td class="text-center">
                                 <?php if ($value['status_po'] == 'Mengirim') : ?>
-                                    ubah data
+                                    <a href="<?= base_url('purchasing/po/detail/' . $value['id_po']) ?>" class="btn btn-info btn-icon-split btn-sm">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-edit"></i>
+                                        </span>
+                                        <span class="text">Detail</span>
+                                    </a>
+                                    </a> <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_po']; ?>">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-trash"></i>
+                                        </span>
+                                        <span class="text">Hapus</span>
+                                    </a>
                                 <?php elseif ($value['status_po'] == 'Diterima') : ?>
                                     <button type="button" class="btn btn-sm btn-success" disabled>
-                                        Diterima
+                                        <a href="<?= base_url('purchasing/po/detail/' . $value['id_po']) ?>" class="btn btn-info btn-icon-split btn-sm">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-edit"></i>
+                                            </span>
+                                            <span class="text">Detail</span>
+                                        </a>
                                     </button>
                                 <?php elseif ($value['status_po'] == 'Ditolak') : ?>
                                     <button type="button" class="btn btn-sm btn-danger" disabled>
-                                        ubah data
+                                        <a href="<?= base_url('purchasing/po/detail/' . $value['id_po']) ?>" class="btn btn-info btn-icon-split btn-sm">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-edit"></i>
+                                            </span>
+                                            <span class="text">Detail</span>
+                                        </a>
                                     </button>
                                 <?php endif; ?>
                             </td>

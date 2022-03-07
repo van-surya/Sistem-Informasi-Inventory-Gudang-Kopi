@@ -58,9 +58,19 @@
                             </td>
                             <td class="text-center">
                                 <?php if ($value['status_barangkeluar'] == 'Setuju') : ?>
-                                    detail
+                                    <a href="<?= base_url('gudang/barangkeluar/detail/' . $value['id_barangkeluar']) ?>" class="btn btn-info btn-icon-split btn-sm">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-edit"></i>
+                                        </span>
+                                        <span class="text">Detail</span>
+                                    </a>
                                 <?php elseif ($value['status_barangkeluar'] == 'Ditolak') : ?>
-                                    detail
+                                    <a href="<?= base_url('gudang/barangkeluar/detail/' . $value['id_barangkeluar']) ?>" class="btn btn-info btn-icon-split btn-sm">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-edit"></i>
+                                        </span>
+                                        <span class="text">Detail</span>
+                                    </a>
                                 <?php else : ?>
                                 <?php endif; ?>
                             </td>

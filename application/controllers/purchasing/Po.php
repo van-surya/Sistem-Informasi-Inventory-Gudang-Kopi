@@ -11,6 +11,7 @@ class Po extends CI_Controller
 
         $this->load->model('Mpo');
         $this->load->model('Mpermintaanpembelian');
+        $this->load->model('Mbarang');
         $this->load->model('Muser');
         if (!$this->session->userdata("purchasing")) {
             $this->session->set_flashdata('pesan', 'Anda harus login');
@@ -63,6 +64,17 @@ class Po extends CI_Controller
         $this->load->view('purchasing/po/tambahpo', $data);
         $this->load->view('footer');
     }
+
+    public function detail($id_po)
+    {
+        $data['datapo'] = $this->Mpo->detail_po($id_po);
+        $data['title'] = 'Detail Po';
+        $this->load->view('header', $data);
+        $this->load->view('purchasing/navbar', $data);
+        $this->load->view('purchasing/po/detailpo', $data);
+        $this->load->view('footer');
+    }
+ 
 
     public function hapus()
     {

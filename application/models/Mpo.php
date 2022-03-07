@@ -53,6 +53,31 @@
             }
         }
 
+        function detail_po($id_po)
+        {
+            $this->db->join('user_petugas', 'user_petugas.id_user = po.id_user', 'left');
+            $this->db->join('permintaan_pembelian', 'permintaan_pembelian.id_permintaanpembelian = po.id_permintaanpembelian', 'left');
+            $this->db->join('barang', 'barang.id_barang = permintaan_pembelian.id_barang', 'left');
+            $this->db->join('kategori', 'kategori.id_kategori = barang.id_kategori', 'left');
+            $this->db->join('supplier', 'supplier.id_supplier = barang.id_supplier', 'left');
+
+            $this->db->where('id_po', $id_po);
+            $ambil = $this->db->get('po');
+            return $ambil->row_array();
+        }
+
+
+        function tampil_pomengirim()
+        {
+
+            $this->db->join('user_petugas', 'user_petugas.id_user = po.id_user', 'left');
+            $this->db->join('permintaan_pembelian', 'permintaan_pembelian.id_permintaanpembelian = po.id_permintaanpembelian', 'left');
+            $this->db->join('barang', 'barang.id_barang = permintaan_pembelian.id_barang', 'left');
+            $this->db->where('status_po', 'Mengirim');
+            $ambil = $this->db->get('po');
+            return $ambil->result_array();
+        }
+
         function hapus_po($id_po)
         {
             $this->db->where('id_po', $id_po);

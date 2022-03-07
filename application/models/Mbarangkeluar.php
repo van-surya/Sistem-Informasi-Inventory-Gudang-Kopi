@@ -58,4 +58,16 @@
             $this->db->where('id_barangkeluar', $id_barangkeluar);
             $this->db->delete('barang_keluar');
         }
+
+        function detail_barangkeluar($id_barangkeluar)
+        {
+            $this->db->join('permintaan_barang', 'permintaan_barang.id_permintaanbarang = barang_keluar.id_permintaanbarang', 'left');
+            $this->db->join('barang', 'barang.id_barang = permintaan_barang.id_barang', 'left');
+            $this->db->join('user_petugas', 'user_petugas.id_user = barang_keluar.id_user', 'left');
+
+            $this->db->where('id_barangkeluar', $id_barangkeluar);
+            $ambil = $this->db->get('barang_keluar');
+            return $ambil->row_array();
+        }
+
     }
