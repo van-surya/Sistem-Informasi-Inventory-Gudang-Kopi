@@ -22,7 +22,7 @@
                     <div class="card-body">
                         <?php foreach ($permintaanbarang as $key => $permintaanbaru) : ?>
                             <div class="alert alert-warning alert-dismissible fade show mb-2" role="alert">
-                                Permintaan Barang <b><?= $permintaanbaru['kode_permintaanbarang']; ?></b>, <b><?= $permintaanbaru['nama_barang']; ?></b> dalam jumlah <b><?= $permintaanbaru['jumlah_permintaanbarang']; ?></b> dibuat pada tanggal <b><?= tanggal($permintaanbaru['tgl_permintaanbarang']); ?></b> oleh <b><?= $permintaanbaru['nama']; ?></b> segera lakukan pencatatan <a href="<?= base_url('gudang/barangkeluar'); ?>">Barang Keluar</a>
+                                Permintaan Barang <b><?= $permintaanbaru['kode_permintaanbarang']; ?></b>, <b><?= $permintaanbaru['nama_barang']; ?></b> dalam jumlah <b><?= $permintaanbaru['jumlah_permintaanbarang']; ?></b> dibuat pada tanggal <b><?= tanggal($permintaanbaru['tgl_permintaanbarang']); ?></b> oleh <b><?= $permintaanbaru['nama']; ?></b> segera lakukan pencatatan <a href="<?= base_url('gudang/barangkeluar/tambah'); ?>">Barang Keluar</a>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -49,7 +49,7 @@
                             <div class="alert alert-warning alert-dismissible fade show mb-2" role="alert">
                                 Permintaan pembelian <b><?= $pomengirim['kode_permintaanpembelian']; ?></b>, <b><?= $pomengirim['nama_barang']; ?></b>,
                                 sedang <b>dikirim</b> dalam jumlah <b><?= $pomengirim['jumlah_po']; ?></b>
-                                pada tanggal <b><?= tanggal($pomengirim['tgl_po']); ?></b> oleh <b><?= $pomengirim['nama']; ?></b> jika barang sudah <b>diterima</b> segera lakukan pencatatan <a href="<?= base_url('gudang/barangmasuk'); ?>">Barang Masuk</a>
+                                pada tanggal <b><?= tanggal($pomengirim['tgl_po']); ?></b> oleh <b><?= $pomengirim['nama']; ?></b> jika barang sudah <b>diterima</b> segera lakukan pencatatan <a href="<?= base_url('gudang/barangmasuk/tambah'); ?>">Barang Masuk</a>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>

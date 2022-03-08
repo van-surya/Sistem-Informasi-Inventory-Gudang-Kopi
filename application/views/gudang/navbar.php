@@ -35,6 +35,12 @@
                 <a class="nav-link" href="<?= base_url('gudang/barangkeluar'); ?>">
                     <i class="fas fa-fw fa-file"></i>
                     <span>Barang Keluar</span></a>
+
+            </li> <!-- Nav Item - Barang Masuk -->
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('gudang/barangmasuk'); ?>">
+                    <i class="fas fa-fw fa-file"></i>
+                    <span>Barang Masuk</span></a>
             </li>
 
             <!-- Nav Item - Permintaan Pembelian -->

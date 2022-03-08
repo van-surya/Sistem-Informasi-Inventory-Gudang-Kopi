@@ -69,7 +69,6 @@
 
         function tampil_pomengirim()
         {
-
             $this->db->join('user_petugas', 'user_petugas.id_user = po.id_user', 'left');
             $this->db->join('permintaan_pembelian', 'permintaan_pembelian.id_permintaanpembelian = po.id_permintaanpembelian', 'left');
             $this->db->join('barang', 'barang.id_barang = permintaan_pembelian.id_barang', 'left');
