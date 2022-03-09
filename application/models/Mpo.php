@@ -84,4 +84,13 @@
             $this->db->where('id_po', $id_po);
             $this->db->delete('po');
         }
+
+        function hitung_po()
+        {
+            $this->db->select('id_po');
+            $this->db->from('po');
+            $query = $this->db->get();
+            $total = $query->num_rows();
+            return $total;
+        }
     }

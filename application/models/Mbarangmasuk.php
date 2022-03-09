@@ -72,4 +72,13 @@
             $this->db->where('id_barangmasuk', $id_barangmasuk);
             $this->db->delete('barang_masuk');
         }
+
+        function hitung_barangmasuk()
+        {
+            $this->db->select('id_barangmasuk');
+            $this->db->from('barang_masuk');
+            $query = $this->db->get();
+            $total = $query->num_rows();
+            return $total;
+        }
     }

@@ -20,9 +20,9 @@
 <?php endif; ?>
 
 <!-- Card Tambah Data  -->
-<div class="card shadow mb-4">
+<div class="card col-md-8 shadow mb-4 mx-auto">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Ubah Data</h6>
+        <h6 class="m-0 font-weight-bold text-primary"><?= $title; ?></h6>
     </div>
     <div class="card-body">
         <form method="post" enctype="multipart/form-data">
@@ -43,29 +43,12 @@
                     <label>Password</label>
                     <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                 </div>
-                <div class="col-sm-12 col-md-6 col-lg-6 md-2">
-                    <label>Level</label>
-                    <select class="custom-select" name="level">
-                        <option value="">--Pilih Level--</option>
-                        <option value="admin" <?php if ($datauser['level'] == 'admin') {
-                                                    echo "selected";
-                                                } ?>>Admin</option>
-                        <option value="store" <?php if ($datauser['level'] == 'store') {
-                                                    echo "selected";
-                                                } ?>>Store</option>
-                        <option value="purchasing" <?php if ($datauser['level'] == 'purchasing') {
-                                                        echo "selected";
-                                                    } ?>>Purchasing</option>
-                        <option value="gudang" <?php if ($datauser['level'] == 'gudang') {
-                                                    echo "selected";
-                                                } ?>>Gudang</option>
-                    </select>
-                </div>
+                <input type="hidden" class="form-control" id="level" name="level" value="<?= $datauser['level']; ?>" readonly>
             </div>
+            <div class="card-footer text-md-right">
+                <a href="<?= base_url('admin/beranda'); ?>" class="btn btn-secondary">Batal</a>
+                <button type="submit" class="btn btn-primary">Simpan</button>
+            </div>
+        </form>
     </div>
-    <div class="card-footer text-md-right">
-        <a href="<?= base_url('admin/beranda'); ?>" class="btn btn-secondary">Batal</a>
-        <button type="submit" class="btn btn-primary">Simpan</button>
-    </div>
-    </form>
 </div>

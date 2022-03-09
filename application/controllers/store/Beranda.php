@@ -9,8 +9,10 @@ class Beranda extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('Muser');
+        $this->load->model('Mbarang');
+        $this->load->model('Mpermintaanbarang');
 
+        $this->load->model('Muser');
         if (!$this->session->userdata("store")) {
             $this->session->set_flashdata('pesan', 'Anda harus login');
             redirect('login', 'refresh');
@@ -20,6 +22,9 @@ class Beranda extends CI_Controller
     public function index()
     {
         $data = ['title' => 'Beranda'];
+        $data['jumlah_bahanbaku'] = $this->Mbarang->hitung_barang();
+        $data['jumlah_permintaanbarang'] = $this->Mpermintaanbarang->hitung_permintaanbarang();
+
         $this->load->view('header', $data);
         $this->load->view('store/navbar', $data);
         $this->load->view('store/beranda', $data);

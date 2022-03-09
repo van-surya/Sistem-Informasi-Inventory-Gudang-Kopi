@@ -2,7 +2,7 @@
 
 function tanggal($string_tanggal)
 {
-    return date('d M Y', strtotime($string_tanggal));
+    return date('d/m/Y', strtotime($string_tanggal));
 }
 
 function tanggal_waktu($string_tanggal_waktu)

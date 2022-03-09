@@ -50,9 +50,9 @@
 <script src="<?= base_url('assets/vendor/datatables/Buttons-2.2.2/js/buttons.print.min.js'); ?>"></script>
 <script src="<?= base_url('assets/vendor/datatables/Buttons-2.2.2/js/buttons.colVis.min.js'); ?>"></script>
 
+
 <!-- Page level custom scripts -->
 <script src="<?= base_url('assets/js/demo/datatables-demo.js'); ?>"></script>
-
 
 <script>
     $(document).ready(function() {

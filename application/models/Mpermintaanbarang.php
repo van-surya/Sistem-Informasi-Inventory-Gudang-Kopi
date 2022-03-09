@@ -90,4 +90,12 @@
             $this->db->update('permintaan_barang', $inputan);
         }
 
+        function hitung_permintaanbarang()
+        {
+            $this->db->select('id_permintaanbarang');
+            $this->db->from('permintaan_barang');
+            $query = $this->db->get();
+            $total = $query->num_rows();
+            return $total;
+        }
     }

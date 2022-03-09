@@ -9,6 +9,11 @@ class Beranda extends CI_Controller
     function __construct()
     {
         parent::__construct();
+        $this->load->model('Mbarang');
+        $this->load->model('Mbarangmasuk');
+        $this->load->model('Mbarangkeluar');
+        $this->load->model('Mpermintaanpembelian');
+
         $this->load->model('Mpermintaanbarang');
         $this->load->model('Mpo');
 
@@ -22,6 +27,12 @@ class Beranda extends CI_Controller
     public function index()
     {
         $data = ['title' => 'Beranda'];
+
+        $data['jumlah_baranggudang'] = $this->Mbarang->hitung_barang();
+        $data['jumlah_barangmasuk'] = $this->Mbarangmasuk->hitung_barangmasuk();
+        $data['jumlah_barangkeluar'] = $this->Mbarangkeluar->hitung_barangkeluar();
+        $data['jumlah_permintaanpembelian'] = $this->Mpermintaanpembelian->hitung_permintaanpembelian();
+        
         $data['po'] = $this->Mpo->tampil_pomengirim();
         $data['permintaanbarang'] = $this->Mpermintaanbarang->tampil_permintaanbarangbaru();
 

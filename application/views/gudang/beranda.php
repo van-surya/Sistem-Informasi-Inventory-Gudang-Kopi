@@ -6,7 +6,6 @@
     </ol>
 </nav>
 
-
 <!-- Notif Permintaan Barang Keluar  -->
 <?php if (!empty($permintaanbarang)) : ?>
     <div class="card shadow mb-4">
@@ -61,9 +60,82 @@
 <?php endif; ?>
 <!-- End Notif Barang Masuk  -->
 
+<!-- Jumlah  -->
+<div class="row">
+    <!-- Jumlah Stock Gudang -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jumlah Barang Gudang</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $jumlah_baranggudang; ?></div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-archive fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Jumlah Stock Gudang -->
+    <!-- Jumlah Barang Masuk -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Jumlah Barang Masuk</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $jumlah_barangmasuk; ?></div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Jumlah Barang Masuk -->
+    <!-- Jumlah Barang Keluar -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-danger shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Jumlah Barang Keluar</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $jumlah_barangkeluar; ?></div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-file fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Jumlah Barang Keluar -->
+    <!-- Jumlah Permintan Pembelian -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Jumlah Permintaan Pembelian</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $jumlah_permintaanpembelian; ?></div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-file fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Jumlah Permintan Pembelian -->
+</div>
+<!-- End Jumlah  -->
+
 
 <!-- Card Profile User -->
-<div class="card shadow mb-4">
+<div class="card shadow mb-4 col-md-10 mx-auto">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Profile</h6>
     </div>
@@ -79,9 +151,6 @@
                 </tr>
                 <tr>
                     <td>Email &emsp;&emsp;: <?= $gudang['email']; ?></td>
-                </tr>
-                <tr>
-                    <td>level &emsp;&emsp;: <?= $gudang['level']; ?></td>
                 </tr>
             </table>
         </div>

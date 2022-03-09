@@ -82,4 +82,13 @@
             $ambil = $this->db->get('permintaan_pembelian');
             return $ambil->result_array();
         }
+
+        function hitung_permintaanpembelian()
+        {
+            $this->db->select('id_permintaanpembelian');
+            $this->db->from('permintaan_pembelian');
+            $query = $this->db->get();
+            $total = $query->num_rows();
+            return $total;
+        }
     }

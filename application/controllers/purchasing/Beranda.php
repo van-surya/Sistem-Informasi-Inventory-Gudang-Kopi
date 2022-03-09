@@ -11,6 +11,7 @@ class Beranda extends CI_Controller
         parent::__construct();
         $this->load->model('Mbarang');
         $this->load->model('Msupplier');
+        $this->load->model('Mpo');
         $this->load->model('Mpermintaanpembelian');
         
 
@@ -26,6 +27,7 @@ class Beranda extends CI_Controller
         $data = ['title' => 'Beranda'];
         $data['jumlah_barang'] = $this->Mbarang->hitung_barang();
         $data['jumlah_supplier'] = $this->Msupplier->hitung_supplier();
+        $data['jumlah_po'] = $this->Mpo->hitung_po();
         $data['permintaanpembelian'] = $this->Mpermintaanpembelian->tampil_permintaanpembelianbaru();
 
         $this->load->view('header', $data);

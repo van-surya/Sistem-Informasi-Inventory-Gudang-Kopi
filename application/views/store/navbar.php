@@ -78,12 +78,11 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <?php $store = $this->session->userdata('store'); ?>
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <?= $store['nama']; ?><br></span>
-                                <!-- <img class="img-profile rounded-circle" src="<?= base_url("assets/img/pengguna/" . $store['foto_pengguna']); ?>"> -->
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Hey ,<?= $store['nama']; ?><br></span>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="<?= base_url('purchasing/beranda'); ?>">
+                                <a class="dropdown-item" href="<?= base_url('store/beranda'); ?>">
                                     <i class="fas fa-home fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Beranda
                                 </a>

@@ -23,33 +23,7 @@
         </div>
     </div>
     <div class="card-body">
-        <!-- Search date  -->
-        <form method="post" enctype="multipart/form-data">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="input-group input-group-sm mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-sm">Dari</span>
-                        </div>
-                        <input type="date" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="input-group input-group-sm mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-sm">Sampai</span>
-                        </div>
-                        <input type="date" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                    </div>
-                </div>
-                <div class="form-group col-md-3">
-                    <button type="submit" class="btn btn-secondary btn-sm">
-                        Tampilkan
-                    </button>
-                </div>
-            </div>
-        </form>
-        <!-- End Search date  -->
+
 
         <div class="table-responsive">
             <table class="table table-bordered" id="custom-table" width="100%" cellspacing="0">
@@ -181,3 +155,8 @@
         })
     })
 </script>
+
+
+</body>
+
+</html>

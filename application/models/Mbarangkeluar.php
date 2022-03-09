@@ -69,5 +69,12 @@
             $ambil = $this->db->get('barang_keluar');
             return $ambil->row_array();
         }
-
+        function hitung_barangkeluar()
+        {
+            $this->db->select('id_barangkeluar');
+            $this->db->from('barang_keluar');
+            $query = $this->db->get();
+            $total = $query->num_rows();
+            return $total;
+        }
     }
