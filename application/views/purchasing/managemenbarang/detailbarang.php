@@ -32,7 +32,10 @@
                     <label>Supplier</label>
                     <input type="text" class="form-control" value="<?= $barang['nama_supplier']; ?>" readonly>
                 </div>
-
+                <div class="form-group col-md-6">
+                    <label>Satuan</label>
+                    <input type="text" class="form-control" value="<?= $barang['satuan']; ?>" readonly>
+                </div>
             </div>
             <div class="card-footer text-md-right">
                 <a href="<?= base_url('purchasing/managemenbarang'); ?>" class="btn btn-secondary">Kembali</a>

@@ -39,7 +39,7 @@
                     <select class="form-control" name="id_po" id="id_po">
                         <option value="">--Pilih Barang--</option>
                         <?php foreach ($po as $key => $mengirim) : ?>
-                            <option value="<?= $mengirim['id_po'] ?>" data-jumpo="<?= $mengirim['jumlah_po'] ?>" data-stockgudang="<?= $mengirim['stock_gudang'] ?>"><?= $mengirim['nama_barang'] ?></option>
+                            <option value="<?= $mengirim['id_po'] ?>" data-jumpo="<?= $mengirim['jumlah_po'] ?>" data-stockgudang="<?= $mengirim['stock_gudang'] ?>">Kode PO : <?= $mengirim['kode_po'] ?> | <?= $mengirim['nama_barang'] ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>

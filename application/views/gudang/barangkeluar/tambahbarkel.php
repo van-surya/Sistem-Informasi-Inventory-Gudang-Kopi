@@ -23,23 +23,25 @@
 <!-- Card Tambah Data  -->
 <div class="card shadow mb-4 col-lg-8 mx-auto">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Kode Barang Keluar : <?= $kode_barangkeluar; ?></h6>
+        <h6 class="m-0 font-weight-bold text-primary"><?= $title; ?></h6>
     </div>
     <div class="card-body">
         <form method="post" enctype="multipart/form-data">
             <div class="row">
-
-                <input type="hidden" class="form-control" id="kode_barangkeluar" name="kode_barangkeluar" value="<?= $kode_barangkeluar; ?>" readonly>
+                <div class="form-group col-md-6">
+                    <label>Kode Barang Keluar</label>
+                    <input type="text" class="form-control" id="kode_barangkeluar" name="kode_barangkeluar" value="<?= $kode_barangkeluar; ?>" readonly />
+                </div>
                 <?php $gudang = $this->session->userdata('gudang') ?>
                 <input type="hidden" class="form-control" id="id_user" name="id_user" value="<?= $gudang['id_user']; ?>" readonly>
                 <input type="hidden" name="tgl_barangkeluar" id="tgl_barangkeluar" class="form-control" value="<?= date('Y-m-d') ?>" readonly>
 
-                <div class="form-group col-md-12">
+                <div class="form-group col-md-6">
                     <label>Pilih Permintaan Barang</label>
                     <select class="form-control" name="id_permintaanbarang" id="id_permintaanbarang">
                         <option value="">--Pilih Permintaan Barang--</option>
                         <?php foreach ($permintaanbarang as $key => $baru) : ?>
-                            <option value="<?= $baru['id_permintaanbarang'] ?>" data-jumperbar="<?= $baru['jumlah_permintaanbarang'] ?>" data-stocktoko="<?= $baru['stock_toko'] ?>" data-stockgudang="<?= $baru['stock_gudang'] ?>"><?= $baru['nama_barang'] ?></option>
+                            <option value="<?= $baru['id_permintaanbarang'] ?>" data-jumperbar="<?= $baru['jumlah_permintaanbarang'] ?>" data-stocktoko="<?= $baru['stock_toko'] ?>" data-stockgudang="<?= $baru['stock_gudang'] ?>">Kode : <?= $baru['kode_permintaanbarang'] ?> | <?= $baru['nama_barang'] ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>

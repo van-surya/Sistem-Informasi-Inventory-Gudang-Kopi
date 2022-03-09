@@ -79,6 +79,8 @@
 
         function hapus_po($id_po)
         {
+            $this->db->query("UPDATE permintaan_pembelian LEFT JOIN po ON po.id_permintaanpembelian = permintaan_pembelian.id_permintaanpembelian
+             SET status_permintaanpembelian = 'Meminta' WHERE id_po = $id_po");
             $this->db->where('id_po', $id_po);
             $this->db->delete('po');
         }

@@ -4,15 +4,17 @@
 
     class Mpermintaanbarang extends CI_Model
     {
-        
+
         function tampil_permintaanbarang()
         {
             $this->db->join('barang', 'barang.id_barang = permintaan_barang.id_barang', 'left');
+            $this->db->join('kategori', 'kategori.id_kategori = barang.id_kategori', 'left');
+            
             $this->db->join('user_petugas', 'user_petugas.id_user = permintaan_barang.id_user', 'left');
             $ambil = $this->db->get('permintaan_barang');
             return $ambil->result_array();
         }
-
+        
         function kode_permintaanbarang()
         {
             $this->db->select('RIGHT(permintaan_barang.kode_permintaanbarang,3) as kode_permintaanbarang', FALSE);

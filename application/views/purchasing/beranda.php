@@ -6,6 +6,31 @@
     </ol>
 </nav>
 
+<!-- Card Notifikasi Permintaan Pembelian  -->
+<div class="card shadow mb-4">
+    <!-- Card Header - Accordion -->
+    <a href="#permintaanpembelian" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="permintaanpembelian">
+        <h6 class="m-0 font-weight-bold text-primary">Permintaan Pembelian</h6>
+    </a>
+    <!-- Card Content - Collapse -->
+    <div class="collapse show" id="permintaanpembelian">
+        <div class="card-body">
+            <?php foreach ($permintaanpembelian as $key => $permintaanbaru) : ?>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    Permintaan pembelian kode <b><?= $permintaanbaru['kode_permintaanpembelian']; ?></b> oleh <b><?= $permintaanbaru['nama']; ?></b>, <b><?= $permintaanbaru['nama_barang']; ?></b>, jumlah <b><?= $permintaanbaru['jumlah_permintaanpembelian'] . ' ' . $permintaanbaru['satuan']; ?></b>
+                    , dibuat tanggal <b><?= tanggal($permintaanbaru['tgl_permintaanpembelian']); ?></b> segera membuat <a href="<?= base_url('purchasing/po/tambah') ?>">Purchase Order</a>
+                </div>
+            <?php endforeach; ?>
+            <script>
+                $(".alert").alert();
+            </script>
+        </div>
+    </div>
+</div>
+
 <!-- Card Jumlah  -->
 <div class="row">
     <div class="col-xl-3 col-md-6 mb-4">
@@ -43,6 +68,7 @@
     </div>
 
 </div>
+
 
 <!-- Card Profile User -->
 <div class="card shadow mb-4">

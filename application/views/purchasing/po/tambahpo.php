@@ -40,7 +40,7 @@
                     <select class="form-control" name="id_permintaanpembelian" id="id_permintaanpembelian">
                         <option value="">--Pilih Permintaan Barang--</option>
                         <?php foreach ($permintaanpembelian as $key => $baru) : ?>
-                            <option value="<?= $baru['id_permintaanpembelian'] ?>" data-jumperbar="<?= $baru['jumlah_permintaanpembelian'] ?>" data-stockgudang="<?= $baru['stock_gudang'] ?>"><?= $baru['nama_barang'] ?></option>
+                            <option value="<?= $baru['id_permintaanpembelian'] ?>" data-jumperbar="<?= $baru['jumlah_permintaanpembelian'] ?>" data-stockgudang="<?= $baru['stock_gudang'] ?>"> Kode : <?= $baru['kode_permintaanpembelian'] . ' | ' . $baru['nama_barang'] ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>

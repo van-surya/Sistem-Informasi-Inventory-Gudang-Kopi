@@ -57,12 +57,13 @@
 <script>
     $(document).ready(function() {
         var table = $('#custom-table').DataTable({
-            lengthChange: false,
             buttons: ['excel', 'pdf', 'print', 'colvis'],
-
+            dom: "<'row'<'col-md-3'l><'col-md-5'B><'col-md-4'f>>" +
+                "<'row'<'col-md-12'tr>>" +
+                "<'row'<'col-md-5'i> <'col-md-7'p>>"
         });
         table.buttons().container()
-            .appendTo('#custom-table_wrapper .col-md-6:eq(0)');
+            .appendTo('#custom-table_wrapper .col-md-5:eq(0)');
     });
 </script>
 

@@ -20,7 +20,7 @@
 <?php endif; ?>
 
 <!-- Card Tambah Data  -->
-<div class="col-lg-6 mx-auto">
+<div class="col-lg-8 mx-auto">
     <div class="card shadow mb-4 ">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Ubah Data Barang</h6>
@@ -28,15 +28,15 @@
         <div class="card-body">
             <form method="post" enctype="multipart/form-data">
                 <div class="row">
-                    <div class="col-md-12 form-group">
+                    <div class="col-md-6 form-group">
                         <label>Kode Barang</label>
                         <input type="text" class="form-control" id="kode_barang" name="kode_barang" placeholder="kode_barang" value="<?= $databarang['kode_barang']; ?>" readonly>
                     </div>
-                    <div class="col-md-12 form-group">
+                    <div class="col-md-6 form-group">
                         <label>Nama Barang</label>
                         <input type="text" class="form-control" id="nama_barang" name="nama_barang" placeholder="nama_barang" value="<?= $databarang['nama_barang']; ?>" readonly>
                     </div>
-                    <div class="col-md-12 form-group">
+                    <div class="col-md-6 form-group">
                         <label>Stock Store</label>
                         <div class="input-group mb-3">
                             <input type="number" class="form-control" id="stockstore" onkeyup="sum();" readonly value="<?= $databarang['stock_toko']; ?>">
@@ -45,7 +45,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12 form-group">
+                    <div class="col-md-6 form-group">
                         <label>Pemakaian</label>
                         <div class="input-group mb-3">
                             <input type="number" class="form-control" id="pemakaian" onkeyup="sum();" placeholder="Masukan Jumlah Pemakaian">
@@ -72,7 +72,6 @@
         </form>
     </div>
 </div>
-
 
 <script>
     function sum() {

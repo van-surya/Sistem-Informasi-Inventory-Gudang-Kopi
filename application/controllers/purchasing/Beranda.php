@@ -11,6 +11,8 @@ class Beranda extends CI_Controller
         parent::__construct();
         $this->load->model('Mbarang');
         $this->load->model('Msupplier');
+        $this->load->model('Mpermintaanpembelian');
+        
 
         $this->load->model('Muser');
         if (!$this->session->userdata("purchasing")) {
@@ -24,6 +26,7 @@ class Beranda extends CI_Controller
         $data = ['title' => 'Beranda'];
         $data['jumlah_barang'] = $this->Mbarang->hitung_barang();
         $data['jumlah_supplier'] = $this->Msupplier->hitung_supplier();
+        $data['permintaanpembelian'] = $this->Mpermintaanpembelian->tampil_permintaanpembelianbaru();
 
         $this->load->view('header', $data);
         $this->load->view('purchasing/navbar', $data);
