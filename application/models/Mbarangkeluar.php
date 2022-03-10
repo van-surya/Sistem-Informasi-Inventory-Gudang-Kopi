@@ -9,6 +9,7 @@
         {
             $this->db->join('permintaan_barang', 'permintaan_barang.id_permintaanbarang = barang_keluar.id_permintaanbarang', 'left');
             $this->db->join('barang', 'barang.id_barang = permintaan_barang.id_barang', 'left');
+            $this->db->join('kategori', 'kategori.id_kategori = barang.id_kategori', 'left');
             $this->db->join('user_petugas', 'user_petugas.id_user = barang_keluar.id_user', 'left');
             $ambil = $this->db->get('barang_keluar');
             return $ambil->result_array();

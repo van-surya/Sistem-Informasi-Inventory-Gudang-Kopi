@@ -79,6 +79,11 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <?php $store = $this->session->userdata('store'); ?>
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Hey ,<?= $store['nama']; ?><br></span>
+                                <?php if (!empty($store['foto_user'])) : ?>
+                                    <img class="img-profile rounded-circle" src="<?= base_url('assets/img/user/' . $store['foto_user']); ?>">
+                                <?php else : ?>
+                                    <img class="img-profile rounded-circle" src="<?= base_url('assets/img/avatar.jpg'); ?>">
+                                <?php endif; ?>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

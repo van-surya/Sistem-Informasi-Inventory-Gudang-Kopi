@@ -50,10 +50,17 @@
 <script src="<?= base_url('assets/vendor/datatables/Buttons-2.2.2/js/buttons.print.min.js'); ?>"></script>
 <script src="<?= base_url('assets/vendor/datatables/Buttons-2.2.2/js/buttons.colVis.min.js'); ?>"></script>
 
-
 <!-- Page level custom scripts -->
 <script src="<?= base_url('assets/js/demo/datatables-demo.js'); ?>"></script>
 
+<!--Daterangepicker -->
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+<!--DateRangePicker -->
+<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+<!-- 
 <script>
     $(document).ready(function() {
         var table = $('#custom-table').DataTable({
@@ -65,7 +72,7 @@
         table.buttons().container()
             .appendTo('#custom-table_wrapper .col-md-5:eq(0)');
     });
-</script>
+</script> -->
 
 
 </body>

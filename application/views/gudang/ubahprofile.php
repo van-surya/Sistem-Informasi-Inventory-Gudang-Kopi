@@ -36,6 +36,10 @@
                     <input type="text" class="form-control" id="jabatan" name="jabatan" value="<?= $datauser['jabatan']; ?>">
                 </div>
                 <div class="col-md-6 form-group">
+                    <label>Phone</label>
+                    <input type="text" class="form-control" id="phone" name="phone" value="<?= $datauser['phone']; ?>">
+                </div>
+                <div class="col-md-6 form-group">
                     <label>Email</label>
                     <input type="email" class="form-control" id="email" name="email" value="<?= $datauser['email']; ?>">
                 </div>
@@ -43,8 +47,26 @@
                     <label>Password</label>
                     <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                 </div>
-                <input type="hidden" class="form-control" id="level" name="level" value="<?= $datauser['level']; ?>" readonly>
+                <div class="col-md-12 border bg-light">
+                    <div class="col-12 text-center py-2">
+                        <figure class="figure">
+                            <img src="<?= base_url("assets/img/user/" . $datauser["foto_user"]); ?>" class="card-img-top" height="250px" width="auto">
+                        </figure>
+                    </div>
+                    <div class="col-md-6 mx-auto">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Ubah Foto</span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="foto_user" id="foto_user" value="<?= $datauser["foto_user"]; ?>">
+                                <label class="custom-file-label">Pilih file</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <input type="hidden" class="form-control" id="level" name="level" value="<?= $datauser['level']; ?>" readonly>
     </div>
     <div class="card-footer text-md-right">
         <a href="<?= base_url('gudang/beranda'); ?>" class="btn btn-secondary">Batal</a>

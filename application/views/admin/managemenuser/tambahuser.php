@@ -21,7 +21,7 @@
 <?php endif ?>
 
 <!-- Card Tambah Data  -->
-<div class="card shadow mb-4">
+<div class="card col-md-8 mx-auto shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Tambah Data User</h6>
     </div>
@@ -37,6 +37,10 @@
                     <input type="text" class="form-control" id="jabatan" name="jabatan" placeholder="Jabatan">
                 </div>
                 <div class="col-md-6 form-group">
+                    <label>Phone</label>
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone">
+                </div>
+                <div class="col-md-6 form-group">
                     <label>Email</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="Email">
                 </div>
@@ -44,6 +48,16 @@
                     <label>Password</label>
                     <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                 </div>
+                <div class="col-md-6 form-group">
+                    <label>Foto</label>
+                    <div class="input-group mb-2">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="foto_user" id="foto_user">
+                            <label class="custom-file-label">Pilih file</label>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-sm-12 col-md-6 col-lg-6 md-2">
                     <label>Level</label>
                     <select class="custom-select" name="level">

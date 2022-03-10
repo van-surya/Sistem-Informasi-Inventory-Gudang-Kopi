@@ -28,9 +28,10 @@
                 <thead>
                     <tr>
                         <th>Kode</th>
-                        <th>Nama Barang</th>
-                        <th>Jumlah</th>
                         <th>Tanggal</th>
+                        <th>Nama Barang</th>
+                        <th>Kategori</th>
+                        <th>Jumlah</th>
                         <th>Pembuat</th>
                         <th>Status</th>
                         <th>Aksi</th>
@@ -40,9 +41,10 @@
                     <?php foreach ($po as $key => $value) : ?>
                         <tr>
                             <td><?= $value['kode_po']; ?></td>
-                            <td><?= $value['nama_barang']; ?></td>
-                            <td><?= $value['jumlah_po'] . '   ' . $value['satuan']; ?></td>
                             <td><?= tanggal($value['tgl_po']); ?></td>
+                            <td><?= $value['nama_barang']; ?></td>
+                            <td><?= $value['nama_kategori']; ?></td>
+                            <td><?= $value['jumlah_po'] . '   ' . $value['satuan']; ?></td>
                             <td><?= $value['nama']; ?></td>
                             <td class="text-center">
                                 <?php if ($value['status_po'] == 'Mengirim') : ?>
@@ -152,4 +154,42 @@
                 });
         })
     })
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#custom-table').DataTable({
+            dom: "<'row'<'col-md-5'l><'col-md-3'B><'col-md-4'f>>" +
+                "<'row'<'col-md-12'tr>>" +
+                "<'row'<'col-md-5'i> <'col-md-7'p>>",
+            buttons: [{
+                    extend: 'print',
+                    orientation: 'potrait',
+                    pageSize: 'A4',
+                    title: 'Permintaan Barang Masuk',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6]
+                    }
+                },
+                {
+                    extend: 'excelHtml5',
+                    orientation: 'potrait',
+                    pageSize: 'A4',
+                    title: 'Permintaan Barang Masuk',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6]
+                    }
+                },
+                {
+                    extend: 'pdfHtml5',
+                    orientation: 'potrait',
+                    pageSize: 'A4',
+                    title: 'Permintaan Barang Masuk',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6]
+                    }
+                }
+            ]
+        });
+    });
 </script>

@@ -60,6 +60,8 @@ class Beranda extends CI_Controller
                 $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[user_petugas.email]');
             }
             $this->form_validation->set_rules('nama', 'Nama', 'required|alpha_numeric_spaces');
+
+            $this->form_validation->set_rules('phone', 'Phone', 'required|numeric|max_length[15]');
             $this->form_validation->set_rules('jabatan', 'Jabatan', 'required');
             $this->form_validation->set_rules('level', 'Level', 'required');
 

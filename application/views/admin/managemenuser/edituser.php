@@ -20,7 +20,7 @@
 <?php endif; ?>
 
 <!-- Card Tambah Data  -->
-<div class="card shadow mb-4">
+<div class="card shadow mb-4 col-md-8 mx-auto">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Ubah Data</h6>
     </div>
@@ -34,6 +34,10 @@
                 <div class="col-md-6 form-group">
                     <label>Jabatan</label>
                     <input type="text" class="form-control" id="jabatan" name="jabatan" placeholder="Jabatan" value="<?= $datauser['jabatan']; ?>">
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>Phone</label>
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" value="<?= $datauser['phone']; ?>">
                 </div>
                 <div class="col-md-6 form-group">
                     <label>Email</label>
@@ -60,6 +64,24 @@
                                                     echo "selected";
                                                 } ?>>Gudang</option>
                     </select>
+                </div>
+                <div class="col-md-12 border bg-light">
+                    <div class="col-12 text-center py-2">
+                        <figure class="figure">
+                            <img src="<?= base_url("assets/img/user/" . $datauser["foto_user"]); ?>" class="card-img-top" height="250px">
+                        </figure>
+                    </div>
+                    <div class="col-md-6 mx-auto">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Ubah Foto</span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="foto_user" id="foto_user" value="<?= $datauser["foto_user"]; ?>">
+                                <label class="custom-file-label">Pilih file</label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
     </div>
