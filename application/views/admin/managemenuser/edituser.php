@@ -37,7 +37,7 @@
                 </div>
                 <div class="col-md-6 form-group">
                     <label>Phone</label>
-                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" value="<?= $datauser['phone']; ?>">
+                    <input type="number" class="form-control" id="phone" name="phone" placeholder="Phone" value="<?= $datauser['phone']; ?>">
                 </div>
                 <div class="col-md-6 form-group">
                     <label>Email</label>

@@ -78,6 +78,7 @@ class Managemenuser extends CI_Controller
             }
             $this->form_validation->set_rules('nama', 'Nama', 'required|alpha_numeric_spaces');
             $this->form_validation->set_rules('jabatan', 'Jabatan', 'required');
+            $this->form_validation->set_rules('phone', 'Phone', 'numeric|max_length[15]');
             $this->form_validation->set_rules('level', 'Level', 'required');
 
             // jalankan validasi jika benar

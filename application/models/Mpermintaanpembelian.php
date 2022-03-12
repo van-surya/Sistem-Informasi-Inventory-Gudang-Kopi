@@ -10,7 +10,6 @@
             $this->db->join('user_petugas', 'user_petugas.id_user = permintaan_pembelian.id_user', 'left');
             $this->db->join('barang', 'barang.id_barang = permintaan_pembelian.id_barang', 'left');
             $this->db->join('kategori', 'kategori.id_kategori = barang.id_kategori', 'left');
-            
             $ambil = $this->db->get('permintaan_pembelian');
             return $ambil->result_array();
         }
