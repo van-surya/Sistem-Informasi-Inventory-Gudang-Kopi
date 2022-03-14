@@ -65,3 +65,6 @@ Halaman Managemen Barang (Purchasing)
 
 Halaman Purchasing Order (Purchasing)
 ![purchasing order](https://user-images.githubusercontent.com/45915194/158020153-7f1b87ab-3d83-41c4-9f0e-54bd7cbdf0e9.PNG)
+
+
+Copyright (c) 2022, surevan08 https://github.com/surevan08
