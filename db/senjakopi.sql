@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 12, 2022 at 08:51 AM
+-- Generation Time: Mar 14, 2022 at 02:15 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.15
 
@@ -43,11 +43,11 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id_barang`, `id_kategori`, `id_supplier`, `kode_barang`, `nama_barang`, `stock_toko`, `stock_gudang`, `satuan`) VALUES
-(1, 4, 2, 'BR001', 'Tepung Segitiga Biru', '0', '50', 'Kilogram'),
-(2, 1, 1, 'BR002', 'Saus Sambal', '0', '15', 'Kilogram'),
-(3, 1, 1, 'BR003', 'Bubuk Kari', '0', '800', 'Gram'),
-(4, 3, 3, 'BR004', 'Susu Diamond', '0', '0', 'Liter'),
-(5, 1, 5, 'BR005', 'Kecap Manis', '8', '5', 'Kilogram'),
+(1, 4, 2, 'BR001', 'Tepung Segitiga Biru', '50', '50', 'Kilogram'),
+(2, 1, 1, 'BR002', 'Saus Sambal', '25', '25', 'Kilogram'),
+(3, 1, 1, 'BR003', 'Bubuk Kari', '500', '500', 'Gram'),
+(4, 3, 3, 'BR004', 'Susu Diamond', '0', '100', 'Liter'),
+(5, 1, 5, 'BR005', 'Kecap Manis', '0', '50', 'Kilogram'),
 (6, 1, 5, 'BR006', 'Bubuk Rendang', '0', '0', 'Gram'),
 (7, 4, 4, 'BR007', 'Tepung Rose Brand', '0', '0', 'Kilogram'),
 (8, 2, 1, 'BR008', 'Saus Tomat', '0', '0', 'Kilogram');
@@ -64,16 +64,19 @@ CREATE TABLE `barang_keluar` (
   `id_permintaanbarang` int(11) NOT NULL,
   `kode_barangkeluar` varchar(20) NOT NULL,
   `tgl_barangkeluar` date NOT NULL,
-  `status_barangkeluar` enum('Setuju','Ditolak') NOT NULL,
-  `jumlah_barangkeluar` varchar(100) NOT NULL
+  `jumlah_barangkeluar` varchar(100) NOT NULL,
+  `status_barangkeluar` enum('Setuju','Ditolak') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `barang_keluar`
 --
 
-INSERT INTO `barang_keluar` (`id_barangkeluar`, `id_user`, `id_permintaanbarang`, `kode_barangkeluar`, `tgl_barangkeluar`, `status_barangkeluar`, `jumlah_barangkeluar`) VALUES
-(4, 4, 2, 'BK001', '2022-03-09', 'Setuju', '5');
+INSERT INTO `barang_keluar` (`id_barangkeluar`, `id_user`, `id_permintaanbarang`, `kode_barangkeluar`, `tgl_barangkeluar`, `jumlah_barangkeluar`, `status_barangkeluar`) VALUES
+(5, 4, 7, 'BK001', '2022-03-14', '50', 'Setuju'),
+(6, 4, 8, 'BK002', '2022-03-14', '25', 'Setuju'),
+(7, 4, 9, 'BK003', '2022-03-14', '500', 'Setuju'),
+(8, 4, 11, 'BK004', '2022-03-14', '100', 'Ditolak');
 
 -- --------------------------------------------------------
 
@@ -96,10 +99,11 @@ CREATE TABLE `barang_masuk` (
 --
 
 INSERT INTO `barang_masuk` (`id_barangmasuk`, `id_po`, `id_user`, `kode_barangmasuk`, `tgl_barangmasuk`, `status_barangmasuk`, `jumlah_barangmasuk`) VALUES
-(2, 12, 4, 'BM001', '2022-03-09', 'Diterima', '50'),
-(3, 13, 4, 'BM002', '2022-03-09', 'Diterima', '15'),
-(4, 14, 4, 'BM003', '2022-03-09', 'Diterima', '1000'),
-(5, 16, 4, 'BM004', '2022-03-09', 'Diterima', '15');
+(6, 19, 4, 'BM001', '2022-03-14', 'Diterima', '100'),
+(7, 20, 4, 'BM002', '2022-03-14', 'Diterima', '50'),
+(8, 21, 4, 'BM003', '2022-03-14', 'Diterima', '1000'),
+(9, 22, 4, 'BM004', '2022-03-14', 'Diterima', '100'),
+(10, 23, 4, 'BM005', '2022-03-14', 'Diterima', '50');
 
 -- --------------------------------------------------------
 
@@ -143,9 +147,11 @@ CREATE TABLE `permintaan_barang` (
 --
 
 INSERT INTO `permintaan_barang` (`id_permintaanbarang`, `id_user`, `id_barang`, `kode_permintaanbarang`, `tgl_permintaanbarang`, `jumlah_permintaanbarang`, `status_permintaanbarang`) VALUES
-(1, 2, 3, 'PB001', '2022-03-09', '200', 'Setuju'),
-(2, 2, 5, 'PB002', '2022-03-09', '5', 'Setuju'),
-(3, 2, 5, 'PB003', '2022-03-09', '5', 'Ditolak');
+(7, 2, 1, 'PB001', '2022-03-14', '50', 'Setuju'),
+(8, 2, 2, 'PB002', '2022-03-14', '25', 'Setuju'),
+(9, 2, 3, 'PB003', '2022-03-14', '500', 'Setuju'),
+(10, 2, 4, 'PB004', '2022-03-14', '50', 'Meminta'),
+(11, 2, 4, 'PB005', '2022-03-14', '100', 'Ditolak');
 
 -- --------------------------------------------------------
 
@@ -168,15 +174,15 @@ CREATE TABLE `permintaan_pembelian` (
 --
 
 INSERT INTO `permintaan_pembelian` (`id_permintaanpembelian`, `id_user`, `id_barang`, `kode_permintaanpembelian`, `tgl_permintaanpembelian`, `jumlah_permintaanpembelian`, `status_permintaanpembelian`) VALUES
-(10, 4, 1, 'PP001', '2022-03-09', '50', 'Setuju'),
-(11, 4, 2, 'PP002', '2022-03-07', '15', 'Setuju'),
-(12, 4, 3, 'PP003', '2022-03-08', '1000', 'Setuju'),
-(13, 4, 4, 'PP004', '2022-03-09', '30', 'Setuju'),
-(14, 4, 5, 'PP005', '2022-03-09', '15', 'Setuju'),
-(15, 4, 6, 'PP006', '2022-03-09', '2000', 'Setuju'),
-(16, 4, 7, 'PP007', '2022-03-09', '50', 'Meminta'),
-(17, 4, 8, 'PP008', '2022-03-09', '15', 'Meminta'),
-(18, 4, 8, 'PP009', '2022-03-09', '100', 'Ditolak');
+(19, 4, 1, 'PP001', '2022-03-14', '100', 'Setuju'),
+(20, 4, 2, 'PP002', '2022-03-14', '50', 'Setuju'),
+(21, 4, 3, 'PP003', '2022-03-14', '1000', 'Setuju'),
+(22, 4, 4, 'PP004', '2022-03-14', '100', 'Setuju'),
+(23, 4, 5, 'PP005', '2022-03-14', '50', 'Setuju'),
+(24, 4, 6, 'PP006', '2022-03-14', '1000', 'Setuju'),
+(25, 4, 7, 'PP007', '2022-03-14', '50', 'Setuju'),
+(26, 4, 8, 'PP008', '2022-03-14', '50', 'Setuju'),
+(27, 4, 1, 'PP009', '2022-03-14', '100', 'Ditolak');
 
 -- --------------------------------------------------------
 
@@ -199,13 +205,15 @@ CREATE TABLE `po` (
 --
 
 INSERT INTO `po` (`id_po`, `id_user`, `id_permintaanpembelian`, `kode_po`, `tgl_po`, `jumlah_po`, `status_po`) VALUES
-(12, 3, 10, 'PO001', '2022-03-09', '50', 'Diterima'),
-(13, 3, 11, 'PO002', '2022-03-09', '15', 'Diterima'),
-(14, 3, 12, 'PO003', '2022-03-09', '1000', 'Diterima'),
-(15, 3, 13, 'PO004', '2022-03-09', '30', 'Mengirim'),
-(16, 3, 14, 'PO005', '2022-03-09', '15', 'Diterima'),
-(17, 3, 15, 'PO006', '2022-03-09', '2000', 'Mengirim'),
-(18, 3, 18, 'PO007', '2022-03-09', '100', 'Ditolak');
+(19, 3, 19, 'PO001', '2022-03-14', '100', 'Diterima'),
+(20, 3, 20, 'PO002', '2022-03-14', '50', 'Diterima'),
+(21, 3, 21, 'PO003', '2022-03-14', '1000', 'Diterima'),
+(22, 3, 22, 'PO004', '2022-03-14', '100', 'Diterima'),
+(23, 3, 23, 'PO005', '2022-03-14', '50', 'Diterima'),
+(24, 3, 24, 'PO006', '2022-03-14', '1000', 'Mengirim'),
+(25, 3, 25, 'PO007', '2022-03-14', '50', 'Mengirim'),
+(26, 3, 26, 'PO008', '2022-03-14', '50', 'Mengirim'),
+(27, 3, 27, 'PO009', '2022-03-14', '100', 'Ditolak');
 
 -- --------------------------------------------------------
 
@@ -253,10 +261,10 @@ CREATE TABLE `user_petugas` (
 --
 
 INSERT INTO `user_petugas` (`id_user`, `nama`, `jabatan`, `phone`, `email`, `password`, `foto_user`, `level`) VALUES
-(1, 'admin', 'Manager', '083156656783', 'admin@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'male-1.png', 'admin'),
-(2, 'store', 'Manager Stores', '084093137086', 'store@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'female-2.png', 'store'),
-(3, 'purchasing', 'Manager Purchasing', '084406675045', 'purchasing@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'male-3.png', 'purchasing'),
-(4, 'gudang', 'Gudang', '086315013455', 'gudang@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'male-2.png', 'gudang');
+(1, 'Darsirah Situmorang', 'Manager', '082311707366', 'admin@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'male-2.png', 'admin'),
+(2, 'Silvia Wastuti', 'Manager Stores', '087516756155', 'store@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'female-3.png', 'store'),
+(3, 'Oni Melani', 'Manager Purchasing', '0270458776', 'purchasing@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'female-1.png', 'purchasing'),
+(4, 'Cengkir Ramadan', 'Manager Gudang', '07347864847', 'gudang@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'male-1.png', 'gudang');
 
 --
 -- Indexes for dumped tables
@@ -342,13 +350,13 @@ ALTER TABLE `barang`
 -- AUTO_INCREMENT for table `barang_keluar`
 --
 ALTER TABLE `barang_keluar`
-  MODIFY `id_barangkeluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_barangkeluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `barang_masuk`
 --
 ALTER TABLE `barang_masuk`
-  MODIFY `id_barangmasuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_barangmasuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `kategori`
@@ -360,19 +368,19 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT for table `permintaan_barang`
 --
 ALTER TABLE `permintaan_barang`
-  MODIFY `id_permintaanbarang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_permintaanbarang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `permintaan_pembelian`
 --
 ALTER TABLE `permintaan_pembelian`
-  MODIFY `id_permintaanpembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_permintaanpembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `po`
 --
 ALTER TABLE `po`
-  MODIFY `id_po` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_po` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `supplier`
@@ -384,7 +392,7 @@ ALTER TABLE `supplier`
 -- AUTO_INCREMENT for table `user_petugas`
 --
 ALTER TABLE `user_petugas`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

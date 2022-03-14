@@ -61,14 +61,13 @@ class Beranda extends CI_Controller
             }
             $this->form_validation->set_rules('nama', 'Nama', 'required|alpha_numeric_spaces');
 
-            $this->form_validation->set_rules('phone', 'Phone', 'required|numeric|max_length[15]');
-            $this->form_validation->set_rules('jabatan', 'Jabatan', 'required');
+            $this->form_validation->set_rules('phone', 'Phone', 'required|numeric|max_length[15]'); 
             $this->form_validation->set_rules('level', 'Level', 'required');
 
             // jalankan validasi jika benar
             if ($this->form_validation->run() == TRUE) {
                 // jalankan method ubah user data dari formulir berdasarkan id pada url  
-                $this->Muser->ubah_user($inputan, $id_user);
+                $this->Muser->ubah_profilgudang($inputan, $id_user);
                 $this->session->set_flashdata('pesan', 'Data berhasil diubah!');
                 redirect('gudang/beranda', 'refresh');
             }

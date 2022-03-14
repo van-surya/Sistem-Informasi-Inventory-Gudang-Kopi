@@ -46,14 +46,15 @@ class Beranda extends CI_Controller
             } else {
                 $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[user_petugas.email]');
             }
-            $this->form_validation->set_rules('nama', 'Nama', 'required|alpha_numeric_spaces');
-            $this->form_validation->set_rules('jabatan', 'Jabatan', 'required');
+            $this->form_validation->set_rules('nama', 'Nama',
+                'required|alpha_numeric_spaces'
+            ); 
             $this->form_validation->set_rules('level', 'Level', 'required');
 
             // jalankan validasi jika benar
             if ($this->form_validation->run() == TRUE) {
                 // jalankan method ubah user data dari formulir berdasarkan id pada url  
-                $this->Muser->ubah_user($inputan, $id_user);
+                $this->Muser->ubah_profiladmin($inputan, $id_user);
                 $this->session->set_flashdata('pesan', 'Data berhasil diubah!');
                 redirect('admin/beranda', 'refresh');
             }

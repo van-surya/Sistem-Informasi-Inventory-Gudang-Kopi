@@ -32,10 +32,6 @@
                     <input type="text" class="form-control" id="nama" name="nama" value="<?= $datauser['nama']; ?>">
                 </div>
                 <div class="col-md-6 form-group">
-                    <label>Jabatan</label>
-                    <input type="text" class="form-control" id="jabatan" name="jabatan" value="<?= $datauser['jabatan']; ?>">
-                </div>
-                <div class="col-md-6 form-group">
                     <label>Phone</label>
                     <input type="text" class="form-control" id="phone" name="phone" value="<?= $datauser['phone']; ?>">
                 </div>
