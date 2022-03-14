@@ -23,11 +23,18 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider">
-            <!-- Nav Item - Stock Barang -->
+            <!-- Nav Item - Managemen Barang -->
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('gudang/stockbarang'); ?>">
+                <a class="nav-link" href="<?= base_url('gudang/managemenbarang'); ?>">
                     <i class="fas fa-fw fa-archive"></i>
-                    <span>Stock Barang</span></a>
+                    <span>Managemen Barang</span></a>
+            </li>
+
+            <!-- Nav Item - Permintaan Pembelian -->
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('gudang/permintaanpembelian'); ?>">
+                    <i class="fas fa-fw fa-file"></i>
+                    <span>Permintaan Pembelian</span></a>
             </li>
 
             <!-- Nav Item - Barang Keluar -->
@@ -41,13 +48,6 @@
                 <a class="nav-link" href="<?= base_url('gudang/barangmasuk'); ?>">
                     <i class="fas fa-fw fa-file"></i>
                     <span>Barang Masuk</span></a>
-            </li>
-
-            <!-- Nav Item - Permintaan Pembelian -->
-            <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('gudang/permintaanpembelian'); ?>">
-                    <i class="fas fa-fw fa-file"></i>
-                    <span>Permintaan Pembelian</span></a>
             </li>
 
             <!-- Nav Item - Logout -->

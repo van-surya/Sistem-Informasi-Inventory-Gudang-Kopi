@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Stockbarang extends CI_Controller
+class Managemenbarang extends CI_Controller
 {
 
     public function __construct()
@@ -19,11 +19,11 @@ class Stockbarang extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Stock Barang';
+        $data['title'] = 'Managemen Barang';
         $data['barang'] = $this->Mbarang->tampil_barang();
         $this->load->view('header', $data);
         $this->load->view('gudang/navbar', $data);
-        $this->load->view('gudang/stockbarang/databarang', $data);
+        $this->load->view('gudang/managemenbarang/databarang', $data);
         $this->load->view('footer');
     }
 }

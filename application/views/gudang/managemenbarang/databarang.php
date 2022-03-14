@@ -10,7 +10,7 @@
     <div class="card-header py-3">
         <div class="row justify-content-between">
             <div class="col-md-6">
-                <h4 class="m-0 font-weight-bold text-primary">Stock Barang</h4>
+                <h4 class="m-0 font-weight-bold text-primary">Data Barang</h4>
             </div>
         </div>
     </div>
