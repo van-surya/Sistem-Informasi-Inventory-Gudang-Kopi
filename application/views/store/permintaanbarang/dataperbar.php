@@ -23,10 +23,8 @@
         </div>
     </div>
     <div class="card-body">
-
-
         <div class="table-responsive">
-            <table class="table table-bordered" id="custom-table" width="100%" cellspacing="0">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>Kode</th>
@@ -47,6 +45,12 @@
                                         <i class="fas fa-info"></i>
                                     </span>
                                     <span class="text">Detail</span>
+                                </a>
+                                <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_permintaanbarang']; ?>">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-trash"></i>
+                                    </span>
+                                    <span class="text">Hapus</span>
                                 </a>
                             </td>
                         </tr>
@@ -69,7 +73,6 @@
         });
     </script>
 <?php endif; ?>
-
 
 <!-- hapus data -->
 <script>
@@ -106,42 +109,4 @@
                 });
         })
     })
-</script>
-
-<script>
-    $(document).ready(function() {
-        $('#custom-table').DataTable({
-            dom: "<'row'<'col-md-5'l><'col-md-3'B><'col-md-4'f>>" +
-                "<'row'<'col-md-12'tr>>" +
-                "<'row'<'col-md-5'i> <'col-md-7'p>>",
-            buttons: [{
-                    extend: 'print',
-                    orientation: 'potrait',
-                    pageSize: 'A4',
-                    title: 'Permintaan Barang Masuk',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6]
-                    }
-                },
-                {
-                    extend: 'excelHtml5',
-                    orientation: 'potrait',
-                    pageSize: 'A4',
-                    title: 'Permintaan Barang Masuk',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6]
-                    }
-                },
-                {
-                    extend: 'pdfHtml5',
-                    orientation: 'potrait',
-                    pageSize: 'A4',
-                    title: 'Permintaan Barang Masuk',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6]
-                    }
-                }
-            ]
-        });
-    });
 </script>

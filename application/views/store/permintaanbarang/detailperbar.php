@@ -13,14 +13,16 @@
             <div class="col-md-6">
                 <h4 class="m-0 font-weight-bold text-primary"><?= $title; ?></h4>
             </div>
-            <div class="col-md-6 text-md-right mt-2 mt-md-0">
-                <a href="<?= base_url('store/permintaanbarang/tambahdetail/' . $permintaanbarang['id_permintaanbarang']); ?>" class="btn btn-primary btn-icon-split btn-sm">
-                    <span class="icon text-white-50">
-                        <i class="fas fa-plus"></i>
-                    </span>
-                    <span class="text">Tambah</span>
-                </a>
-            </div>
+            <?php if ($permintaanbarang['status_permintaanbarang'] == 'Meminta') : ?>
+                <div class="col-md-6 text-md-right mt-2 mt-md-0">
+                    <a href="<?= base_url('store/permintaanbarang/tambahdetail/' . $permintaanbarang['id_permintaanbarang']); ?>" class="btn btn-primary btn-icon-split btn-sm">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-plus"></i>
+                        </span>
+                        <span class="text">Tambah</span>
+                    </a>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
     <div class="card-body">
@@ -59,7 +61,7 @@
                                 <td><?= $value['nama_kategori']; ?></td>
                                 <?php if ($permintaanbarang['status_permintaanbarang'] == 'Meminta') : ?>
                                     <td class="text-center">
-                                        </a> <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_detailpermintaanbarang']; ?>">
+                                        <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_detailpermintaanbarang']; ?>">
                                             <span class="icon text-white-50">
                                                 <i class="fas fa-trash"></i>
                                             </span>

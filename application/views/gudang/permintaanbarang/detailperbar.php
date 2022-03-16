@@ -6,48 +6,143 @@
     </ol>
 </nav>
 
-
-<!-- Card Tambah Data  -->
-<div class="col-lg-8 mx-auto">
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary"><?= $title; ?></h6>
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="card-body">
-                    <table class="table table-borderless text-secondary">
-                        <tr>
-                            <td class="font-weight-bold">Kode : <?= $datapermintaanbarang['kode_permintaanbarang']; ?></td>
-                            <th class="font-weight-bold">Tanggal : <?= tanggal($datapermintaanbarang['tgl_permintaanbarang']); ?></th>
-                        </tr>
-                        <tr>
-                            <td class="font-weight-bold">Oleh : <?= $datapermintaanbarang['nama']; ?></td>
-                            <td class="font-weight-bold">Status : <?= $datapermintaanbarang['status_permintaanbarang']; ?></td>
-                        </tr>
-                    </table>
-                    <form method="post" enctype="multipart/form-data">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="form-group col-md-4">
-                                    <label>Jumlah Permintaan</label>
-                                    <input type="text" class="form-control" name="jumlah_permintaanbarang" id="permintaan" value="<?= $datapermintaanbarang['jumlah_permintaanbarang']; ?>">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label>Stock Gudang</label>
-                                    <input type="number" class="form-control" id="stockgudang" value="<?= $datapermintaanbarang['stock_gudang']; ?>" readonly>
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label>Hasil</label>
-                                    <input type="number" class="form-control" value="<?= $datapermintaanbarang['stock_gudang'] - $datapermintaanbarang['jumlah_permintaanbarang']; ?>" readonly>
-                                </div>
-                            </div>
-                        </div>
-                </div>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <div class="row justify-content-between">
+            <div class="col-md-6">
+                <h4 class="m-0 font-weight-bold text-primary"><?= $title; ?></h4>
             </div>
-        </div>
-        <div class="card-footer text-md-right">
-            <a href="<?= base_url('gudang/permintaanbarang'); ?>" class="btn btn-secondary">Kembali</a>
+            <?php if ($permintaanbarang['status_permintaanbarang'] == 'Setuju') : ?>
+                <!-- <div class="col-md-6 text-md-right mt-2 mt-md-0">
+                    <a href="<?= base_url('gudang/permintaanbarang/cetak/' . $permintaanbarang['id_permintaanbarang']); ?>" target="_blank" class="btn btn-secondary btn-icon-split btn-sm">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-print"></i>
+                        </span>
+                        <span class="text">Cetak</span>
+                    </a>
+                </div> -->
+            <?php else : ?>
+                <div class="col-md-6 text-md-right mt-2 mt-md-0">
+                    <a href="<?= base_url('gudang/permintaanbarang/konfirmasi/' . $permintaanbarang['id_permintaanbarang']); ?>" class="btn btn-primary btn-icon-split btn-sm">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-edit"></i>
+                        </span>
+                        <span class="text">Konfirmasi</span>
+                    </a>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+            <table class="table table-borderless text-secondary font-weight-bold">
+                <tr>
+                    <td>Kode : <?= $permintaanbarang['kode_permintaanbarang']; ?> </td>
+                    <th>Tanggal : <?= tanggal($permintaanbarang['tgl_permintaanbarang']); ?></th>
+                </tr>
+                <tr>
+                    <td>Oleh : <?= $permintaanbarang['nama']; ?></td>
+                    <th>Status : <?= $permintaanbarang['status_permintaanbarang']; ?></th>
+                </tr>
+            </table>
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Kode Barang</th>
+                            <th>Nama Barang</th>
+                            <th>Kategori</th>
+                            <th>Jumlah Permintaan</th>
+                            <th>Stock Gudang</th>
+                            <?php if ($permintaanbarang['status_permintaanbarang'] == 'Meminta') : ?>
+                                <th>Aksi</th>
+                            <?php endif; ?>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($detailpermintaanbarang as $key => $value) : ?>
+                            <tr>
+                                <td><?= $key + 1; ?></td>
+                                <td><?= $value['kode_barang']; ?></td>
+                                <td><?= $value['nama_barang']; ?></td>
+                                <td><?= $value['nama_kategori']; ?></td>
+                                <td><?= $value['jumlah_permintaanbarang']; ?></td>
+                                <td><?= $value['stock_gudang']; ?></td>
+                                <?php if ($permintaanbarang['status_permintaanbarang'] == 'Meminta') : ?>
+                                    <td class="text-center">
+                                        </a> <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_detailpermintaanbarang']; ?>">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                            <span class="text">Hapus</span>
+                                        </a>
+                                        </a> <a href="<?= base_url('gudang/permintaanbarang/detailubah/' . $value['id_permintaanbarang'] . '/' . $value['id_detailpermintaanbarang']); ?>" class="btn btn-warning btn-icon-split btn-sm">
+                                            <span class=" icon text-white-50">
+                                                <i class="fas fa-edit"></i>
+                                            </span>
+                                            <span class="text">Ubah</span>
+                                        </a>
+                                    </td>
+                                <?php endif; ?>
+                            </tr>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer text-md-right">
+                <a href="<?= base_url('gudang/permintaanbarang'); ?>" class="btn btn-secondary">Kembali</a>
+            </div>
+        </form>
+    </div>
 </div>
+
+<!-- pesan  -->
+<?php if ($this->session->flashdata('pesan')) : ?>
+    <script>
+        swal({
+            icon: "success",
+            title: "Berhasil!",
+            text: "<?= $this->session->flashdata('pesan') ?>",
+            button: false,
+            timer: 2000,
+        });
+    </script>
+<?php endif; ?>
+
+<!-- hapus data -->
+<script>
+    $(document).ready(function() {
+        $(".btn-hapus").on("click", function(e) {
+            e.preventDefault();
+            var idnya = $(this).attr("idnya");
+            swal({
+                    title: "Apakah kamu yakin ?",
+                    text: "untuk menghapus data ini",
+                    icon: "warning",
+                    buttons: ["Batal", "Hapus Data!"],
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        //disini ajax hapus data
+                        $.ajax({
+                            type: 'post',
+                            url: "<?= base_url("gudang/permintaanbarang/hapusdetail"); ?>",
+                            data: 'id=' + idnya,
+                            success: function() {
+                                swal("Data berhasil terhapus!", {
+                                    icon: "success",
+                                    button: true
+                                }).then((oke) => {
+                                    if (oke) {
+                                        location = "<?= base_url("gudang/permintaanbarang/detail/" . $permintaanbarang['id_permintaanbarang']); ?>"
+                                    }
+                                });
+                            }
+                        })
+                    }
+                });
+        })
+    })
+</script>

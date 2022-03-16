@@ -60,6 +60,12 @@
             return $ambil->row_array();
         }
 
+        function hapus_permintaanbarang($id_permintaanbarang)
+        {
+            $this->db->where('id_permintaanbarang', $id_permintaanbarang);
+            $this->db->delete('permintaan_barang');
+        }
+
         function tampil_detailpermintaanbarang($id_permintaanbarang)
         {
             $this->db->join('barang', 'barang.id_barang = detail_permintaanbarang.id_barang', 'left');
@@ -68,6 +74,18 @@
             $ambil = $this->db->get('detail_permintaanbarang');
 
             return $ambil->result_array();
+        }
+
+
+        function detail_detailpermintaanbarang($id_detailpermintaanbarang)
+        {
+            $this->db->join('barang', 'barang.id_barang = detail_permintaanbarang.id_barang', 'left');
+            $this->db->join('permintaan_barang', 'permintaan_barang.id_permintaanbarang = detail_permintaanbarang.id_permintaanbarang', 'left');
+            $this->db->join('user_petugas', 'user_petugas.id_user = permintaan_barang.id_user', 'left');
+
+            $this->db->where('id_detailpermintaanbarang', $id_detailpermintaanbarang);
+            $ambil = $this->db->get('detail_permintaanbarang');
+            return $ambil->row_array();
         }
 
         function simpan_detailpermintaanbarang($inputan)
@@ -87,11 +105,23 @@
             }
         }
 
-
         function hapus_detailpermintaanbarang($id_detailpermintaanbarang)
         {
             $this->db->where('id_detailpermintaanbarang', $id_detailpermintaanbarang);
             $this->db->delete('detail_permintaanbarang');
+        }
+
+
+        function ubah_detailpermintaanbarang($inputan,  $id_detailpermintaanbarang)
+        {
+            $jumlah_permintaanbarang = $inputan['jumlah_permintaanbarang'];
+            $this->db->query("UPDATE detail_permintaanbarang SET jumlah_permintaanbarang = $jumlah_permintaanbarang WHERE detail_permintaanbarang.id_detailpermintaanbarang=$id_detailpermintaanbarang");
+        }
+
+        function konfirmasi_permintaanbarang($inputan, $id_permintaanbarang)
+        {
+            $status = $inputan['status_permintaanbarang'];
+            $this->db->query("UPDATE permintaan_barang SET status_permintaanbarang = '$status' WHERE permintaan_barang.id_permintaanbarang = $id_permintaanbarang");
         }
 
     }
