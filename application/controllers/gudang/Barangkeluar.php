@@ -32,7 +32,7 @@ class Barangkeluar extends CI_Controller
     {
         //gunakan lib form_validation untuk me required
         $this->form_validation->set_rules('id_user', 'Pembuat', 'required');
-        $this->form_validation->set_rules('id_permintaanbarang', 'Barang', 'required');
+        $this->form_validation->set_rules('id_detailpermintaanbarang', 'Barang', 'required');
         $this->form_validation->set_rules('kode_barangkeluar', 'Kode Barang Keluar', 'required');
         $this->form_validation->set_rules('tgl_barangkeluar', 'Tanggal', 'required'); 
         $this->form_validation->set_rules('jumlah_barangkeluar', 'Jumlah Barang Keluar', 'required');
@@ -53,7 +53,7 @@ class Barangkeluar extends CI_Controller
         }
         //tampilkan kode_barangkeluar pada inputan
         $data['kode_barangkeluar'] = $this->Mbarangkeluar->kode_barangkeluar();
-        $data['permintaanbarang'] = $this->Mpermintaanbarang->tampil_permintaanbarangsetuju();
+        $data['detailpermintaanbarang'] = $this->Mbarangkeluar->tampilbarangkeluarbaru();
         $data['title'] = 'Tambah Barang Keluar';
 
         $this->load->view('header', $data);

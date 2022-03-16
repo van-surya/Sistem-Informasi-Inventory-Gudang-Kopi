@@ -4,13 +4,13 @@
 
     class Mbarangkeluar extends CI_Model
     {
-
+         
         function tampil_barangkeluar()
         {
-            $this->db->join('permintaan_barang', 'permintaan_barang.id_permintaanbarang = barang_keluar.id_permintaanbarang', 'left');
-            $this->db->join('barang', 'barang.id_barang = permintaan_barang.id_barang', 'left');
+            $this->db->join('user_petugas', 'user_petugas.id_user = barang_keluar.id_user', 'left');
+            $this->db->join('detail_permintaanbarang', 'detail_permintaanbarang.id_detailpermintaanbarang = barang_keluar.id_detailpermintaanbarang', 'left');
+            $this->db->join('barang', 'barang.id_barang = detail_permintaanbarang.id_barang', 'left');
             $this->db->join('kategori', 'kategori.id_kategori = barang.id_kategori', 'left');
-            $this->db->join('user_petugas', 'user_petugas.id_user = barang_keluar.id_user', 'left'); 
             $ambil = $this->db->get('barang_keluar');
             return $ambil->result_array();
         }
@@ -34,19 +34,36 @@
             return $kodetampil;
         }
 
+        function tampilbarangkeluarbaru()
+        {
+            $ambil = $this->db->query("SELECT * FROM detail_permintaanbarang LEFT JOIN
+             barang ON barang.id_barang = detail_permintaanbarang.id_barang LEFT JOIN 
+             permintaan_barang ON permintaan_barang.id_permintaanbarang=detail_permintaanbarang.id_permintaanbarang 
+             WHERE id_detailpermintaanbarang NOT IN (SELECT id_detailpermintaanbarang FROM barang_keluar)");
+            return $ambil->result_array();
+        }
+
 
         function simpan_barangkeluar($inputan)
-        { 
-            
-            $id_permintaanbarang = $inputan['id_permintaanbarang'];
+        {
+
+            $id_user = $inputan['id_user'];
+            $id_detailpermintaanbarang = $inputan['id_detailpermintaanbarang'];
+            $tgl_barangkeluar = $inputan['tgl_barangkeluar'];
             $jumlah_barangkeluar = $inputan['jumlah_barangkeluar'];
 
-            if ($id_permintaanbarang) {
+            $this->db->where('id_user', $id_user);
+            $this->db->where('id_detailpermintaanbarang', $id_detailpermintaanbarang);
+            $this->db->where('tgl_barangkeluar', $tgl_barangkeluar);
+            $this->db->where('jumlah_barangkeluar', $jumlah_barangkeluar);
+
+            $barang_keluar = $this->db->get('barang_keluar')->row_array();
+            if (empty($barang_keluar)) {
                 $this->db->insert('barang_keluar', $inputan);
-                $this->db->query("UPDATE barang LEFT JOIN permintaan_barang ON permintaan_barang.id_barang=barang.id_barang
-                SET stock_toko = stock_toko + $jumlah_barangkeluar, stock_gudang = stock_gudang-$jumlah_barangkeluar WHERE id_permintaanbarang=$id_permintaanbarang");
+                $this->db->query("UPDATE barang LEFT JOIN detail_permintaanbarang ON detail_permintaanbarang.id_barang = barang.id_barang SET stock_toko = stock_toko + $jumlah_barangkeluar, stock_gudang = stock_gudang-$jumlah_barangkeluar WHERE id_detailpermintaanbarang = $id_detailpermintaanbarang");
+                return 'sukses';
             } else {
-                return "gagal";
+                return 'gagal';
             }
         }
 

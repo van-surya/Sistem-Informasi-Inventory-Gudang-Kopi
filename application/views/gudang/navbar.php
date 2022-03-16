@@ -30,6 +30,9 @@
                     <span>Managemen Barang</span></a>
             </li>
 
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
             <!-- Nav Item - Permintaan Barang -->
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('gudang/permintaanbarang'); ?>">
@@ -37,21 +40,21 @@
                     <span>Permintaan Barang</span></a>
             </li>
 
-            <!-- Nav Item - Permintaan Pembelian -->
-            <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('gudang/permintaanpembelian'); ?>">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Permintaan Pembelian</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
             <!-- Nav Item - Barang Keluar -->
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('gudang/barangkeluar'); ?>">
                     <i class="fas fa-fw fa-file"></i>
                     <span>Barang Keluar</span></a>
+
+                <!-- Divider -->
+                <hr class="sidebar-divider my-0">
+
+                <!-- Nav Item - Permintaan Pembelian -->
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('gudang/permintaanpembelian'); ?>">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Permintaan Pembelian</span></a>
+            </li>
 
             </li> <!-- Nav Item - Barang Masuk -->
             <li class="nav-item">

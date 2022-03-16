@@ -28,13 +28,12 @@
     <div class="card-body">
         <form method="post" enctype="multipart/form-data">
             <div class="row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-3">
                     <label>Kode Barang Keluar</label>
                     <input type="text" class="form-control" id="kode_barangkeluar" name="kode_barangkeluar" value="<?= $kode_barangkeluar; ?>" readonly />
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-3">
                     <label>Tanggal</label>
-                    <?php $gudang = $this->session->userdata('gudang') ?>
                     <input type="hidden" name="tgl_barangkeluar" id="tgl_barangkeluar" class="form-control" value="<?= date('Y-m-d') ?>" readonly>
                     <input type="text" class="form-control" value="<?= date('d/m/Y') ?>" readonly />
                 </div>
@@ -44,16 +43,16 @@
                     <input type="hidden" class="form-control" id="id_user" name="id_user" value="<?= $gudang['id_user']; ?>" readonly>
                     <input type="text" class="form-control" value="<?= $gudang['nama']; ?>" readonly />
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-12">
                     <label>Pilih Permintaan Barang</label>
-                    <select class="form-control" name="id_permintaanbarang" id="id_permintaanbarang">
+                    <select class="form-control" name="id_detailpermintaanbarang" id="id_detailpermintaanbarang">
                         <option value="">--Pilih Permintaan Barang--</option>
-                        <?php foreach ($permintaanbarang as $key => $baru) : ?>
-                            <option value="<?= $baru['id_permintaanbarang'] ?>" data-jumperbar="<?= $baru['jumlah_permintaanbarang'] ?>">Kode : <?= $baru['kode_permintaanbarang'] ?> | <?= $baru['nama_barang'] ?></option>
+                        <?php foreach ($detailpermintaanbarang as $key => $value) : ?>
+                            <option value="<?= $value['id_detailpermintaanbarang'] ?>" data-jumperbar="<?= $value['jumlah_permintaanbarang'] ?>">Kode : <?= $value['kode_permintaanbarang'] . '  |  ' . $value['nama_barang']; ?> </option>
                         <?php endforeach; ?>
                     </select>
                 </div>
-                <div class="form-group col-md-12">
+                <div class="form-group col-md-6">
                     <label>Jumlah Barang Keluar</label>
                     <input type="text" class="form-control" id="jumlah_barangkeluar" name="jumlah_barangkeluar" readonly />
                 </div>
@@ -66,12 +65,11 @@
     </form>
 </div>
 
-
 <script type="text/javascript">
-    $('#id_permintaanbarang').on('change', function() {
+    $('#id_detailpermintaanbarang').on('change', function() {
         // ambil data dari elemen option yang dipilih 
-        const jumperbar = $('#id_permintaanbarang option:selected').data('jumperbar');
+        const jumperbar = $('#id_detailpermintaanbarang option:selected').data('jumperbar');
         // tampilkan data ke element
-        $('[name=jumlah_barangkeluar]').val(jumperbar);
+        $('[id=jumlah_barangkeluar]').val(jumperbar);
     });
 </script>
