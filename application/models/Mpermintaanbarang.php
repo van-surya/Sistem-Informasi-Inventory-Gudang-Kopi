@@ -64,12 +64,12 @@
             $this->db->delete('permintaan_barang');
         }
 
-        function tampil_permintaanbarangbaru()
+        function tampil_permintaanbarangsetuju()
         {
-            $this->db->join('barang', 'barang.id_barang = permintaan_barang.id_barang', 'left');
-            $this->db->join('user_petugas', 'user_petugas.id_user = permintaan_barang.id_user', 'left');
-            $this->db->where('status_permintaanbarang', 'Meminta');
-            $ambil = $this->db->get('permintaan_barang');
+
+            $ambil = $this->db->query("SELECT *
+            FROM permintaan_barang LEFT JOIN barang ON barang.id_barang = permintaan_barang.id_barang 
+            WHERE id_permintaanbarang NOT IN (SELECT id_permintaanbarang FROM barang_keluar) AND status_permintaanbarang = 'Setuju' ");
             return $ambil->result_array();
         }
 
@@ -77,16 +77,19 @@
         {
             $this->db->join('user_petugas', 'user_petugas.id_user = permintaan_barang.id_user', 'left');
             $this->db->join('barang', 'barang.id_barang = permintaan_barang.id_barang', 'left');
-
             $this->db->where('id_permintaanbarang', $id_permintaanbarang);
             $ambil = $this->db->get('permintaan_barang');
             return $ambil->row_array();
         }
 
-        function ubah_permintaanbarang($inputan, $id_permintaanbarang)
+        function konfirmasi_permintaanbarang($inputan, $id_permintaanbarang)
         {
-            $this->db->where('id_permintaanbarang', $id_permintaanbarang);
-            $this->db->update('permintaan_barang', $inputan);
+            $jumlah_permintaanbarang = $inputan['jumlah_permintaanbarang'];
+            $status_permintaanbarang = $inputan['status_permintaanbarang'];
+
+            $this->db->query("UPDATE permintaan_barang SET jumlah_permintaanbarang = $jumlah_permintaanbarang,
+            status_permintaanbarang ='$status_permintaanbarang' WHERE permintaan_barang.id_permintaanbarang = $id_permintaanbarang ");
+
         }
 
         function hitung_permintaanbarang()

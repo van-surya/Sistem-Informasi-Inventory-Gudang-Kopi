@@ -33,8 +33,6 @@
                         <th>Kategori</th>
                         <th>Jumlah</th>
                         <th>Pembuat</th>
-                        <th>Status</th>
-                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,37 +44,6 @@
                             <td><?= $value['nama_kategori']; ?></td>
                             <td><?= $value['jumlah_barangkeluar'] . '   ' . $value['satuan']; ?></td>
                             <td><?= $value['nama']; ?></td>
-                            <td class="text-center">
-                                <?php if ($value['status_barangkeluar'] == 'Setuju') : ?>
-                                    <button type="button" class="btn btn-sm btn-success" disabled>
-                                        Setuju
-                                    </button>
-                                <?php elseif ($value['status_barangkeluar'] == 'Ditolak') : ?>
-                                    <button type="button" class="btn btn-sm btn-danger" disabled>
-                                        Ditolak
-                                    </button>
-                                <?php else : ?>
-                                <?php endif; ?>
-                            </td>
-                            <td class="text-center">
-                                <?php if ($value['status_barangkeluar'] == 'Setuju') : ?>
-                                    <a href="<?= base_url('gudang/barangkeluar/detail/' . $value['id_barangkeluar']) ?>" class="btn btn-info btn-icon-split btn-sm">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-edit"></i>
-                                        </span>
-                                        <span class="text">Detail</span>
-                                    </a>
-                                <?php elseif ($value['status_barangkeluar'] == 'Ditolak') : ?>
-                                    <a href="<?= base_url('gudang/barangkeluar/detail/' . $value['id_barangkeluar']) ?>" class="btn btn-info btn-icon-split btn-sm">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-edit"></i>
-                                        </span>
-                                        <span class="text">Detail</span>
-                                    </a>
-                                <?php else : ?>
-                                <?php endif; ?>
-                            </td>
-
                         </tr>
                     <?php endforeach ?>
                 </tbody>

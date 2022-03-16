@@ -36,21 +36,17 @@
 
 
         function simpan_barangkeluar($inputan)
-        {
-            $status = $inputan['status_barangkeluar'];
+        { 
+            
             $id_permintaanbarang = $inputan['id_permintaanbarang'];
             $jumlah_barangkeluar = $inputan['jumlah_barangkeluar'];
 
-
-            if ($status == 'Setuju') {
+            if ($id_permintaanbarang) {
                 $this->db->insert('barang_keluar', $inputan);
-                $this->db->query("UPDATE permintaan_barang SET status_permintaanbarang = 'Setuju' WHERE id_permintaanbarang=$id_permintaanbarang");
-                $this->db->query("UPDATE barang LEFT JOIN permintaan_barang ON permintaan_barang.id_barang=barang.id_barang 
-                SET stock_toko = stock_toko+$jumlah_barangkeluar, stock_gudang=stock_gudang-$jumlah_barangkeluar 
-                WHERE id_permintaanbarang=$id_permintaanbarang ");
-            } elseif ($status == 'Ditolak') {
-                $this->db->insert('barang_keluar', $inputan);
-                $this->db->query("UPDATE permintaan_barang SET status_permintaanbarang = 'Ditolak' WHERE id_permintaanbarang=$id_permintaanbarang");
+                $this->db->query("UPDATE barang LEFT JOIN permintaan_barang ON permintaan_barang.id_barang=barang.id_barang
+                SET stock_toko = stock_toko + $jumlah_barangkeluar, stock_gudang = stock_gudang-$jumlah_barangkeluar WHERE id_permintaanbarang=$id_permintaanbarang");
+            } else {
+                return "gagal";
             }
         }
 

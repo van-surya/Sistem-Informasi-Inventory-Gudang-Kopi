@@ -34,7 +34,6 @@
                             <td><?= $value['nama_barang']; ?></td>
                             <td><?= $value['nama_kategori']; ?></td>
                             <td><?= $value['stock_gudang'] . '  ' . $value['satuan']; ?></td>
-
                         </tr>
                     <?php endforeach ?>
                 </tbody>
