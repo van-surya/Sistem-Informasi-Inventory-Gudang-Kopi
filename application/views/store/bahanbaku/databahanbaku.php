@@ -40,7 +40,7 @@
                             <td>
                                 <div class="text-center">
                                     <!-- Button trigger -->
-                                    <a href="<?= base_url('store/bahanbaku/ubah/' . $value['id_barang']) ?>" class="btn btn-warning btn-icon-split btn-sm">
+                                    <a href="<?= base_url('store/bahanbaku/pengurangan/' . $value['id_barang']) ?>" class="btn btn-warning btn-icon-split btn-sm">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-edit"></i>
                                         </span>

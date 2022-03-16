@@ -26,7 +26,7 @@ class Bahanbaku extends CI_Controller
         $this->load->view('footer');
     }
 
-    public function ubah($id_barang)
+    public function pengurangan($id_barang)
     {
         $inputan = $this->input->post();
         // jk submit maka lakukan
@@ -50,7 +50,7 @@ class Bahanbaku extends CI_Controller
         }
 
         $data["databarang"] = $this->Mbarang->detail_barang($id_barang);
-        $data['title'] = 'Bahan Baku';
+        $data['title'] = 'Pengurangan Bahan Baku';
 
         $this->load->view('header', $data);
         $this->load->view('store/navbar', $data);

@@ -23,7 +23,7 @@
 <div class="col-lg-8 mx-auto">
     <div class="card shadow mb-4 ">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Ubah Data Barang</h6>
+            <h6 class="m-0 font-weight-bold text-primary"><?= $title; ?></h6>
         </div>
         <div class="card-body">
             <form method="post" enctype="multipart/form-data">
@@ -55,7 +55,7 @@
                         </div>
                     </div>
                     <div class="col-md-12 form-group">
-                        <label>Jumlah</label>
+                        <label>Jumlah Sekarang</label>
                         <div class="input-group mb-3">
                             <input type="number" class="form-control" name="stock_toko" id="jumlah" readonly>
                             <div class="input-group-append">
@@ -66,7 +66,7 @@
                 </div>
         </div>
         <div class="card-footer text-md-right">
-            <a href="<?= base_url('store/bahanbaku/' . $databarang['id_barang']); ?>" class="btn btn-secondary">Batal</a>
+            <a href="<?= base_url('store/bahanbaku'); ?>" class="btn btn-secondary">Batal</a>
             <button type="submit" class="btn btn-primary">Ubah</button>
         </div>
         </form>
