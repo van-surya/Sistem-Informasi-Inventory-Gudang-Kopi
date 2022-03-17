@@ -81,9 +81,9 @@
         function detail_detailpermintaanpembelian($id_detailpermintaanpembelian)
         {
             $this->db->join('barang', 'barang.id_barang = detail_permintaanpembelian.id_barang', 'left');
-            $this->db->join('permintaan_barang', 'permintaan_barang.id_permintaanpembelian = detail_permintaanpembelian.id_permintaanpembelian', 'left');
-            $this->db->join('user_petugas', 'user_petugas.id_user = permintaan_barang.id_user', 'left');
-
+            $this->db->join('permintaan_pembelian', 'permintaan_pembelian.id_permintaanpembelian = detail_permintaanpembelian.id_permintaanpembelian', 'left');
+            $this->db->join('user_petugas', 'user_petugas.id_user = permintaan_pembelian.id_user', 'left');
+            
             $this->db->where('id_detailpermintaanpembelian', $id_detailpermintaanpembelian);
             $ambil = $this->db->get('detail_permintaanpembelian');
             return $ambil->row_array();
@@ -110,5 +110,27 @@
         {
             $this->db->where('id_detailpermintaanpembelian', $id_detailpermintaanpembelian);
             $this->db->delete('detail_permintaanpembelian');
+        }
+
+
+        function ubah_detailpermintaanpembelian($inputan,  $id_detailpermintaanpembelian)
+        {
+            $jumlah_permintaanpembelian = $inputan['jumlah_permintaanpembelian'];
+            $this->db->query("UPDATE detail_permintaanpembelian SET jumlah_permintaanpembelian = $jumlah_permintaanpembelian WHERE detail_permintaanpembelian.id_detailpermintaanpembelian=$id_detailpermintaanpembelian");
+        }
+
+
+        function konfirmasi_permintaanpembelian($inputan, $id_permintaanpembelian)
+        {
+            $status = $inputan['status_permintaanpembelian'];
+            $this->db->query("UPDATE permintaan_pembelian SET status_permintaanpembelian = '$status' WHERE permintaan_pembelian.id_permintaanpembelian = $id_permintaanpembelian");
+        }
+
+        function tampil_permintaanpembeliansetuju()
+        {
+            $this->db->join('user_petugas', 'user_petugas.id_user = permintaan_pembelian.id_user', 'left');
+            $this->db->where('status_permintaanpembelian', 'Setuju');
+            $ambil = $this->db->get('permintaan_pembelian');
+            return $ambil->result_array();
         }
     }
