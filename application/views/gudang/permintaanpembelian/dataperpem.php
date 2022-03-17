@@ -24,14 +24,11 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered" id="custom-table" width="100%" cellspacing="0">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>Kode</th>
                         <th>Tanggal</th>
-                        <th>Nama Barang</th>
-                        <th>Kategori</th>
-                        <th>Jumlah</th>
                         <th>Pembuat</th>
                         <th>Status</th>
                         <th>Aksi</th>
@@ -42,9 +39,6 @@
                         <tr>
                             <td><?= $value['kode_permintaanpembelian']; ?></td>
                             <td><?= tanggal($value['tgl_permintaanpembelian']); ?></td>
-                            <td><?= $value['nama_barang']; ?></td>
-                            <td><?= $value['nama_kategori']; ?></td>
-                            <td><?= $value['jumlah_permintaanpembelian'] . '   ' . $value['satuan']; ?></td>
                             <td><?= $value['nama']; ?></td>
                             <td class="text-center">
                                 <?php if ($value['status_permintaanpembelian'] == 'Setuju') : ?>
@@ -63,35 +57,18 @@
                                 <?php endif; ?>
                             </td>
                             <td class="text-center">
-                                <?php if ($value['status_permintaanpembelian'] == 'Setuju') : ?>
-                                    <a href="<?= base_url('gudang/permintaanpembelian/detail/' . $value['id_permintaanpembelian']) ?>" class="btn btn-info btn-icon-split btn-sm">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-edit"></i>
-                                        </span>
-                                        <span class="text">Detail</span>
-                                    </a>
-                                <?php elseif ($value['status_permintaanpembelian'] == 'Ditolak') : ?>
-                                    <a href="<?= base_url('gudang/permintaanpembelian/detail/' . $value['id_permintaanpembelian']) ?>" class="btn btn-info btn-icon-split btn-sm">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-edit"></i>
-                                        </span>
-                                        <span class="text">Detail</span>
-                                    </a>
-                                <?php elseif ($value['status_permintaanpembelian'] == 'Meminta') : ?>
-                                    <a href="<?= base_url('gudang/permintaanpembelian/ubah/' . $value['id_permintaanpembelian']) ?>" class="btn btn-warning btn-icon-split btn-sm">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-edit"></i>
-                                        </span>
-                                        <span class="text">Ubah</span>
-                                    </a>
-                                    </a> <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_permintaanpembelian']; ?>">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-trash"></i>
-                                        </span>
-                                        <span class="text">Hapus</span>
-                                    </a>
-                                <?php else : ?>
-                                <?php endif; ?>
+                                <a href="<?= base_url('gudang/permintaanpembelian/detail/' . $value['id_permintaanpembelian']) ?>" class="btn btn-info btn-icon-split btn-sm">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-info"></i>
+                                    </span>
+                                    <span class="text">Detail</span>
+                                </a>
+                                <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_permintaanpembelian']; ?>">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-trash"></i>
+                                    </span>
+                                    <span class="text">Hapus</span>
+                                </a>
                             </td>
                         </tr>
                     <?php endforeach ?>
@@ -150,43 +127,4 @@
                 });
         })
     })
-</script>
-
-
-<script>
-    $(document).ready(function() {
-        $('#custom-table').DataTable({
-            dom: "<'row'<'col-md-5'l><'col-md-3'B><'col-md-4'f>>" +
-                "<'row'<'col-md-12'tr>>" +
-                "<'row'<'col-md-5'i> <'col-md-7'p>>",
-            buttons: [{
-                    extend: 'print',
-                    orientation: 'potrait',
-                    pageSize: 'A4',
-                    title: 'Permintaan Barang Masuk',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6]
-                    }
-                },
-                {
-                    extend: 'excelHtml5',
-                    orientation: 'potrait',
-                    pageSize: 'A4',
-                    title: 'Permintaan Barang Masuk',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6]
-                    }
-                },
-                {
-                    extend: 'pdfHtml5',
-                    orientation: 'potrait',
-                    pageSize: 'A4',
-                    title: 'Permintaan Barang Masuk',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6]
-                    }
-                }
-            ]
-        });
-    });
 </script>

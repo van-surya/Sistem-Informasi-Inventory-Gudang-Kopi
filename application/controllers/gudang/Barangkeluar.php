@@ -62,22 +62,5 @@ class Barangkeluar extends CI_Controller
         $this->load->view('footer');
     }
 
-    public function hapus()
-    {
-        $idnya = $this->input->post("id");
-        $this->Mbarangkeluar->hapus_barangkeluar($idnya);
-    }
-
-
-    public function detail($id_barangkeluar)
-    {
-
-        $data['barangkeluar'] = $this->Mbarangkeluar->detail_barangkeluar($id_barangkeluar);
-        $data['title'] = 'Detail Barang Keluar';
-        $this->load->view('header', $data);
-        $this->load->view('gudang/navbar', $data);
-        $this->load->view('gudang/barangkeluar/detailbarkel', $data);
-        $this->load->view('footer');
-    }
 
 }

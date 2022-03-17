@@ -87,7 +87,6 @@ class Permintaanbarang extends CI_Controller
         $idnya = $this->input->post("id");
         $this->Mpermintaanbarang->hapus_permintaanbarang($idnya);
     }
-
   
     public function tambahdetail($id_permintaanbarang)
     {

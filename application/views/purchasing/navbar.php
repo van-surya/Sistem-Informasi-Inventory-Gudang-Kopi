@@ -20,6 +20,7 @@
                     <i class="fas fa-fw fa-home"></i>
                     <span>Beranda</span></a>
             </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -42,6 +43,15 @@
                     <i class="fas fa-fw fa-street-view"></i>
                     <span>Supplier</span></a>
             </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- nav Item Permintaan Pembelian -->
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('purchasing/permintaanpembelian'); ?>">
+                    <i class="fas fa-fw fa-file"></i>
+                    <span>Permintaan Pembelian</span></a>
+            </li>
 
             <!-- nav Item Purchase Order -->
             <li class="nav-item">
@@ -49,6 +59,9 @@
                     <i class="fas fa-fw fa-file"></i>
                     <span>Purchase Order</span></a>
             </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
             <!-- Nav Item - Logout -->
             <li class="nav-item">
                 <a class="nav-link btn-logout" href="">

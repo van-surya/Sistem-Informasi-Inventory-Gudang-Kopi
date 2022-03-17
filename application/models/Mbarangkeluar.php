@@ -43,10 +43,8 @@
             return $ambil->result_array();
         }
 
-
         function simpan_barangkeluar($inputan)
         {
-
             $id_user = $inputan['id_user'];
             $id_detailpermintaanbarang = $inputan['id_detailpermintaanbarang'];
             $tgl_barangkeluar = $inputan['tgl_barangkeluar'];
@@ -65,30 +63,5 @@
             } else {
                 return 'gagal';
             }
-        }
-
-        function hapus_barangkeluar($id_barangkeluar)
-        {
-            $this->db->where('id_barangkeluar', $id_barangkeluar);
-            $this->db->delete('barang_keluar');
-        }
-
-        function detail_barangkeluar($id_barangkeluar)
-        {
-            $this->db->join('permintaan_barang', 'permintaan_barang.id_permintaanbarang = barang_keluar.id_permintaanbarang', 'left');
-            $this->db->join('barang', 'barang.id_barang = permintaan_barang.id_barang', 'left');
-            $this->db->join('user_petugas', 'user_petugas.id_user = barang_keluar.id_user', 'left');
-
-            $this->db->where('id_barangkeluar', $id_barangkeluar);
-            $ambil = $this->db->get('barang_keluar');
-            return $ambil->row_array();
-        }
-        function hitung_barangkeluar()
-        {
-            $this->db->select('id_barangkeluar');
-            $this->db->from('barang_keluar');
-            $query = $this->db->get();
-            $total = $query->num_rows();
-            return $total;
         }
     }

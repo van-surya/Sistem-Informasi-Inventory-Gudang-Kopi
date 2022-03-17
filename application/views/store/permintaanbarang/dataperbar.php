@@ -30,6 +30,7 @@
                         <th>Kode</th>
                         <th>Tanggal</th>
                         <th>Oleh</th>
+                        <th>Status</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -39,6 +40,7 @@
                             <td><?= $value['kode_permintaanbarang']; ?></td>
                             <td><?= tanggal($value['tgl_permintaanbarang']); ?></td>
                             <td><?= $value['nama']; ?></td>
+                            <td><?= $value['status_permintaanbarang']; ?></td>
                             <td class="text-center">
                                 <a href="<?= base_url('store/permintaanbarang/detail/' . $value['id_permintaanbarang']) ?>" class="btn btn-info btn-icon-split btn-sm">
                                     <span class="icon text-white-50">
