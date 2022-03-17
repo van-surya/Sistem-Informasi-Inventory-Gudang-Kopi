@@ -128,9 +128,8 @@
 
         function tampil_permintaanpembeliansetuju()
         {
-            $this->db->join('user_petugas', 'user_petugas.id_user = permintaan_pembelian.id_user', 'left');
-            $this->db->where('status_permintaanpembelian', 'Setuju');
-            $ambil = $this->db->get('permintaan_pembelian');
+            $ambil = $this->db->query("SELECT * FROM permintaan_pembelian LEFT JOIN user_petugas ON user_petugas.id_user = permintaan_pembelian.id_user
+             WHERE status_permintaanpembelian ='Setuju' AND id_permintaanpembelian NOT IN (SELECT id_permintaanpembelian FROM po)");
             return $ambil->result_array();
         }
     }
