@@ -53,7 +53,6 @@
         }
 
 
-
         function detail_permintaanpembelian($id_permintaanpembelian)
         {
             $this->db->join('user_petugas', 'user_petugas.id_user = permintaan_pembelian.id_user', 'left');
@@ -132,4 +131,6 @@
              WHERE status_permintaanpembelian ='Setuju' AND id_permintaanpembelian NOT IN (SELECT id_permintaanpembelian FROM po)");
             return $ambil->result_array();
         }
+
+      
     }

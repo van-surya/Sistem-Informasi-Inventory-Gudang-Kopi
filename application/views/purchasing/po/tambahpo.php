@@ -29,7 +29,7 @@
          <div class="card-body">
              <form method="post" enctype="multipart/form-data">
                  <div class="row">
-                     <div class="form-group col-md-6">
+                     <div class="form-group col-md-3">
                          <label>Kode PO</label>
                          <input type="text" class="form-control" id="kode_po" name="kode_po" value="<?= $kodepo; ?>" readonly>
                      </div>
@@ -38,6 +38,10 @@
                          <?php $purchasing = $this->session->userdata('purchasing') ?>
                          <input type="hidden" class="form-control" id="id_user" name="id_user" value="<?= $purchasing['id_user']; ?>" readonly>
                          <input type="text" class="form-control" value="<?= $purchasing['nama']; ?>" readonly>
+                     </div>
+                     <div class="form-group col-md-3">
+                         <label>Tanggal Pembuatan</label>
+                         <input type="date" class="form-control" name="tgl_po" id="tgl_po" value="<?= date('Y-m-d') ?>" readonly>
                      </div>
 
                      <div class="form-group col-md-12">
@@ -49,11 +53,15 @@
                              <?php endforeach; ?>
                          </select>
                      </div>
-
-                     <div class="form-group col-md-6">
-                         <label>Tanggal Pembuatan</label>
-                         <input type="date" class="form-control" name="tgl_po" id="tgl_po">
-                         <input type="hidden" class="form-control" name="status_po" id="status_po" value="Mengirim" readonly>
+                     <div class="col-md-6 form-group">
+                         <div class="input-group mb-3">
+                             <div class="input-group-prepend">
+                                 <div class="input-group-text">
+                                     <input type="checkbox" value="Mengirim" name="status_po">
+                                 </div>
+                             </div>
+                             <span class="form-control">Kirim Barang</span>
+                         </div>
                      </div>
                  </div>
          </div>
