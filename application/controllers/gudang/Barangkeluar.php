@@ -32,10 +32,9 @@ class Barangkeluar extends CI_Controller
     {
         //gunakan lib form_validation untuk me required
         $this->form_validation->set_rules('id_user', 'Pembuat', 'required');
-        $this->form_validation->set_rules('id_detailpermintaanbarang', 'Barang', 'required');
+        $this->form_validation->set_rules('id_permintaanbarang', 'Barang', 'required');
         $this->form_validation->set_rules('kode_barangkeluar', 'Kode Barang Keluar', 'required');
         $this->form_validation->set_rules('tgl_barangkeluar', 'Tanggal', 'required'); 
-        $this->form_validation->set_rules('jumlah_barangkeluar', 'Jumlah Barang Keluar', 'required');
 
         $inputan = $this->input->post();
         //jk ada inputan dari formulir
@@ -53,13 +52,37 @@ class Barangkeluar extends CI_Controller
         }
         //tampilkan kode_barangkeluar pada inputan
         $data['kode_barangkeluar'] = $this->Mbarangkeluar->kode_barangkeluar();
-        $data['detailpermintaanbarang'] = $this->Mbarangkeluar->tampilbarangkeluarbaru();
+        $data['permintaanbarang'] = $this->Mbarangkeluar->tampilbarangkeluarbaru();
         $data['title'] = 'Tambah Barang Keluar';
 
         $this->load->view('header', $data);
         $this->load->view('gudang/navbar', $data);
         $this->load->view('gudang/barangkeluar/tambahbarkel', $data);
         $this->load->view('footer');
+    }
+
+
+    public function detail($id_barangkeluar, $id_permintaanbarang)
+    {
+        $data['barangkeluar'] = $this->Mbarangkeluar->detail_barangkeluar($id_barangkeluar);
+        $data['detailpermintaanbarang'] = $this->Mpermintaanbarang->tampil_detailpermintaanbarang($id_permintaanbarang);
+
+        $data['title'] = 'Detail Barang Keluar';
+
+        $this->load->view('header', $data);
+        $this->load->view('gudang/navbar', $data);
+        $this->load->view('gudang/barangkeluar/detailbarkel', $data);
+        $this->load->view('footer');
+    }
+
+    public function cetak($id_barangkeluar, $id_permintaanbarang)
+    {
+        $data['barangkeluar'] = $this->Mbarangkeluar->detail_barangkeluar($id_barangkeluar);
+        $data['detailpermintaanbarang'] = $this->Mpermintaanbarang->tampil_detailpermintaanbarang($id_permintaanbarang);
+
+        $data['title'] = 'Cetak Barang Keluar';
+
+        $this->load->view('gudang/barangkeluar/cetakbarkel', $data);
     }
 
 

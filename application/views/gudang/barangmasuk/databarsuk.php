@@ -24,44 +24,30 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered" id="custom-table" width="100%" cellspacing="0">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
+                        <th>No</th>
                         <th>Kode</th>
                         <th>Tanggal</th>
-                        <th>Nama Barang</th>
-                        <th>Kategori</th>
-                        <th>Jumlah</th>
                         <th>Pembuat</th>
-                        <th>Status</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($barangmasuk as $key => $value) : ?>
                         <tr>
+                            <td><?= $key + 1; ?></td>
                             <td><?= $value['kode_barangmasuk']; ?></td>
                             <td><?= tanggal($value['tgl_barangmasuk']); ?></td>
-                            <td><?= $value['nama_barang']; ?></td>
-                            <td><?= $value['nama_kategori']; ?></td>
-                            <td><?= $value['jumlah_barangmasuk'] . '   ' . $value['satuan']; ?></td>
                             <td><?= $value['nama']; ?></td>
-                            <td class="text-center">
-                                <?php if ($value['status_barangmasuk'] == 'Diterima') : ?>
-                                    <button type="button" class="btn btn-sm btn-success" disabled>
-                                        Diterima
-                                    </button>
-                                <?php endif; ?>
-                            </td>
-                            <td class="text-center">
-                                <?php if ($value['status_barangmasuk'] == 'Diterima') : ?>
-                                    <a href="<?= base_url('gudang/barangmasuk/detail/' . $value['id_barangmasuk']) ?>" class="btn btn-info btn-icon-split btn-sm">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-edit"></i>
-                                        </span>
-                                        <span class="text">Detail</span>
-                                    </a>
-                                <?php endif; ?>
+                            <td>
+                                <a href="<?= base_url('gudang/barangmasuk/detail/' . $value['id_barangmasuk'] . '/' . $value['id_permintaanpembelian']) ?>" class="btn btn-info btn-icon-split btn-sm">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-info"></i>
+                                    </span>
+                                    <span class="text">Detail</span>
+                                </a>
                             </td>
                         </tr>
                     <?php endforeach ?>
@@ -84,40 +70,40 @@
     </script>
 <?php endif; ?>
 
+
+<!-- hapus data -->
 <script>
     $(document).ready(function() {
-        $('#custom-table').DataTable({
-            dom: "<'row'<'col-md-5'l><'col-md-3'B><'col-md-4'f>>" +
-                "<'row'<'col-md-12'tr>>" +
-                "<'row'<'col-md-5'i> <'col-md-7'p>>",
-            buttons: [{
-                    extend: 'print',
-                    orientation: 'potrait',
-                    pageSize: 'A4',
-                    title: 'Permintaan Barang Masuk',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6]
+        $(".btn-hapus").on("click", function(e) {
+            e.preventDefault();
+            var idnya = $(this).attr("idnya");
+            swal({
+                    title: "Apakah kamu yakin ?",
+                    text: "untuk menghapus data ini",
+                    icon: "warning",
+                    buttons: ["Batal", "Hapus Data!"],
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        //disini ajax hapus data
+                        $.ajax({
+                            type: 'post',
+                            url: "<?= base_url("gudang/barangmasuk/hapus"); ?>",
+                            data: 'id=' + idnya,
+                            success: function() {
+                                swal("Data berhasil terhapus!", {
+                                    icon: "success",
+                                    button: true
+                                }).then((oke) => {
+                                    if (oke) {
+                                        location = "<?= base_url("gudang/barangmasuk"); ?>"
+                                    }
+                                });
+                            }
+                        })
                     }
-                },
-                {
-                    extend: 'excelHtml5',
-                    orientation: 'potrait',
-                    pageSize: 'A4',
-                    title: 'Permintaan Barang Masuk',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6]
-                    }
-                },
-                {
-                    extend: 'pdfHtml5',
-                    orientation: 'potrait',
-                    pageSize: 'A4',
-                    title: 'Permintaan Barang Masuk',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6]
-                    }
-                }
-            ]
-        });
-    });
+                });
+        })
+    })
 </script>
