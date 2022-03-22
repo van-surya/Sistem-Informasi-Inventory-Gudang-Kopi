@@ -58,7 +58,7 @@
                 </table>
             </div>
             <div class="card-footer text-md-right">
-                <a href="<?= base_url('gudang/permintaanbarang'); ?>" class="btn btn-secondary">Kembali</a>
+                <a href="<?= base_url('gudang/barangkeluar'); ?>" class="btn btn-secondary">Kembali</a>
             </div>
         </form>
     </div>

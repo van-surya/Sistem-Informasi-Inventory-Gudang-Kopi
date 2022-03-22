@@ -9,6 +9,7 @@ class Barangmasuk extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Mbarangmasuk');
+        $this->load->model('Mpermintaanpembelian');
         $this->load->model('Muser');
         if (!$this->session->userdata("gudang")) {
             $this->session->set_flashdata('pesan', 'Anda harus login');
@@ -59,6 +60,30 @@ class Barangmasuk extends CI_Controller
         $this->load->view('gudang/navbar', $data);
         $this->load->view('gudang/barangmasuk/tambahbarsuk', $data);
         $this->load->view('footer');
+    }
+
+
+    public function detail($id_barangmasuk, $id_permintaanpembelian)
+    {
+        $data['barangmasuk'] = $this->Mbarangmasuk->detail_barangmasuk($id_barangmasuk);
+        $data['detailpermintaanpembelian'] = $this->Mpermintaanpembelian->tampil_detailpermintaanpembelian($id_permintaanpembelian);
+
+        $data['title'] = 'Detail Barang Masuk';
+
+        $this->load->view('header', $data);
+        $this->load->view('gudang/navbar', $data);
+        $this->load->view('gudang/barangmasuk/detailbarsuk', $data);
+        $this->load->view('footer');
+    }
+
+    public function cetak($id_barangmasuk, $id_permintaanpembelian)
+    {
+        $data['barangmasuk'] = $this->Mbarangmasuk->detail_barangmasuk($id_barangmasuk);
+        $data['detailpermintaanpembelian'] = $this->Mpermintaanpembelian->tampil_detailpermintaanpembelian($id_permintaanpembelian);
+
+        $data['title'] = 'Cetak Barang Masuk';
+
+        $this->load->view('gudang/barangmasuk/cetakbarsuk', $data);
     }
 
 }

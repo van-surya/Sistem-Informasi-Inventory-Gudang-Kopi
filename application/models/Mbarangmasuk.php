@@ -60,4 +60,12 @@
                 return 'gagal';
             }
         }
+
+        function detail_barangmasuk($id_barangmasuk)
+        {
+            $this->db->join('user_petugas', 'user_petugas.id_user = barang_masuk.id_user', 'left');
+            $this->db->where('id_barangmasuk', $id_barangmasuk);
+            $ambil = $this->db->get('barang_masuk');
+            return $ambil->row_array();
+        } 
     }

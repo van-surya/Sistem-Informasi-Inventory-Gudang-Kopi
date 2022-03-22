@@ -131,6 +131,5 @@
              WHERE status_permintaanpembelian ='Setuju' AND id_permintaanpembelian NOT IN (SELECT id_permintaanpembelian FROM po)");
             return $ambil->result_array();
         }
-
-      
+ 
     }
