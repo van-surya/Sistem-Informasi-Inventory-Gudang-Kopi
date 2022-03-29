@@ -25,7 +25,8 @@ class Beranda extends CI_Controller
     public function index()
     {
         $data = ['title' => 'Beranda'];
-       
+        $data['permintaanpembelian'] = $this->Mpermintaanpembelian->tampil_permintaanpembelianmeminta();
+
         $this->load->view('header', $data);
         $this->load->view('purchasing/navbar', $data);
         $this->load->view('purchasing/beranda', $data);

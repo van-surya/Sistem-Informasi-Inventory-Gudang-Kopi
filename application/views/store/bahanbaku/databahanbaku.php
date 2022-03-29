@@ -39,13 +39,15 @@
                             <td><?= $value['stock_toko'] . '  ' . $value['satuan']; ?></td>
                             <td>
                                 <div class="text-center">
-                                    <!-- Button trigger -->
-                                    <a href="<?= base_url('store/bahanbaku/pengurangan/' . $value['id_barang']) ?>" class="btn btn-warning btn-icon-split btn-sm">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-edit"></i>
-                                        </span>
-                                        <span class="text">Ubah</span>
-                                    </a>
+                                    <?php if ($value['stock_toko'] > 0) : ?>
+                                        <!-- Button trigger -->
+                                        <a href="<?= base_url('store/bahanbaku/pengurangan/' . $value['id_barang']) ?>" class="btn btn-warning btn-icon-split btn-sm">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-edit"></i>
+                                            </span>
+                                            <span class="text">Ubah</span>
+                                        </a>
+                                    <?php endif; ?>
                                 </div>
                             </td>
                         </tr>

@@ -13,14 +13,6 @@
                 <h4 class="m-0 font-weight-bold text-primary"><?= $title; ?></h4>
             </div>
             <?php if ($permintaanbarang['status_permintaanbarang'] == 'Setuju') : ?>
-                <!-- <div class="col-md-6 text-md-right mt-2 mt-md-0">
-                    <a href="<?= base_url('gudang/permintaanbarang/cetak/' . $permintaanbarang['id_permintaanbarang']); ?>" target="_blank" class="btn btn-secondary btn-icon-split btn-sm">
-                        <span class="icon text-white-50">
-                            <i class="fas fa-print"></i>
-                        </span>
-                        <span class="text">Cetak</span>
-                    </a>
-                </div> -->
             <?php else : ?>
                 <div class="col-md-6 text-md-right mt-2 mt-md-0">
                     <a href="<?= base_url('gudang/permintaanbarang/konfirmasi/' . $permintaanbarang['id_permintaanbarang']); ?>" class="btn btn-primary btn-icon-split btn-sm">
@@ -67,7 +59,17 @@
                                 <td><?= $value['kode_barang']; ?></td>
                                 <td><?= $value['nama_barang']; ?></td>
                                 <td><?= $value['nama_kategori']; ?></td>
-                                <td><?= $value['jumlah_permintaanbarang']; ?></td>
+                                <td>
+                                    <?php if (($value['jumlah_permintaanbarang'] > $value['stock_gudang'])) : ?>
+                                        <button type="button" class="btn btn-sm btn-danger" disabled>
+                                            <?= $value['jumlah_permintaanbarang']; ?>
+                                        </button>
+                                    <?php else : ?>
+                                        <button type="button" class="btn btn-sm btn-primary" disabled>
+                                            <?= $value['jumlah_permintaanbarang']; ?>
+                                        </button>
+                                    <?php endif; ?>
+                                </td>
                                 <td><?= $value['stock_gudang']; ?></td>
                                 <?php if ($permintaanbarang['status_permintaanbarang'] == 'Meminta') : ?>
                                     <td class="text-center">

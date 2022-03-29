@@ -109,7 +109,7 @@ class Managemenbarang extends CI_Controller
         $data["databarang"] = $this->Mbarang->detail_barang($id_barang);
         $data["kategori"] = $this->Mkategori->tampil_kategori();
         $data["supplier"] = $this->Msupplier->tampil_supplier();
-        $data['title'] = 'Ubah Data Barang';
+        $data['title'] = 'Ubah Barang';
 
         $this->load->view('header', $data);
         $this->load->view('purchasing/navbar', $data);

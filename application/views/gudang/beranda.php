@@ -6,6 +6,52 @@
     </ol>
 </nav>
 
+<div class="col-md-12">
+    <?php if (!empty($notifpermintaanbarang)) : ?>
+        <div class="card shadow mb-4">
+            <!-- Card Header - Accordion -->
+            <a href="#permintaanbarang" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="permintaanbarang">
+                <h6 class="m-0 font-weight-bold text-primary">Notifikasi Permintaan Barang</h6>
+            </a>
+            <!-- Card Content - Collapse -->
+            <div class="collapse show" id="permintaanbarang">
+                <div class="card-body">
+                    <?php foreach ($notifpermintaanbarang as $key => $permintaanbarang) : ?>
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            Tanggal : <b><?= tanggal($permintaanbarang['tgl_permintaanbarang']); ?></b>, kode <b><?= $permintaanbarang['kode_permintaanbarang']; ?></b> oleh <b><?= $permintaanbarang['nama']; ?> </b>Segera <a href="<?= base_url('gudang/permintaanbarang/detail/' . $permintaanbarang['id_permintaanbarang']); ?>">Konfirmasi Permintaan Barang</a>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+
+    <?php if (!empty($notifbarangmasuk)) : ?>
+        <div class="card shadow mb-4">
+            <!-- Card Header - Accordion -->
+            <a href="#barangmasuk" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="barangmasuk">
+                <h6 class="m-0 font-weight-bold text-primary">Notifikasi Barang Masuk</h6>
+            </a>
+            <!-- Card Content - Collapse -->
+            <div class="collapse show" id="barangmasuk">
+                <div class="card-body">
+                    <?php foreach ($notifbarangmasuk as $key => $permintaanpembelian) : ?>
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            Tanggal : <b><?= tanggal($permintaanpembelian['tgl_permintaanpembelian']); ?></b>, kode <b><?= $permintaanpembelian['kode_permintaanpembelian']; ?></b> oleh <b><?= $permintaanpembelian['nama']; ?> </b>Segera membuat <a href="<?= base_url('gudang/barangmasuk/tambah/'); ?>">Barang masuk</a>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+
+</div>
 
 <!-- Card Profile  -->
 <div class="col-md-12">

@@ -41,7 +41,7 @@
                      </div>
                      <div class="form-group col-md-3">
                          <label>Tanggal Pembuatan</label>
-                         <input type="date" class="form-control" name="tgl_po" id="tgl_po" value="<?= date('Y-m-d') ?>" readonly>
+                         <input type="date" class="form-control" name="tgl_po" id="tgl_po" value="<?= date('Y-m-d') ?>">
                      </div>
 
                      <div class="form-group col-md-12">

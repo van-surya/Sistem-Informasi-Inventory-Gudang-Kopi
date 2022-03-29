@@ -48,7 +48,7 @@ class Kategori extends CI_Controller
             $data['gagal'] = validation_errors();
         }
 
-        $data['title'] = 'Tambah Barang';
+        $data['title'] = 'Tambah Katagori';
         $this->load->view('header', $data);
         $this->load->view('purchasing/navbar', $data);
         $this->load->view('purchasing/kategori/tambahkategori', $data);
@@ -84,7 +84,7 @@ class Kategori extends CI_Controller
         }
 
         $data["datakategori"] = $this->Mkategori->detail_kategori($id_kategori);
-        $data['title'] = 'Ubah Data Kategori';
+        $data['title'] = 'Ubah Kategori';
 
         $this->load->view('header', $data);
         $this->load->view('purchasing/navbar', $data);

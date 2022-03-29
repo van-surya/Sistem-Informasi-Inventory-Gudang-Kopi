@@ -4,7 +4,7 @@
 
     class Mpermintaanpembelian extends CI_Model
     {
-
+         
         function tampil_permintaanpembelian()
         {
             $this->db->join('user_petugas', 'user_petugas.id_user = permintaan_pembelian.id_user', 'left');
@@ -131,5 +131,12 @@
              WHERE status_permintaanpembelian ='Setuju' AND id_permintaanpembelian NOT IN (SELECT id_permintaanpembelian FROM po)");
             return $ambil->result_array();
         }
- 
+
+        function tampil_permintaanpembelianmeminta()
+        {
+            $this->db->join('user_petugas', 'user_petugas.id_user = permintaan_pembelian.id_user', 'left');
+            $this->db->where('status_permintaanpembelian', "Meminta");
+            $ambil = $this->db->get('permintaan_pembelian');
+            return $ambil->result_array();
+        }
     }

@@ -124,4 +124,12 @@
             $this->db->query("UPDATE permintaan_barang SET status_permintaanbarang = '$status' WHERE permintaan_barang.id_permintaanbarang = $id_permintaanbarang");
         }
 
+        function tampil_permintaanbarangmeminta()
+        {
+            $this->db->join('user_petugas', 'user_petugas.id_user = permintaan_barang.id_user', 'left');
+            $this->db->where('status_permintaanbarang', "Meminta");
+            $ambil = $this->db->get('permintaan_barang');
+            return $ambil->result_array();
+        }
+        
     }
