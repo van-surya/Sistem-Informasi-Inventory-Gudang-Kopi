@@ -1,7 +1,7 @@
 <!-- breadcrumb -->
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="<?= base_url('store/bahanbaku'); ?>">Bahan Baku</a></li>
+        <li class="breadcrumb-item"><a href="<?= base_url('store/penggunaan'); ?>">Penggurangan Bahan Baku</a></li>
         <li class="breadcrumb-item active" aria-current="page"><?= $title; ?></li>
     </ol>
 </nav>
@@ -66,7 +66,7 @@
                 </div>
         </div>
         <div class="card-footer text-md-right">
-            <a href="<?= base_url('store/bahanbaku'); ?>" class="btn btn-secondary">Batal</a>
+            <a href="<?= base_url('store/penggunaan'); ?>" class="btn btn-secondary">Batal</a>
             <button type="submit" class="btn btn-primary">Ubah</button>
         </div>
         </form>

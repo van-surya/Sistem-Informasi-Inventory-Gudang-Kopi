@@ -26,6 +26,7 @@
                         <th>Nama Barang</th>
                         <th>Kategori</th>
                         <th>Jumlah</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,6 +37,19 @@
                             <td><?= $value['nama_barang']; ?></td>
                             <td><?= $value['nama_kategori']; ?></td>
                             <td><?= $value['stock_toko'] . '  ' . $value['satuan']; ?></td>
+                            <td>
+                                <div class="text-center">
+                                    <?php if ($value['stock_toko'] > 0) : ?>
+                                        <!-- Button trigger -->
+                                        <a href="<?= base_url('store/penggunaan/pengurangan/' . $value['id_barang']) ?>" class="btn btn-warning btn-icon-split btn-sm">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-edit"></i>
+                                            </span>
+                                            <span class="text">Ubah</span>
+                                        </a>
+                                    <?php endif; ?>
+                                </div>
+                            </td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>

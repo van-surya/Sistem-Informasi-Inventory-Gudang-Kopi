@@ -60,9 +60,9 @@
                      </tbody>
                  </table>
              </div>
-             <div class="card-footer text-md-right">
-                 <a href="<?= base_url('purchasing/po'); ?>" class="btn btn-secondary">Kembali</a>
-             </div>
          </form>
+     </div>
+     <div class="card-footer text-md-right">
+         <a href="<?= base_url('purchasing/po'); ?>" class="btn btn-secondary">Kembali</a>
      </div>
  </div>

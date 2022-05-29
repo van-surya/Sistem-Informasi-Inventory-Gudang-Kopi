@@ -73,17 +73,17 @@
                                 <td><?= $value['stock_gudang']; ?></td>
                                 <?php if ($permintaanbarang['status_permintaanbarang'] == 'Meminta') : ?>
                                     <td class="text-center">
-                                        </a> <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_detailpermintaanbarang']; ?>">
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-trash"></i>
-                                            </span>
-                                            <span class="text">Hapus</span>
-                                        </a>
-                                        </a> <a href="<?= base_url('gudang/permintaanbarang/detailubah/' . $value['id_permintaanbarang'] . '/' . $value['id_detailpermintaanbarang']); ?>" class="btn btn-warning btn-icon-split btn-sm">
+                                        <a href="<?= base_url('gudang/permintaanbarang/detailubah/' . $value['id_permintaanbarang'] . '/' . $value['id_detailpermintaanbarang']); ?>" class="btn btn-warning btn-icon-split btn-sm">
                                             <span class=" icon text-white-50">
                                                 <i class="fas fa-edit"></i>
                                             </span>
                                             <span class="text">Ubah</span>
+                                        </a>
+                                        <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_detailpermintaanbarang']; ?>">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                            <span class="text">Hapus</span>
                                         </a>
                                     </td>
                                 <?php endif; ?>
@@ -92,10 +92,10 @@
                     </tbody>
                 </table>
             </div>
-            <div class="card-footer text-md-right">
-                <a href="<?= base_url('gudang/permintaanbarang'); ?>" class="btn btn-secondary">Kembali</a>
-            </div>
         </form>
+    </div>
+    <div class="card-footer text-md-right">
+        <a href="<?= base_url('gudang/permintaanbarang'); ?>" class="btn btn-secondary">Kembali</a>
     </div>
 </div>
 

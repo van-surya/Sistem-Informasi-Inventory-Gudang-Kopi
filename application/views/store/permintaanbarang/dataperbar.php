@@ -40,7 +40,21 @@
                             <td><?= $value['kode_permintaanbarang']; ?></td>
                             <td><?= tanggal($value['tgl_permintaanbarang']); ?></td>
                             <td><?= $value['nama']; ?></td>
-                            <td><?= $value['status_permintaanbarang']; ?></td>
+                            <td class="text-center">
+                                <?php if ($value['status_permintaanbarang'] == 'Meminta') : ?>
+                                    <button type="button" class="btn btn-sm btn-primary" disabled>
+                                        Meminta
+                                    </button>
+                                <?php elseif ($value['status_permintaanbarang'] == 'Setuju') : ?>
+                                    <button type="button" class="btn btn-sm btn-success" disabled>
+                                        Setuju
+                                    </button>
+                                <?php elseif ($value['status_permintaanbarang'] == 'Ditolak') : ?>
+                                    <button type="button" class="btn btn-sm btn-danger" disabled>
+                                        Ditolak
+                                    </button>
+                                <?php endif; ?>
+                            </td>
                             <td class="text-center">
                                 <a href="<?= base_url('store/permintaanbarang/detail/' . $value['id_permintaanbarang']) ?>" class="btn btn-info btn-icon-split btn-sm">
                                     <span class="icon text-white-50">

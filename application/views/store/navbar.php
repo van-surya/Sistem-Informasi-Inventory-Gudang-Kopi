@@ -30,6 +30,12 @@
                     <i class="fas fa-fw fa-archive"></i>
                     <span>Bahan Baku</span></a>
             </li>
+            <!-- Nav Item - Bahan Baku -->
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('store/penggunaan'); ?>">
+                    <i class="fas fa-fw fa-archive"></i>
+                    <span>Penggunaan Bahan Baku</span></a>
+            </li>
             <!-- Nav Item - Permintaan Barang -->
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('store/permintaanbarang'); ?>">

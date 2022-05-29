@@ -71,17 +71,17 @@
                                 <td><?= $value['stock_gudang']; ?></td>
                                 <?php if ($permintaanpembelian['status_permintaanpembelian'] == 'Meminta') : ?>
                                     <td class="text-center">
-                                        </a> <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_detailpermintaanpembelian']; ?>">
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-trash"></i>
-                                            </span>
-                                            <span class="text">Hapus</span>
-                                        </a>
                                         </a> <a href="<?= base_url('purchasing/permintaanpembelian/detailubah/' . $value['id_permintaanpembelian'] . '/' . $value['id_detailpermintaanpembelian']); ?>" class="btn btn-warning btn-icon-split btn-sm">
                                             <span class=" icon text-white-50">
                                                 <i class="fas fa-edit"></i>
                                             </span>
                                             <span class="text">Ubah</span>
+                                        </a>
+                                        </a> <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_detailpermintaanpembelian']; ?>">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                            <span class="text">Hapus</span>
                                         </a>
                                     </td>
                                 <?php endif; ?>
@@ -90,10 +90,10 @@
                     </tbody>
                 </table>
             </div>
-            <div class="card-footer text-md-right">
-                <a href="<?= base_url('purchasing/permintaanpembelian'); ?>" class="btn btn-secondary">Kembali</a>
-            </div>
         </form>
+    </div>
+    <div class="card-footer text-md-right">
+        <a href="<?= base_url('purchasing/permintaanpembelian'); ?>" class="btn btn-secondary">Kembali</a>
     </div>
 </div>
 

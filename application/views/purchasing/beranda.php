@@ -18,7 +18,7 @@
                 <div class="card-body">
                     <?php foreach ($permintaanpembelian as $key => $value) : ?>
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                            Tanggal : <b><?= tanggal($value['tgl_permintaanpembelian']); ?></b>, kode <b><?= $value['kode_permintaanpembelian']; ?></b> oleh <b><?= $value['nama']; ?> </b>Segera <a href="<?= base_url('purchasing/permintaanpembelian/konfirmasi/' . $value['id_permintaanpembelian']); ?>"> Konfirmasi</a>
+                            Tanggal : <b><?= tanggal($value['tgl_permintaanpembelian']); ?></b>, kode <b><?= $value['kode_permintaanpembelian']; ?></b> oleh <b><?= $value['nama']; ?> </b>Segera <a href="<?= base_url('purchasing/permintaanpembelian/detail/' . $value['id_permintaanpembelian']); ?>"> Konfirmasi</a>
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
