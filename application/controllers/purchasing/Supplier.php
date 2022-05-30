@@ -51,7 +51,7 @@ class Supplier extends CI_Controller
         }
         //tampilkan kode supplier pada inputan
         $data['kodesupplier'] = $this->Msupplier->kode_supplier();
-        $data['title'] = 'Tambah Barang';
+        $data['title'] = 'Tambah Supplier';
 
         $this->load->view('header', $data);
         $this->load->view('purchasing/navbar', $data);

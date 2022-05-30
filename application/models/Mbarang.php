@@ -101,11 +101,5 @@
             $total = $query->num_rows();
             return $total;
         }
-
-        function pengurangan_bahanbaku($inputan, $id_barang)
-        {
-            $this->db->where('id_barang', $id_barang);
-            $this->db->update('barang', $inputan);
-        }
  
     }

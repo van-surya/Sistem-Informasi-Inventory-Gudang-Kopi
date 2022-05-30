@@ -21,10 +21,8 @@ class Beranda extends CI_Controller
 
     public function index()
     {
-        $data = ['title' => 'Beranda'];
-        $data['jumlah_bahanbaku'] = $this->Mbarang->hitung_barang();
-        $data['jumlah_permintaanbarang'] = $this->Mpermintaanbarang->hitung_permintaanbarang();
-
+        $data = ['title' => 'Beranda']; 
+        
         $this->load->view('header', $data);
         $this->load->view('store/navbar', $data);
         $this->load->view('store/beranda', $data);

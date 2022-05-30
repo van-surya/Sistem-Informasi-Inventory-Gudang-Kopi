@@ -25,36 +25,5 @@ class Bahanbaku extends CI_Controller
         $this->load->view('store/bahanbaku/databahanbaku', $data);
         $this->load->view('footer');
     }
-
-    public function ubah($id_barang)
-    {
-        $inputan = $this->input->post();
-        // jk submit maka lakukan
-
-        if ($inputan) {
-            //mengambil detail dari Model Mbarang
-            $detail = $this->Mbarang->detail_barang($id_barang);
-
-            //jika ada inputan ada maka jalankan validasi  
-            $this->form_validation->set_rules('stock_toko', 'Jumlah', 'required|greater_than[-1]');
-
-            // jalankan validasi jika benar
-            if ($this->form_validation->run() == TRUE) {
-                //jalankan method ubah user data dari formulir berdasarkan id pada url 
-                $this->Mbarang->pengurangan_bahanbaku($inputan, $id_barang);
-                $this->session->set_flashdata('pesan', 'Data berhasil diubah!');
-                redirect('store/bahanbaku', 'refresh');
-            }
-            // jika salah maka 
-            $data['gagal'] = validation_errors();
-        }
-
-        $data["databarang"] = $this->Mbarang->detail_barang($id_barang);
-        $data['title'] = 'Bahan Baku';
-
-        $this->load->view('header', $data);
-        $this->load->view('store/navbar', $data);
-        $this->load->view('store/bahanbaku/editbahanbaku', $data);
-        $this->load->view('footer');
-    }
+ 
 }

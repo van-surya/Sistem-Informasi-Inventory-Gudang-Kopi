@@ -18,22 +18,23 @@
         $(".alert").alert();
     </script>
 <?php endif; ?>
-
 <!-- Card Ubah Data  -->
-<div class="card shadow mb-4 col-md-6 mx-auto">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Ubah Data Kategori</h6>
+<div class="col-md-6 mx-auto">
+    <div class="card shadow mb-4 ">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Ubah Data Kategori</h6>
+        </div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>Kategori</label>
+                    <input type="text" class="form-control" id="nama_kategori" name="nama_kategori" value="<?= $datakategori['nama_kategori']; ?>">
+                </div>
+        </div>
+        <div class="card-footer text-md-right">
+            <a href="<?= base_url('purchasing/kategori'); ?>" class="btn btn-secondary">Batal</a>
+            <button type="submit" class="btn btn-primary">Ubah</button>
+        </div>
+        </form>
     </div>
-    <div class="card-body">
-        <form method="post" enctype="multipart/form-data">
-            <div class="form-group">
-                <label>Kategori</label>
-                <input type="text" class="form-control" id="nama_kategori" name="nama_kategori" value="<?= $datakategori['nama_kategori']; ?>">
-            </div>
-    </div>
-    <div class="card-footer text-md-right">
-        <a href="<?= base_url('purchasing/kategori'); ?>" class="btn btn-secondary">Batal</a>
-        <button type="submit" class="btn btn-primary">Ubah</button>
-    </div>
-    </form>
 </div>

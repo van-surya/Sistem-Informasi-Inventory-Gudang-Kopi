@@ -30,11 +30,14 @@
                     <span>Managemen Barang</span></a>
             </li>
 
-            <!-- Nav Item - Permintaan Pembelian -->
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Permintaan Barang -->
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('gudang/permintaanpembelian'); ?>">
-                    <i class="fas fa-fw fa-file"></i>
-                    <span>Permintaan Pembelian</span></a>
+                <a class="nav-link" href="<?= base_url('gudang/permintaanbarang'); ?>">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Permintaan Barang</span></a>
             </li>
 
             <!-- Nav Item - Barang Keluar -->
@@ -42,6 +45,16 @@
                 <a class="nav-link" href="<?= base_url('gudang/barangkeluar'); ?>">
                     <i class="fas fa-fw fa-file"></i>
                     <span>Barang Keluar</span></a>
+
+                <!-- Divider -->
+                <hr class="sidebar-divider my-0">
+
+                <!-- Nav Item - Permintaan Pembelian -->
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('gudang/permintaanpembelian'); ?>">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Permintaan Pembelian</span></a>
+            </li>
 
             </li> <!-- Nav Item - Barang Masuk -->
             <li class="nav-item">
@@ -82,6 +95,12 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
+                    <div class="text-left mt-2">
+                        <p class="mb-0 font-weight-bold">Gudang
+                        </p>
+                        <p>
+                            Sistem Informasi Pengendalian Bahan Baku</p>
+                    </div>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">

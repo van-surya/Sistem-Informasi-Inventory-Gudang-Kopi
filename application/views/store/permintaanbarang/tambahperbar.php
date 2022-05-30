@@ -41,21 +41,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label>Tanggal Permintaan</label>
-                        <input type="text" class="form-control" value="<?= date('d-M-Y') ?>" readonly>
-                        <input type="hidden" name="tgl_permintaanbarang" id="tgl_permintaanbarang" class="form-control" value="<?= date('Y-m-d') ?>" readonly>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label>Pilih Barang</label>
-                        <select class="form-control" id="id_barang" name="id_barang">
-                            <option value="">--Pilih Barang--</option>
-                            <?php foreach ($barang as $key => $tambarang) : ?>
-                                <option value="<?= $tambarang['id_barang'] ?>"><?= $tambarang['nama_barang'] . ' | Stock : ' . $tambarang['stock_toko'] . ' ' . $tambarang['satuan']; ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label>Jumlah Permintaan</label>
-                        <input type="number" class="form-control" name="jumlah_permintaanbarang" id="jumlah_permintaanbarang" placeholder="Masukan Jumlah Permintaan">
+                        <input type="date" class="form-control" name="tgl_permintaanbarang" id="tgl_permintaanbarang">
                         <input type="hidden" class="form-control" name="status_permintaanbarang" id="status_permintaanbarang" value="Meminta">
                     </div>
                 </div>

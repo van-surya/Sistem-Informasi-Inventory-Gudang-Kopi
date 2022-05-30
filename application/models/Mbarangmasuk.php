@@ -8,10 +8,6 @@
         function tampil_barangmasuk()
         {
             $this->db->join('user_petugas', 'user_petugas.id_user = barang_masuk.id_user', 'left');
-            $this->db->join('po', 'po.id_po = barang_masuk.id_po', 'left');
-            $this->db->join('permintaan_pembelian', 'permintaan_pembelian.id_permintaanpembelian = po.id_permintaanpembelian', 'left');
-            $this->db->join('barang', 'barang.id_barang = permintaan_pembelian.id_barang', 'left');
-            $this->db->join('kategori', 'kategori.id_kategori = barang.id_kategori', 'left');
             $ambil = $this->db->get('barang_masuk');
             return $ambil->result_array();
         }
@@ -35,50 +31,41 @@
             return $kodetampil;
         }
 
+        function tampilbarangmasukbaru()
+        {
+            $ambil = $this->db->query("SELECT nama, po.id_permintaanpembelian, kode_permintaanpembelian, tgl_permintaanpembelian 
+            FROM permintaan_pembelian  LEFT JOIN user_petugas ON user_petugas.id_user = permintaan_pembelian.id_user
+            LEFT JOIN po ON po.id_permintaanpembelian = permintaan_pembelian.id_permintaanpembelian
+            WHERE po.status_po = 'Mengirim' AND po.id_permintaanpembelian 
+            NOT IN (SELECT id_permintaanpembelian FROM barang_masuk)");
+            return $ambil->result_array();
+        }
+
+
         function simpan_barangmasuk($inputan)
         {
-            $status = $inputan['status_barangmasuk'];
-            $id_po = $inputan['id_po'];
-            $jumlah_barangmasuk = $inputan['jumlah_barangmasuk'];
+            $id_user = $inputan['id_user'];
+            $id_permintaanpembelian = $inputan['id_permintaanpembelian'];
 
+            $this->db->where('id_user', $id_user);
+            $this->db->where('id_permintaanpembelian', $id_permintaanpembelian);
 
-            if ($status == 'Diterima') {
+            $barang_masuk = $this->db->get('barang_masuk')->row_array();
+            if (empty($barang_masuk)) {
                 $this->db->insert('barang_masuk', $inputan);
-                $this->db->query("UPDATE po SET status_po = 'Diterima' WHERE id_po=$id_po");
-                $this->db->query("UPDATE barang LEFT JOIN permintaan_pembelian ON permintaan_pembelian.id_barang=barang.id_barang
-                LEFT JOIN po ON po.id_permintaanpembelian =permintaan_pembelian.id_permintaanpembelian SET stock_gudang = stock_gudang+$jumlah_barangmasuk WHERE id_po=$id_po");
-
-                return "sukses";
+                $this->db->query("UPDATE po SET status_po = 'Diterima' WHERE id_permintaanpembelian = $id_permintaanpembelian");
+                $this->db->query("UPDATE barang LEFT JOIN detail_permintaanpembelian ON detail_permintaanpembelian.id_barang = barang.id_barang SET stock_gudang = stock_gudang + jumlah_permintaanpembelian WHERE id_permintaanpembelian = $id_permintaanpembelian");
+                return 'sukses';
             } else {
-                return "gagal";
+                return 'gagal';
             }
         }
 
         function detail_barangmasuk($id_barangmasuk)
         {
             $this->db->join('user_petugas', 'user_petugas.id_user = barang_masuk.id_user', 'left');
-            $this->db->join('po', 'po.id_po = barang_masuk.id_po', 'left');
-            $this->db->join('permintaan_pembelian', 'permintaan_pembelian.id_permintaanpembelian = po.id_permintaanpembelian', 'left');
-            $this->db->join('barang', 'barang.id_barang = permintaan_pembelian.id_barang', 'left');
-            $this->db->join('kategori', 'kategori.id_kategori = barang.id_kategori', 'left');
-
             $this->db->where('id_barangmasuk', $id_barangmasuk);
             $ambil = $this->db->get('barang_masuk');
             return $ambil->row_array();
-        }
-
-        function hapus_barangmasuk($id_barangmasuk)
-        {
-            $this->db->where('id_barangmasuk', $id_barangmasuk);
-            $this->db->delete('barang_masuk');
-        }
-
-        function hitung_barangmasuk()
-        {
-            $this->db->select('id_barangmasuk');
-            $this->db->from('barang_masuk');
-            $query = $this->db->get();
-            $total = $query->num_rows();
-            return $total;
-        }
+        } 
     }

@@ -32,80 +32,30 @@
                     <label>Kode Barang Keluar</label>
                     <input type="text" class="form-control" id="kode_barangkeluar" name="kode_barangkeluar" value="<?= $kode_barangkeluar; ?>" readonly />
                 </div>
-                <?php $gudang = $this->session->userdata('gudang') ?>
-                <input type="hidden" class="form-control" id="id_user" name="id_user" value="<?= $gudang['id_user']; ?>" readonly>
-                <input type="hidden" name="tgl_barangkeluar" id="tgl_barangkeluar" class="form-control" value="<?= date('Y-m-d') ?>" readonly>
-
+                <div class="form-group col-md-6">
+                    <label>Tanggal</label>
+                    <input type="date" name="tgl_barangkeluar" id="tgl_barangkeluar" class="form-control">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Pembuat</label>
+                    <?php $gudang = $this->session->userdata('gudang') ?>
+                    <input type="hidden" class="form-control" id="id_user" name="id_user" value="<?= $gudang['id_user']; ?>" readonly>
+                    <input type="text" class="form-control" value="<?= $gudang['nama']; ?>" readonly />
+                </div>
                 <div class="form-group col-md-6">
                     <label>Pilih Permintaan Barang</label>
                     <select class="form-control" name="id_permintaanbarang" id="id_permintaanbarang">
                         <option value="">--Pilih Permintaan Barang--</option>
-                        <?php foreach ($permintaanbarang as $key => $baru) : ?>
-                            <option value="<?= $baru['id_permintaanbarang'] ?>" data-jumperbar="<?= $baru['jumlah_permintaanbarang'] ?>" data-stocktoko="<?= $baru['stock_toko'] ?>" data-stockgudang="<?= $baru['stock_gudang'] ?>">Kode : <?= $baru['kode_permintaanbarang'] ?> | <?= $baru['nama_barang'] ?></option>
+                        <?php foreach ($permintaanbarang as $key => $value) : ?>
+                            <option value="<?= $value['id_permintaanbarang'] ?>">Kode : <?= $value['kode_permintaanbarang'] . ' | Tanggal :' . tanggal($value['tgl_permintaanbarang']) . ' | Oleh :' . $value['nama'];  ?> </option>
                         <?php endforeach; ?>
                     </select>
                 </div>
-                <div class="form-group col-md-12">
-                    <label>Jumlah Permintaan Barang</label>
-                    <input type="text" class="form-control" id="jumlah_barangkeluar" name="jumlah_barangkeluar" readonly />
-                </div>
-                <div class="form-group col-md-6">
-                    <label>Stock Toko Sekarang</label>
-                    <input type="text" class="form-control" id="stocktoko" readonly />
-                </div>
-                <div class="form-group col-md-6">
-                    <label>Stock toko + Permintaan</label>
-                    <input type="text" class="form-control" id="hasilstocktoko" readonly />
-                </div>
-                <div class="form-group col-md-6">
-                    <label>Stock Gudang Sekarang</label>
-                    <input type="text" class="form-control" id="stockgudang" readonly />
-                </div>
-                <div class="form-group col-md-6">
-                    <label>Stok Gudang - Permintaan</label>
-                    <input type="text" class="form-control" id="hasilstockgudang" readonly />
-                </div>
-                <div class="col-md-6">
-                    <label>Status</label>
-                    <div class="input-group mb-2">
-                        <label class="form-control">
-                            <input type="radio" name="status_barangkeluar" id="status_barangkeluar" value="Setuju"> Setuju
-                        </label>
-                        <label class="form-control">
-                            <input type="radio" name="status_barangkeluar" id="status_barangkeluar" value="Ditolak"> Tolak
-                        </label>
-                    </div>
-                </div>
-
             </div>
     </div>
-    <div class="card-footer text-md-right">
+    <div class=" card-footer text-md-right">
         <a href="<?= base_url('gudang/barangkeluar'); ?>" class="btn btn-secondary">Batal</a>
         <button type="submit" class="btn btn-primary">Simpan</button>
     </div>
     </form>
 </div>
-
-
-<script type="text/javascript">
-    $('#id_permintaanbarang').on('change', function() {
-        // ambil data dari elemen option yang dipilih 
-        const jumperbar = $('#id_permintaanbarang option:selected').data('jumperbar');
-        const stocktoko = $('#id_permintaanbarang option:selected').data('stocktoko');
-        const stockgudang = $('#id_permintaanbarang option:selected').data('stockgudang');
-
-        //pengurangan
-        const tottoko = (stocktoko + jumperbar)
-        const totalgudang = (stockgudang - jumperbar)
-
-        // tampilkan data ke element
-        $('[name=jumlah_barangkeluar]').val(jumperbar);
-
-        $('[id=stocktoko]').val(stocktoko);
-        $('[id=hasilstocktoko]').val(tottoko);
-
-        $('[id=stockgudang]').val(stockgudang);
-        $('[id=hasilstockgudang]').val(totalgudang);
-
-    });
-</script>

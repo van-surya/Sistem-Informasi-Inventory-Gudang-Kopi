@@ -8,9 +8,8 @@ class Barangmasuk extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-
         $this->load->model('Mbarangmasuk');
-        $this->load->model('Mpo');
+        $this->load->model('Mpermintaanpembelian');
         $this->load->model('Muser');
         if (!$this->session->userdata("gudang")) {
             $this->session->set_flashdata('pesan', 'Anda harus login');
@@ -22,21 +21,21 @@ class Barangmasuk extends CI_Controller
     {
         $data['title'] = 'Barang Masuk';
         $data['barangmasuk'] = $this->Mbarangmasuk->tampil_barangmasuk();
+
         $this->load->view('header', $data);
         $this->load->view('gudang/navbar', $data);
         $this->load->view('gudang/barangmasuk/databarsuk', $data);
         $this->load->view('footer');
     }
 
+
     public function tambah()
     {
         //gunakan lib form_validation untuk me required
         $this->form_validation->set_rules('id_user', 'Pembuat', 'required');
-        $this->form_validation->set_rules('id_po', 'Barang', 'required');
+        $this->form_validation->set_rules('id_permintaanpembelian', 'Permintaan Pembelian', 'required');
         $this->form_validation->set_rules('kode_barangmasuk', 'Kode Barang Masuk', 'required');
-        $this->form_validation->set_rules('tgl_barangmasuk', 'Tanggal', 'required');
-        $this->form_validation->set_rules('status_barangmasuk', 'Status', 'required');
-        $this->form_validation->set_rules('jumlah_barangmasuk', 'Jumlah Barang Masuk', 'required');
+        $this->form_validation->set_rules('tgl_barangmasuk', 'Tanggal', 'required'); 
 
         $inputan = $this->input->post();
         //jk ada inputan dari formulir
@@ -54,8 +53,8 @@ class Barangmasuk extends CI_Controller
         }
         //tampilkan kode_barangmasuk pada inputan
         $data['kode_barangmasuk'] = $this->Mbarangmasuk->kode_barangmasuk();
-        $data['po'] = $this->Mpo->tampil_pomengirim();
-        $data['title'] = 'Tambah Barang Keluar';
+        $data['permintaanpembelian'] = $this->Mbarangmasuk->tampilbarangmasukbaru();
+        $data['title'] = 'Tambah Barang Mausk';
 
         $this->load->view('header', $data);
         $this->load->view('gudang/navbar', $data);
@@ -63,21 +62,28 @@ class Barangmasuk extends CI_Controller
         $this->load->view('footer');
     }
 
-    public function hapus()
+
+    public function detail($id_barangmasuk, $id_permintaanpembelian)
     {
-        $idnya = $this->input->post("id");
-        $this->Mbarangmasuk->hapus_barangmasuk($idnya);
-    }
-
-
-    public function detail($id_barangmasuk)
-    {
-
         $data['barangmasuk'] = $this->Mbarangmasuk->detail_barangmasuk($id_barangmasuk);
+        $data['detailpermintaanpembelian'] = $this->Mpermintaanpembelian->tampil_detailpermintaanpembelian($id_permintaanpembelian);
+
         $data['title'] = 'Detail Barang Masuk';
+
         $this->load->view('header', $data);
         $this->load->view('gudang/navbar', $data);
         $this->load->view('gudang/barangmasuk/detailbarsuk', $data);
         $this->load->view('footer');
     }
+
+    public function cetak($id_barangmasuk, $id_permintaanpembelian)
+    {
+        $data['barangmasuk'] = $this->Mbarangmasuk->detail_barangmasuk($id_barangmasuk);
+        $data['detailpermintaanpembelian'] = $this->Mpermintaanpembelian->tampil_detailpermintaanpembelian($id_permintaanpembelian);
+
+        $data['title'] = 'Cetak Barang Masuk';
+
+        $this->load->view('gudang/barangmasuk/cetakbarsuk', $data);
+    }
+
 }
