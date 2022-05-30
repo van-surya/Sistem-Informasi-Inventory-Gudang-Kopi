@@ -90,13 +90,21 @@ class Permintaanbarang extends CI_Controller
   
     public function tambahdetail($id_permintaanbarang)
     {
+ 
         //gunakan lib form_validation untuk me required
         $this->form_validation->set_rules('id_permintaanbarang', 'permintaan_barang', 'required');
         $this->form_validation->set_rules('id_barang', 'Barang', 'required');
         $this->form_validation->set_rules('jumlah_permintaanbarang', 'Jumlah Permintaan', 'required|is_natural_no_zero');
+        $this->form_validation->set_rules(
+            'hasil',
+            'Jumlah Permintaanss',
+            'required|greater_than_equal_to[0]',
+            array('greater_than_equal_to' => 'Kurangi Jumlah Permintaan')
+        );
 
         $inputan = $this->input->post();
         //jk ada inputan dari formulir
+ 
         // jk validation benar 
         if ($this->form_validation->run() == TRUE) {
             //Mpermintaanbarang jalankan fungsi simpan_detailpermintaanbarang($inputan)

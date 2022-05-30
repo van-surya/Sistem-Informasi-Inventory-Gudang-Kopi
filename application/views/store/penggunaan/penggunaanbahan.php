@@ -27,43 +27,45 @@
         </div>
         <div class="card-body">
             <form method="post" enctype="multipart/form-data">
+
                 <div class="row">
-                    <div class="col-md-6 form-group">
-                        <label>Kode Barang</label>
-                        <input type="text" class="form-control" id="kode_barang" name="kode_barang" placeholder="kode_barang" value="<?= $databarang['kode_barang']; ?>" readonly>
+                    <div class="form-group col-md-6">
+                        <label>Kode Penggunaan</label>
+                        <input type="text" class="form-control" id="kode_penggunaan" name="kode_penggunaan" value="<?= $kode_penggunaan; ?>" readonly>
                     </div>
-                    <div class="col-md-6 form-group">
-                        <label>Nama Barang</label>
-                        <input type="text" class="form-control" id="nama_barang" name="nama_barang" placeholder="nama_barang" value="<?= $databarang['nama_barang']; ?>" readonly>
+                    <div class="form-group col-md-6">
+                        <label>Tanggal Pembuatan</label>
+                        <input type="date" class="form-control" name="tgl_pembuatan" id="tgl_pembuatan">
                     </div>
-                    <div class="col-md-6 form-group">
-                        <label>Stock Store</label>
-                        <div class="input-group mb-3">
-                            <input type="number" class="form-control" id="stockstore" onkeyup="sum();" readonly value="<?= $databarang['stock_toko']; ?>">
-                            <div class="input-group-append">
-                                <span class="input-group-text"><?= $databarang['satuan'] ?></span>
-                            </div>
-                        </div>
+                    <div class="form-group col-md-6">
+                        <label>Pembuat</label>
+                        <?php $store = $this->session->userdata('store') ?>
+                        <input type="text" class="form-control" id="id_user" name="id_user" value="<?= $store['id_user']; ?>" readonly hidden>
+                        <input type="text" class="form-control" value="<?= $store['nama']; ?>" readonly>
                     </div>
-                    <div class="col-md-6 form-group">
-                        <label>Pemakaian</label>
-                        <div class="input-group mb-3">
-                            <input type="number" class="form-control" id="pemakaian" onkeyup="sum();" placeholder="Masukan Jumlah Pemakaian">
-                            <div class="input-group-append">
-                                <span class="input-group-text"><?= $databarang['satuan'] ?></span>
-                            </div>
-                        </div>
+                    <div class="form-group col-md-12">
+                        <label>Pilih Barang</label>
+                        <select class="form-control" name="id_barang" id="id_barang">
+                            <option value="">--Pilih Barang--</option>
+                            <?php foreach ($barang as $key => $value) : ?>
+                                <option value="<?= $value['id_barang'] ?>" data-stocktoko="<?= $value['stock_toko'] ?>"> <?= $value['nama_barang'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
-                    <div class="col-md-12 form-group">
-                        <label>Jumlah Sekarang</label>
-                        <div class="input-group mb-3">
-                            <input type="number" class="form-control" name="stock_toko" id="jumlah" readonly>
-                            <div class="input-group-append">
-                                <span class="input-group-text"><?= $databarang['satuan'] ?></span>
-                            </div>
-                        </div>
+                    <div class="form-group col-md-6">
+                        <label>Stock Toko</label>
+                        <input type="number" class="form-control" id="stocktoko" readonly>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Jumlah Penggunaan</label>
+                        <input type="number" class="form-control" id="jumlah_penggunaan" name="jumlah_penggunaan" onkeyup="Jumlah()">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Hasil</label>
+                        <input type="number" class="form-control" id="hasil" name="hasil" readonly>
                     </div>
                 </div>
+
         </div>
         <div class="card-footer text-md-right">
             <a href="<?= base_url('store/penggunaan'); ?>" class="btn btn-secondary">Batal</a>
@@ -73,13 +75,19 @@
     </div>
 </div>
 
-<script>
-    function sum() {
-        var txtFirstNumberValue = document.getElementById('stockstore').value;
-        var txtSecondNumberValue = document.getElementById('pemakaian').value;
-        var result = parseInt(txtFirstNumberValue) - parseInt(txtSecondNumberValue);
-        if (!isNaN(result)) {
-            document.getElementById('jumlah').value = result;
-        }
+
+<script type="text/javascript">
+    $('#id_barang').on('change', function() {
+        // ambil data dari elemen option yang dipilih  
+        const stocktoko = $('#id_barang option:selected').data('stocktoko');
+        $('[id=stocktoko]').val(stocktoko);
+    });
+
+    function Jumlah() {
+        var stocktoko = $("#stocktoko").val();
+        var jumlah_penggunaan = $("#jumlah_penggunaan").val();
+        var hasil = parseInt(stocktoko) - parseInt(jumlah_penggunaan);
+        $("#hasil").val(hasil);
+
     }
 </script>

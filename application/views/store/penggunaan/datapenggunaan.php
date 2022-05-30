@@ -10,9 +10,16 @@
     <div class="card-header py-3">
         <div class="row justify-content-between">
             <div class="col-md-6">
-                <h4 class="m-0 font-weight-bold text-primary"><?= $title; ?></h4>
+                <h4 class="m-0 font-weight-bold text-primary"><?= $title; ?>
+                </h4>
             </div>
             <div class="col-md-6 text-md-right mt-2 mt-md-0">
+                <a href="<?= base_url('store/penggunaan/pengurangan') ?>" class="btn btn-primary btn-icon-split btn-sm">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-plus"></i>
+                    </span>
+                    <span class="text">Penggunaan</span>
+                </a>
             </div>
         </div>
     </div>
@@ -21,35 +28,21 @@
             <table class="table table-bordered" id="custom-table" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>No</th>
-                        <th>Kode</th>
+                        <th>Tanggal</th>
+                        <th>Kode Penggunaan</th>
+                        <th>Nama Pembuat</th>
                         <th>Nama Barang</th>
-                        <th>Kategori</th>
                         <th>Jumlah</th>
-                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($barang as $key => $value) : ?>
+                    <?php foreach ($penggunaan as $key => $value) : ?>
                         <tr>
-                            <td><?= $key + 1; ?></td>
-                            <td><?= $value['kode_barang']; ?></td>
+                            <td><?= $value['tgl_pembuatan']; ?></td>
+                            <td><?= $value['kode_penggunaan']; ?></td>
+                            <td><?= $value['nama']; ?></td>
                             <td><?= $value['nama_barang']; ?></td>
-                            <td><?= $value['nama_kategori']; ?></td>
-                            <td><?= $value['stock_toko'] . '  ' . $value['satuan']; ?></td>
-                            <td>
-                                <div class="text-center">
-                                    <?php if ($value['stock_toko'] > 0) : ?>
-                                        <!-- Button trigger -->
-                                        <a href="<?= base_url('store/penggunaan/pengurangan/' . $value['id_barang']) ?>" class="btn btn-warning btn-icon-split btn-sm">
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-edit"></i>
-                                            </span>
-                                            <span class="text">Ubah</span>
-                                        </a>
-                                    <?php endif; ?>
-                                </div>
-                            </td>
+                            <td><?= $value['jumlah_penggunaan']; ?></td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>

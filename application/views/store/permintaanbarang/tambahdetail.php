@@ -36,7 +36,7 @@
                         <select class="form-control" name="id_barang" id="id_barang">
                             <option value="">--Pilih Barang--</option>
                             <?php foreach ($barang as $key => $value) : ?>
-                                <option value="<?= $value['id_barang'] ?>" data-stocktoko="<?= $value['stock_toko'] ?>"> <?= $value['nama_barang'] ?></option>
+                                <option value="<?= $value['id_barang'] ?>" data-stocktoko="<?= $value['stock_toko'] ?>" data-stockgudang="<?= $value['stock_gudang'] ?>"> <?= $value['nama_barang'] ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -44,12 +44,14 @@
                         <label>Stock Toko</label>
                         <input type="number" class="form-control" id="stocktoko" readonly>
                     </div>
+                    <input type="number" class="form-control" id="stockgudang" readonly hidden>
                     <div class="form-group col-md-6">
                         <label>Jumlah Permintaan</label>
-                        <input type="number" class="form-control" name="jumlah_permintaanbarang">
+                        <input type="text" class="form-control" name="jumlah_permintaanbarang" id="jumlah_permintaanbarang" onkeyup="Jumlah()">
                     </div>
-
                 </div>
+                <input type="number" class="form-control" id="hasil" name="hasil" readonly hidden>
+
         </div>
         <div class=" card-footer text-md-right">
             <a href="<?= base_url('store/permintaanbarang/detail/' . $id_permintaanbarang); ?>" class="btn btn-secondary">Batal</a>
@@ -65,7 +67,16 @@
     $('#id_barang').on('change', function() {
         // ambil data dari elemen option yang dipilih  
         const stocktoko = $('#id_barang option:selected').data('stocktoko');
-
+        const stockgudang = $('#id_barang option:selected').data('stockgudang');
         $('[id=stocktoko]').val(stocktoko);
+        $('[id=stockgudang]').val(stockgudang);
     });
+
+    function Jumlah() {
+        var stockgudang = $("#stockgudang").val();
+        var jumlah_permintaanbarang = $("#jumlah_permintaanbarang").val();
+        var hasil = parseInt(stockgudang) - parseInt(jumlah_permintaanbarang);
+        $("#hasil").val(hasil);
+
+    }
 </script>

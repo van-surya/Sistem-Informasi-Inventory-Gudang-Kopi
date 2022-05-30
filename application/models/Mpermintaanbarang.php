@@ -92,13 +92,14 @@
         {
             $id_permintaanbarang = $inputan['id_permintaanbarang'];
             $id_barang = $inputan['id_barang'];
+            $jumlah_permintaanbarang = $inputan['jumlah_permintaanbarang'];
 
             $this->db->where('id_permintaanbarang', $id_permintaanbarang);
-            $this->db->where('id_barang', $id_barang);
+            $this->db->where('id_barang', $id_barang);  
 
             $detail_permintaanbarang = $this->db->get('detail_permintaanbarang')->row_array();
             if (empty($detail_permintaanbarang)) {
-                $this->db->insert('detail_permintaanbarang', $inputan);
+                $this->db->query("INSERT INTO `detail_permintaanbarang` (`id_detailpermintaanbarang`, `id_permintaanbarang`, `id_barang`, `jumlah_permintaanbarang`) VALUES (NULL, '$id_permintaanbarang', '$id_barang', '$jumlah_permintaanbarang');");
                 return 'sukses';
             } else {
                 return 'gagal';

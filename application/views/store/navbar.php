@@ -73,8 +73,12 @@
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
-
-
+                    <div class="text-left mt-2">
+                        <p class="mb-0 font-weight-bold">Store
+                        </p>
+                        <p>
+                            Sistem Informasi Pengendalian Bahan Baku</p>
+                    </div>
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 

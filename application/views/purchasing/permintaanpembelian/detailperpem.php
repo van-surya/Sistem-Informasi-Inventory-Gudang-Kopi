@@ -54,7 +54,6 @@
                             <th>Nama Barang</th>
                             <th>Kategori</th>
                             <th>Jumlah Permintaan</th>
-                            <th>Stock purchasing</th>
                             <?php if ($permintaanpembelian['status_permintaanpembelian'] == 'Meminta') : ?>
                                 <th>Aksi</th>
                             <?php endif; ?>
@@ -68,7 +67,6 @@
                                 <td><?= $value['nama_barang']; ?></td>
                                 <td><?= $value['nama_kategori']; ?></td>
                                 <td><?= $value['jumlah_permintaanpembelian']; ?></td>
-                                <td><?= $value['stock_gudang']; ?></td>
                                 <?php if ($permintaanpembelian['status_permintaanpembelian'] == 'Meminta') : ?>
                                     <td class="text-center">
                                         </a> <a href="<?= base_url('purchasing/permintaanpembelian/detailubah/' . $value['id_permintaanpembelian'] . '/' . $value['id_detailpermintaanpembelian']); ?>" class="btn btn-warning btn-icon-split btn-sm">
