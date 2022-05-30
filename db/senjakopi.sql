@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 29, 2022 at 01:18 PM
+-- Generation Time: May 30, 2022 at 03:11 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.15
 
@@ -43,13 +43,12 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id_barang`, `id_kategori`, `id_supplier`, `kode_barang`, `nama_barang`, `stock_toko`, `stock_gudang`, `satuan`) VALUES
-(1, 4, 1, 'BR001', 'Minyak Goreng Bimoli', '3', '48', 'Liter'),
-(2, 4, 2, 'BR002', 'Bubuk Merica', '7', '30', 'Kilogram'),
-(3, 4, 2, 'BR003', 'Bubuk Lada', '10', '25', 'Kilogram'),
-(4, 2, 3, 'BR004', 'Aqua', '10', '62', 'Liter'),
-(5, 3, 3, 'BR005', 'Tepung terigu', '10', '20', 'Kilogram'),
-(6, 3, 3, 'BR006', 'Tepung tapioka', '10', '10', 'Kilogram'),
-(7, 4, 2, 'asd', 'asd', '1', '1', 'Kilogram');
+(1, 4, 1, 'BR001', 'Minyak Goreng Bimoli', '53', '98', 'Liter'),
+(2, 4, 2, 'BR002', 'Bubuk Merica', '57', '80', 'Kilogram'),
+(3, 4, 2, 'BR003', 'Bubuk Lada', '15', '75', 'Kilogram'),
+(4, 2, 3, 'BR004', 'Aqua', '56', '12', 'Liter'),
+(5, 3, 3, 'BR005', 'Tepung terigu', '60', '70', 'Kilogram'),
+(6, 3, 3, 'BR006', 'Tepung tapioka', '60', '60', 'Kilogram');
 
 -- --------------------------------------------------------
 
@@ -71,7 +70,8 @@ CREATE TABLE `barang_keluar` (
 
 INSERT INTO `barang_keluar` (`id_barangkeluar`, `id_user`, `id_permintaanbarang`, `kode_barangkeluar`, `tgl_barangkeluar`) VALUES
 (2, 4, 1, 'BK001', '2022-03-29'),
-(3, 4, 2, 'BK002', '2022-05-12');
+(3, 4, 2, 'BK002', '2022-05-12'),
+(4, 4, 4, 'BK003', '2022-05-30');
 
 -- --------------------------------------------------------
 
@@ -95,7 +95,8 @@ INSERT INTO `barang_masuk` (`id_barangmasuk`, `id_user`, `id_permintaanpembelian
 (1, 4, 1, 'BM001', '2022-03-29'),
 (2, 4, 3, 'BM002', '2022-05-25'),
 (3, 4, 4, 'BM003', '2022-05-28'),
-(4, 4, 5, 'BM004', '2022-05-17');
+(4, 4, 5, 'BM004', '2022-05-17'),
+(5, 4, 6, 'BM005', '2022-05-30');
 
 -- --------------------------------------------------------
 
@@ -122,7 +123,8 @@ INSERT INTO `detail_permintaanbarang` (`id_detailpermintaanbarang`, `id_perminta
 (5, 1, 2, '6'),
 (6, 2, 1, '5'),
 (8, 2, 2, '5'),
-(9, 3, 3, '12');
+(10, 4, 1, '50'),
+(16, 5, 4, '10');
 
 -- --------------------------------------------------------
 
@@ -152,7 +154,12 @@ INSERT INTO `detail_permintaanpembelian` (`id_detailpermintaanpembelian`, `id_pe
 (8, 3, 1, '22'),
 (9, 3, 4, '22'),
 (10, 4, 3, '5'),
-(12, 5, 1, '30');
+(12, 5, 1, '30'),
+(13, 6, 1, '100'),
+(14, 6, 2, '100'),
+(15, 6, 3, '100'),
+(16, 6, 5, '100'),
+(17, 6, 6, '100');
 
 -- --------------------------------------------------------
 
@@ -177,6 +184,30 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `penggunaan_bahanbaku`
+--
+
+CREATE TABLE `penggunaan_bahanbaku` (
+  `id_penggunaanbahanbaku` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_barang` int(11) NOT NULL,
+  `kode_penggunaan` varchar(5) NOT NULL,
+  `tgl_pembuatan` date NOT NULL,
+  `jumlah_penggunaan` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `penggunaan_bahanbaku`
+--
+
+INSERT INTO `penggunaan_bahanbaku` (`id_penggunaanbahanbaku`, `id_user`, `id_barang`, `kode_penggunaan`, `tgl_pembuatan`, `jumlah_penggunaan`) VALUES
+(4, 2, 4, 'PBK00', '2022-05-30', '1'),
+(7, 2, 3, 'PBK00', '2022-05-30', '45'),
+(8, 2, 4, 'PBK00', '2022-05-30', '400');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `permintaan_barang`
 --
 
@@ -195,7 +226,9 @@ CREATE TABLE `permintaan_barang` (
 INSERT INTO `permintaan_barang` (`id_permintaanbarang`, `id_user`, `kode_permintaanbarang`, `tgl_permintaanbarang`, `status_permintaanbarang`) VALUES
 (1, 2, 'PB001', '2022-03-29', 'Setuju'),
 (2, 2, 'PB002', '2022-05-26', 'Setuju'),
-(3, 2, 'PB003', '2022-05-25', 'Meminta');
+(4, 2, 'PB003', '2022-05-30', 'Setuju'),
+(5, 2, 'PB004', '2022-05-30', 'Meminta'),
+(6, 2, 'PB005', '2022-05-30', 'Meminta');
 
 -- --------------------------------------------------------
 
@@ -220,7 +253,8 @@ INSERT INTO `permintaan_pembelian` (`id_permintaanpembelian`, `id_user`, `kode_p
 (2, 4, 'PP002', '2022-03-30', 'Ditolak'),
 (3, 4, 'PP003', '2022-05-17', 'Setuju'),
 (4, 4, 'PP004', '2022-05-12', 'Setuju'),
-(5, 4, 'PP005', '2022-05-17', 'Setuju');
+(5, 4, 'PP005', '2022-05-17', 'Setuju'),
+(6, 4, 'PP006', '2022-05-30', 'Setuju');
 
 -- --------------------------------------------------------
 
@@ -245,7 +279,8 @@ INSERT INTO `po` (`id_po`, `id_user`, `id_permintaanpembelian`, `kode_po`, `tgl_
 (1, 3, 1, 'PO001', '2022-03-29', 'Diterima'),
 (2, 3, 3, 'PO002', '2022-05-17', 'Diterima'),
 (3, 3, 4, 'PO003', '2022-05-17', 'Diterima'),
-(4, 3, 5, 'PO004', '2022-05-17', 'Diterima');
+(4, 3, 5, 'PO004', '2022-05-17', 'Diterima'),
+(5, 3, 6, 'PO005', '2022-05-30', 'Diterima');
 
 -- --------------------------------------------------------
 
@@ -348,6 +383,14 @@ ALTER TABLE `kategori`
   ADD PRIMARY KEY (`id_kategori`);
 
 --
+-- Indexes for table `penggunaan_bahanbaku`
+--
+ALTER TABLE `penggunaan_bahanbaku`
+  ADD PRIMARY KEY (`id_penggunaanbahanbaku`),
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_barang` (`id_barang`);
+
+--
 -- Indexes for table `permintaan_barang`
 --
 ALTER TABLE `permintaan_barang`
@@ -395,25 +438,25 @@ ALTER TABLE `barang`
 -- AUTO_INCREMENT for table `barang_keluar`
 --
 ALTER TABLE `barang_keluar`
-  MODIFY `id_barangkeluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_barangkeluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `barang_masuk`
 --
 ALTER TABLE `barang_masuk`
-  MODIFY `id_barangmasuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_barangmasuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `detail_permintaanbarang`
 --
 ALTER TABLE `detail_permintaanbarang`
-  MODIFY `id_detailpermintaanbarang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_detailpermintaanbarang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `detail_permintaanpembelian`
 --
 ALTER TABLE `detail_permintaanpembelian`
-  MODIFY `id_detailpermintaanpembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_detailpermintaanpembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `kategori`
@@ -422,22 +465,28 @@ ALTER TABLE `kategori`
   MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `penggunaan_bahanbaku`
+--
+ALTER TABLE `penggunaan_bahanbaku`
+  MODIFY `id_penggunaanbahanbaku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `permintaan_barang`
 --
 ALTER TABLE `permintaan_barang`
-  MODIFY `id_permintaanbarang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_permintaanbarang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `permintaan_pembelian`
 --
 ALTER TABLE `permintaan_pembelian`
-  MODIFY `id_permintaanpembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_permintaanpembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `po`
 --
 ALTER TABLE `po`
-  MODIFY `id_po` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_po` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `supplier`
@@ -489,6 +538,13 @@ ALTER TABLE `detail_permintaanbarang`
 ALTER TABLE `detail_permintaanpembelian`
   ADD CONSTRAINT `detail_permintaanpembelian_ibfk_1` FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`),
   ADD CONSTRAINT `detail_permintaanpembelian_ibfk_2` FOREIGN KEY (`id_permintaanpembelian`) REFERENCES `permintaan_pembelian` (`id_permintaanpembelian`);
+
+--
+-- Constraints for table `penggunaan_bahanbaku`
+--
+ALTER TABLE `penggunaan_bahanbaku`
+  ADD CONSTRAINT `penggunaan_bahanbaku_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user_petugas` (`id_user`),
+  ADD CONSTRAINT `penggunaan_bahanbaku_ibfk_2` FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`);
 
 --
 -- Constraints for table `permintaan_barang`
