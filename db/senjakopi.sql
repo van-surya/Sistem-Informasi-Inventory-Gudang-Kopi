@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 30, 2022 at 03:11 PM
+-- Generation Time: May 31, 2022 at 09:40 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.15
 
@@ -43,10 +43,10 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id_barang`, `id_kategori`, `id_supplier`, `kode_barang`, `nama_barang`, `stock_toko`, `stock_gudang`, `satuan`) VALUES
-(1, 4, 1, 'BR001', 'Minyak Goreng Bimoli', '53', '98', 'Liter'),
-(2, 4, 2, 'BR002', 'Bubuk Merica', '57', '80', 'Kilogram'),
-(3, 4, 2, 'BR003', 'Bubuk Lada', '15', '75', 'Kilogram'),
-(4, 2, 3, 'BR004', 'Aqua', '56', '12', 'Liter'),
+(1, 4, 1, 'BR001', 'Minyak Goreng Bimoli', '200', '98', 'Liter'),
+(2, 4, 2, 'BR002', 'Bubuk Merica', '12', '80', 'Kilogram'),
+(3, 4, 2, 'BR003', 'Bubuk Lada', '1', '75', 'Kilogram'),
+(4, 2, 3, 'BR004', 'Aqua', '31', '12', 'Liter'),
 (5, 3, 3, 'BR005', 'Tepung terigu', '60', '70', 'Kilogram'),
 (6, 3, 3, 'BR006', 'Tepung tapioka', '60', '60', 'Kilogram');
 
@@ -101,6 +101,27 @@ INSERT INTO `barang_masuk` (`id_barangmasuk`, `id_user`, `id_permintaanpembelian
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `detail_penggunaan`
+--
+
+CREATE TABLE `detail_penggunaan` (
+  `id_detailpenggunaan` int(11) NOT NULL,
+  `id_penggunaan` int(11) NOT NULL,
+  `id_barang` int(11) NOT NULL,
+  `jumlah_penggunaan` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `detail_penggunaan`
+--
+
+INSERT INTO `detail_penggunaan` (`id_detailpenggunaan`, `id_penggunaan`, `id_barang`, `jumlah_penggunaan`) VALUES
+(1, 2, 1, '3'),
+(5, 1, 2, '2');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `detail_permintaanbarang`
 --
 
@@ -124,7 +145,8 @@ INSERT INTO `detail_permintaanbarang` (`id_detailpermintaanbarang`, `id_perminta
 (6, 2, 1, '5'),
 (8, 2, 2, '5'),
 (10, 4, 1, '50'),
-(16, 5, 4, '10');
+(16, 5, 4, '10'),
+(17, 7, 2, '3');
 
 -- --------------------------------------------------------
 
@@ -184,26 +206,24 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `penggunaan_bahanbaku`
+-- Table structure for table `penggunaan`
 --
 
-CREATE TABLE `penggunaan_bahanbaku` (
-  `id_penggunaanbahanbaku` int(11) NOT NULL,
+CREATE TABLE `penggunaan` (
+  `id_penggunaan` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `id_barang` int(11) NOT NULL,
-  `kode_penggunaan` varchar(5) NOT NULL,
-  `tgl_pembuatan` date NOT NULL,
-  `jumlah_penggunaan` varchar(20) NOT NULL
+  `kode_penggunaan` varchar(6) NOT NULL,
+  `tgl_penggunaan` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `penggunaan_bahanbaku`
+-- Dumping data for table `penggunaan`
 --
 
-INSERT INTO `penggunaan_bahanbaku` (`id_penggunaanbahanbaku`, `id_user`, `id_barang`, `kode_penggunaan`, `tgl_pembuatan`, `jumlah_penggunaan`) VALUES
-(4, 2, 4, 'PBK00', '2022-05-30', '1'),
-(7, 2, 3, 'PBK00', '2022-05-30', '45'),
-(8, 2, 4, 'PBK00', '2022-05-30', '400');
+INSERT INTO `penggunaan` (`id_penggunaan`, `id_user`, `kode_penggunaan`, `tgl_penggunaan`) VALUES
+(1, 2, 'PBK000', '2022-05-31'),
+(2, 2, 'PBK000', '2022-06-02'),
+(6, 2, 'PBK000', '2022-05-30');
 
 -- --------------------------------------------------------
 
@@ -228,7 +248,8 @@ INSERT INTO `permintaan_barang` (`id_permintaanbarang`, `id_user`, `kode_permint
 (2, 2, 'PB002', '2022-05-26', 'Setuju'),
 (4, 2, 'PB003', '2022-05-30', 'Setuju'),
 (5, 2, 'PB004', '2022-05-30', 'Meminta'),
-(6, 2, 'PB005', '2022-05-30', 'Meminta');
+(6, 2, 'PB005', '2022-05-30', 'Meminta'),
+(7, 2, 'PB006', '2022-05-31', 'Meminta');
 
 -- --------------------------------------------------------
 
@@ -361,6 +382,14 @@ ALTER TABLE `barang_masuk`
   ADD KEY `id_permintaanpembelian` (`id_permintaanpembelian`);
 
 --
+-- Indexes for table `detail_penggunaan`
+--
+ALTER TABLE `detail_penggunaan`
+  ADD PRIMARY KEY (`id_detailpenggunaan`),
+  ADD KEY `id_penggunaan` (`id_penggunaan`),
+  ADD KEY `id_barang` (`id_barang`);
+
+--
 -- Indexes for table `detail_permintaanbarang`
 --
 ALTER TABLE `detail_permintaanbarang`
@@ -383,12 +412,11 @@ ALTER TABLE `kategori`
   ADD PRIMARY KEY (`id_kategori`);
 
 --
--- Indexes for table `penggunaan_bahanbaku`
+-- Indexes for table `penggunaan`
 --
-ALTER TABLE `penggunaan_bahanbaku`
-  ADD PRIMARY KEY (`id_penggunaanbahanbaku`),
-  ADD KEY `id_user` (`id_user`),
-  ADD KEY `id_barang` (`id_barang`);
+ALTER TABLE `penggunaan`
+  ADD PRIMARY KEY (`id_penggunaan`),
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Indexes for table `permintaan_barang`
@@ -447,10 +475,16 @@ ALTER TABLE `barang_masuk`
   MODIFY `id_barangmasuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `detail_penggunaan`
+--
+ALTER TABLE `detail_penggunaan`
+  MODIFY `id_detailpenggunaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `detail_permintaanbarang`
 --
 ALTER TABLE `detail_permintaanbarang`
-  MODIFY `id_detailpermintaanbarang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_detailpermintaanbarang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `detail_permintaanpembelian`
@@ -465,16 +499,16 @@ ALTER TABLE `kategori`
   MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `penggunaan_bahanbaku`
+-- AUTO_INCREMENT for table `penggunaan`
 --
-ALTER TABLE `penggunaan_bahanbaku`
-  MODIFY `id_penggunaanbahanbaku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+ALTER TABLE `penggunaan`
+  MODIFY `id_penggunaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `permintaan_barang`
 --
 ALTER TABLE `permintaan_barang`
-  MODIFY `id_permintaanbarang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_permintaanbarang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `permintaan_pembelian`
@@ -526,6 +560,13 @@ ALTER TABLE `barang_masuk`
   ADD CONSTRAINT `barang_masuk_ibfk_2` FOREIGN KEY (`id_permintaanpembelian`) REFERENCES `permintaan_pembelian` (`id_permintaanpembelian`);
 
 --
+-- Constraints for table `detail_penggunaan`
+--
+ALTER TABLE `detail_penggunaan`
+  ADD CONSTRAINT `detail_penggunaan_ibfk_1` FOREIGN KEY (`id_penggunaan`) REFERENCES `penggunaan` (`id_penggunaan`),
+  ADD CONSTRAINT `detail_penggunaan_ibfk_2` FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`);
+
+--
 -- Constraints for table `detail_permintaanbarang`
 --
 ALTER TABLE `detail_permintaanbarang`
@@ -540,11 +581,10 @@ ALTER TABLE `detail_permintaanpembelian`
   ADD CONSTRAINT `detail_permintaanpembelian_ibfk_2` FOREIGN KEY (`id_permintaanpembelian`) REFERENCES `permintaan_pembelian` (`id_permintaanpembelian`);
 
 --
--- Constraints for table `penggunaan_bahanbaku`
+-- Constraints for table `penggunaan`
 --
-ALTER TABLE `penggunaan_bahanbaku`
-  ADD CONSTRAINT `penggunaan_bahanbaku_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user_petugas` (`id_user`),
-  ADD CONSTRAINT `penggunaan_bahanbaku_ibfk_2` FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`);
+ALTER TABLE `penggunaan`
+  ADD CONSTRAINT `penggunaan_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user_petugas` (`id_user`);
 
 --
 -- Constraints for table `permintaan_barang`
