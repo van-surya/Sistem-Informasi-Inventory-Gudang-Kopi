@@ -14,35 +14,46 @@
                 </h4>
             </div>
             <div class="col-md-6 text-md-right mt-2 mt-md-0">
-                <a href="<?= base_url('store/penggunaan/pengurangan') ?>" class="btn btn-primary btn-icon-split btn-sm">
+                <a href="<?= base_url('store/penggunaan/tambah') ?>" class="btn btn-primary btn-icon-split btn-sm">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
                     </span>
-                    <span class="text">Penggunaan</span>
+                    <span class="text">Tambah</span>
                 </a>
             </div>
         </div>
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered" id="custom-table" width="100%" cellspacing="0">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Tanggal</th>
                         <th>Kode Penggunaan</th>
-                        <th>Nama Pembuat</th>
-                        <th>Nama Barang</th>
-                        <th>Jumlah</th>
+                        <th>Tanggal</th>
+                        <th>Oleh</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($penggunaan as $key => $value) : ?>
                         <tr>
-                            <td><?= $value['tgl_pembuatan']; ?></td>
                             <td><?= $value['kode_penggunaan']; ?></td>
+                            <td><?= tanggal($value['tgl_penggunaan']); ?></td>
                             <td><?= $value['nama']; ?></td>
-                            <td><?= $value['nama_barang']; ?></td>
-                            <td><?= $value['jumlah_penggunaan']; ?></td>
+                            <td class="text-center">
+                                <a href="<?= base_url('store/penggunaan/detail/' . $value['id_penggunaan']) ?>" class="btn btn-info btn-icon-split btn-sm">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-info"></i>
+                                    </span>
+                                    <span class="text">Detail</span>
+                                </a>
+                                <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_penggunaan']; ?>">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-trash"></i>
+                                    </span>
+                                    <span class="text">Hapus</span>
+                                </a>
+                            </td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>
@@ -64,41 +75,54 @@
     </script>
 <?php endif; ?>
 
-<!-- Custom Table  -->
+
+<!-- pesan  -->
+<?php if ($this->session->flashdata('gagal')) : ?>
+    <script>
+        swal({
+            icon: "error",
+            title: "Gagal!",
+            text: "<?= $this->session->flashdata('gagal') ?>",
+            button: false,
+            timer: 2000,
+        });
+    </script>
+<?php endif; ?>
+
+
+<!-- hapus data -->
 <script>
     $(document).ready(function() {
-        $('#custom-table').DataTable({
-            dom: "<'row'<'col-md-5'l><'col-md-3'B><'col-md-4'f>>" +
-                "<'row'<'col-md-12'tr>>" +
-                "<'row'<'col-md-5'i> <'col-md-7'p>>",
-            buttons: [{
-                    extend: 'print',
-                    orientation: 'potrait',
-                    pageSize: 'A4',
-                    title: 'Permintaan Barang Masuk',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4]
+        $(".btn-hapus").on("click", function(e) {
+            e.preventDefault();
+            var idnya = $(this).attr("idnya");
+            swal({
+                    title: "Apakah kamu yakin ?",
+                    text: "untuk menghapus data ini",
+                    icon: "warning",
+                    buttons: ["Batal", "Hapus Data!"],
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        //disini ajax hapus data
+                        $.ajax({
+                            type: 'post',
+                            url: "<?= base_url("store/penggunaan/hapus"); ?>",
+                            data: 'id=' + idnya,
+                            success: function() {
+                                swal("Data berhasil terhapus!", {
+                                    icon: "success",
+                                    button: true
+                                }).then((oke) => {
+                                    if (oke) {
+                                        location = "<?= base_url("store/penggunaan/"); ?>"
+                                    }
+                                });
+                            }
+                        })
                     }
-                },
-                {
-                    extend: 'excelHtml5',
-                    orientation: 'potrait',
-                    pageSize: 'A4',
-                    title: 'Permintaan Barang Masuk',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4]
-                    }
-                },
-                {
-                    extend: 'pdfHtml5',
-                    orientation: 'potrait',
-                    pageSize: 'A4',
-                    title: 'Permintaan Barang Masuk',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4]
-                    }
-                }
-            ]
-        });
-    });
+                });
+        })
+    })
 </script>
