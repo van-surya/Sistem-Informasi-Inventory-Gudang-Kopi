@@ -14,7 +14,7 @@
 
         function kode_penggunaan()
         {
-            $this->db->select('RIGHT(penggunaan.kode_penggunaan,4) as kode_penggunaan', FALSE);
+            $this->db->select('RIGHT(penggunaan.kode_penggunaan,3) as kode_penggunaan', FALSE);
             $this->db->order_by('kode_penggunaan', 'DESC');
             $this->db->limit(1);
 
@@ -26,8 +26,8 @@
                 $kode = 1;
             }
 
-            $batas = str_pad($kode, 4, "0", STR_PAD_LEFT);
-            $kodetampil = "PBK" . $batas;
+            $batas = str_pad($kode, 3, "0", STR_PAD_LEFT);
+            $kodetampil = "KP" . $batas;
             return $kodetampil;
         }
 
