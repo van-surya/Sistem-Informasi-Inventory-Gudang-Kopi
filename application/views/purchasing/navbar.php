@@ -103,6 +103,42 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
+                        <!-- Nav Item - Alerts -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <?php if (!empty(notif_purchasing())) : ?>
+                                    <i class="fas fa-envelope fa-fw text-warning"></i>
+                                <?php else : ?>
+                                    <i class="fas fa-envelope fa-fw"></i>
+                                <?php endif; ?>
+                            </a>
+                            <!-- Dropdown - Alerts -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                                <h6 class="dropdown-header">
+                                    Notifikasi
+                                </h6>
+                                <?php foreach (notif_purchasing() as $key => $value) : ?>
+                                    <a class="dropdown-item d-flex align-items-center" href="<?= base_url('purchasing/permintaanpembelian/detail/' . $value['id_permintaanpembelian']); ?>">
+                                        <div class="mr-3">
+                                            <div class="icon-circle bg-primary">
+                                                <i class="fas fa-file-alt text-white"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="small text-gray-500"><?= tanggal($value['tgl_permintaanpembelian']); ?></div>
+                                            <span class="font-weight-bold">Kode : <?= $value['kode_permintaanpembelian']; ?> Oleh <?= $value['nama']; ?></span>
+                                        </div>
+                                    </a>
+                                <?php endforeach; ?>
+                                <?php if (!empty(notif_purchasing())) : ?>
+                                    <a class="dropdown-item text-center small text-gray-500" href="<?= base_url('purchasing/beranda'); ?>">Tampil Semua Notifikasi</a>
+                                <?php else : ?>
+                                    <a class="dropdown-item text-center small text-gray-500" href="">Tidak Ada Notifikasi</a>
+                                <?php endif; ?>
+                            </div>
+                        </li>
+
+
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->

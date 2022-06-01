@@ -104,8 +104,56 @@
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <div class="topbar-divider d-none d-sm-block"></div>
 
+                        <!-- Nav Item - Alerts -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <?php if (!empty(notif_permintaanbarang() || notif_permintaanpembelian())) : ?>
+                                    <i class="fas fa-envelope fa-fw text-warning"></i>
+                                <?php else : ?>
+                                    <i class="fas fa-envelope fa-fw"></i>
+                                <?php endif; ?>
+                            </a>
+                            <!-- Dropdown - Alerts -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                                <h6 class="dropdown-header">
+                                    Notifikasi
+                                </h6>
+                                <?php foreach (notif_permintaanbarang() as $key => $value) : ?>
+                                    <a class="dropdown-item d-flex align-items-center" href="<?= base_url('gudang/permintaanbarang/detail/' . $value['id_permintaanbarang']) ?>">
+                                        <div class="mr-3">
+                                            <div class="icon-circle bg-primary">
+                                                <i class="fas fa-file-alt text-white"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="small text-gray-500"><?= tanggal($value['tgl_permintaanbarang']); ?></div>
+                                            <span class="font-weight-bold">Kode <?= $value['kode_permintaanbarang']; ?> Oleh <?= $value['nama']; ?> </span>
+                                        </div>
+                                    <?php endforeach; ?>
+                                    </a>
+                                    <?php foreach (notif_permintaanpembelian() as $key => $value) : ?>
+                                        <a class="dropdown-item d-flex align-items-center" href="<?= base_url('gudang/barangmasuk/tambah') ?>">
+                                            <div class="mr-3">
+                                                <div class="icon-circle bg-info">
+                                                    <i class="fas fa-file-alt text-white"></i>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="small text-gray-500"><?= tanggal($value['tgl_permintaanpembelian']); ?></div>
+                                                <span class="font-weight-bold">Kode <?= $value['kode_permintaanpembelian']; ?> Oleh <?= $value['nama']; ?> </span>
+                                            </div>
+                                        <?php endforeach; ?>
+                                        </a>
+                                        <?php if (!empty(notif_permintaanbarang() || notif_permintaanpembelian())) : ?>
+                                            <a class="dropdown-item text-center small text-gray-500" href="<?= base_url('gudang/beranda '); ?>">Lihat Notifikasi</a>
+                                        <?php else : ?>
+                                            <a class="dropdown-item text-center small text-gray-500" href="">Tidak Ada Notifikasi</a>
+                                        <?php endif; ?>
+                            </div>
+                        </li>
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
