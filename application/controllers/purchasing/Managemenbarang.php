@@ -34,7 +34,7 @@ class Managemenbarang extends CI_Controller
         //gunakan lib form_validation untuk me required
         $this->form_validation->set_rules('id_kategori', 'Kategori', 'required');
         $this->form_validation->set_rules('id_supplier', 'Supplier', 'required');
-        $this->form_validation->set_rules('nama_barang', 'Nama Barang', 'required|is_unique[barang.nama_barang]');
+        $this->form_validation->set_rules('nama_barang', 'Nama Barang', 'required|is_unique[barang.nama_barang]|max_length[50]');
         $this->form_validation->set_rules('satuan', 'Satuan', 'required');
         //dapatkan inputan dari formulir
 
@@ -85,9 +85,9 @@ class Managemenbarang extends CI_Controller
 
             //jika ada inputan ada maka jalankan validasi 
             if ($inputan['nama_barang'] == $detail['nama_barang']) {
-                $this->form_validation->set_rules('nama_barang', 'Nama Barang', 'required');
+                $this->form_validation->set_rules('nama_barang', 'Nama Barang', 'required|max_length[50]');
             } else {
-                $this->form_validation->set_rules('nama_barang', 'Nama Barang', 'required|is_unique[barang.nama_barang]');
+                $this->form_validation->set_rules('nama_barang', 'Nama Barang', 'required|is_unique[barang.nama_barang]|max_length[50]');
             }
             //jika ada inputan ada maka jalankan validasi 
             $this->form_validation->set_rules('kode_barang', 'Kode Barang', 'required');

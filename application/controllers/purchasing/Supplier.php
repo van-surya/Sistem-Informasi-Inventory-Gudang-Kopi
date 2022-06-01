@@ -31,8 +31,12 @@ class Supplier extends CI_Controller
     {
         //gunakan lib form_validation untuk me required
         $this->form_validation->set_rules('kode_supplier', 'Kode Supplier', 'required');
-        $this->form_validation->set_rules('nama_supplier', 'Nama', 'required|is_unique[supplier.nama_supplier]');
-        $this->form_validation->set_rules('alamat_supplier', 'Alamat', 'required|max_length[200]');
+        $this->form_validation->set_rules(
+            'nama_supplier',
+            'Nama',
+            'required|is_unique[supplier.nama_supplier]|max_length[50]'
+        );
+        $this->form_validation->set_rules('alamat_supplier', 'Alamat', 'required|max_length[300]');
         //dapatkan inputan dari formulir
 
         $inputan = $this->input->post();
@@ -84,10 +88,10 @@ class Supplier extends CI_Controller
             if ($inputan['nama_supplier'] == $detail['nama_supplier']) {
                 $this->form_validation->set_rules('nama_supplier', 'Nama ', 'required');
             } else {
-                $this->form_validation->set_rules('nama_supplier', 'Nama ', 'required|is_unique[supplier.nama_supplier]');
+                $this->form_validation->set_rules('nama_supplier', 'Nama ', 'required|is_unique[supplier.nama_supplier]|max_length[50]');
             }
             //jika ada inputan ada maka jalankan validasi 
-            $this->form_validation->set_rules('alamat_supplier', 'Alamat', 'required|max_length[200]');
+            $this->form_validation->set_rules('alamat_supplier', 'Alamat', 'required|max_length[300]');
 
             // jalankan validasi jika benar
             if ($this->form_validation->run() == TRUE) {

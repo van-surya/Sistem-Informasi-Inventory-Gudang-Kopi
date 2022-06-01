@@ -63,12 +63,15 @@
                                     </span>
                                     <span class="text">Detail</span>
                                 </a>
-                                <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_permintaanpembelian']; ?>">
-                                    <span class="icon text-white-50">
-                                        <i class="fas fa-trash"></i>
-                                    </span>
-                                    <span class="text">Hapus</span>
-                                </a>
+                                <?php if ($value['status_permintaanpembelian'] == 'Meminta' || $value['status_permintaanpembelian'] == 'Ditolak') : ?>
+                                    <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_permintaanpembelian']; ?>">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-trash"></i>
+                                        </span>
+                                        <span class="text">Hapus</span>
+                                    </a>
+                                <?php else : ?>
+                                <?php endif; ?>
                             </td>
                         </tr>
                     <?php endforeach ?>

@@ -54,7 +54,10 @@
             $barang_keluar = $this->db->get('barang_keluar')->row_array();
             if (empty($barang_keluar)) {
                 $this->db->insert('barang_keluar', $inputan);
-                $this->db->query("UPDATE barang LEFT JOIN detail_permintaanbarang ON detail_permintaanbarang.id_detailpermintaanbarang SET stock_toko = stock_toko + jumlah_permintaanbarang , stock_gudang = stock_gudang-jumlah_permintaanbarang WHERE id_permintaanbarang = $id_permintaanbarang");
+                $this->db->query("UPDATE detail_permintaanbarang LEFT JOIN barang 
+                ON barang.id_barang = detail_permintaanbarang.id_barang 
+                SET stock_toko = stock_toko + jumlah_permintaanbarang , stock_gudang = stock_gudang - jumlah_permintaanbarang
+                WHERE id_permintaanbarang = $id_permintaanbarang");
                 return 'sukses';
             } else {
                 return 'gagal';
