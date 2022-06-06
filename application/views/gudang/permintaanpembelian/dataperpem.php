@@ -57,12 +57,21 @@
                                 <?php endif; ?>
                             </td>
                             <td class="text-center">
-                                <a href="<?= base_url('gudang/permintaanpembelian/detail/' . $value['id_permintaanpembelian']) ?>" class="btn btn-info btn-icon-split btn-sm">
-                                    <span class="icon text-white-50">
-                                        <i class="fas fa-info"></i>
-                                    </span>
-                                    <span class="text">Detail</span>
-                                </a>
+                                <?php if ($value['status_permintaanpembelian'] == "Meminta") : ?>
+                                    <a href="<?= base_url('gudang/permintaanpembelian/detail/' . $value['id_permintaanpembelian']) ?>" class="btn btn-secondary btn-icon-split btn-sm">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-info"></i>
+                                        </span>
+                                        <span class="text">Detail</span>
+                                    </a>
+                                <?php else : ?>
+                                    <a href="<?= base_url('gudang/permintaanpembelian/detail/' . $value['id_permintaanpembelian']) ?>" class="btn btn-info btn-icon-split btn-sm">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-info"></i>
+                                        </span>
+                                        <span class="text">Detail</span>
+                                    </a>
+                                <?php endif; ?>
                                 <?php if ($value['status_permintaanpembelian'] == 'Meminta' || $value['status_permintaanpembelian'] == 'Ditolak') : ?>
                                     <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_permintaanpembelian']; ?>">
                                         <span class="icon text-white-50">

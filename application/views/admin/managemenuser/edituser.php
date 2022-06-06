@@ -63,6 +63,9 @@
                         <option value="gudang" <?php if ($datauser['level'] == 'gudang') {
                                                     echo "selected";
                                                 } ?>>Gudang</option>
+                        <option value="management" <?php if ($datauser['level'] == 'management') {
+                                                        echo "selected";
+                                                    } ?>>Management</option>
                     </select>
                 </div>
                 <div class="col-md-12 border bg-light">

@@ -36,11 +36,11 @@
         {
             $id_user = $inputan['id_user'];
             $kode_penggunaan = $inputan['kode_penggunaan'];
-            $tgl_penggunaan = $inputan['tgl_penggunaan'];
+            $tgl_penggunaan = $inputan['tgl_penggunaan']; 
 
             $this->db->where('id_user', $id_user);
             $this->db->where('kode_penggunaan', $kode_penggunaan);
-            $this->db->where('tgl_penggunaan', $tgl_penggunaan);
+            $this->db->where('tgl_penggunaan', $tgl_penggunaan); 
 
             $penggunaan = $this->db->get('penggunaan')->row_array();
             if (empty($penggunaan)) {
@@ -64,7 +64,17 @@
             $ambil = $this->db->get('penggunaan');
             return $ambil->row_array();
         }
-
+        function tampil_detailpenggunaantanggal($tgl_penggunaan)
+        {
+            $tgl = $tgl_penggunaan;
+            $ambil = $this->db->query("SELECT kode_barang,nama_barang, SUM(jumlah_penggunaan) as total FROM detail_penggunaan 
+            LEFT JOIN penggunaan ON penggunaan.id_penggunaan=detail_penggunaan.id_penggunaan
+            LEFT JOIN user_petugas ON user_petugas.id_user=penggunaan.id_user
+            LEFT JOIN barang ON barang.id_barang=detail_penggunaan.id_barang
+            LEFT JOIN kategori ON kategori.id_kategori=barang.id_kategori
+            WHERE penggunaan.tgl_penggunaan = '$tgl' GROUP BY barang.id_barang ");
+            return $ambil->result_array();
+        }
 
         function tampil_detailpenggunaan($id_penggunaan)
         {
@@ -81,7 +91,7 @@
         {
             $id_penggunaan = $inputan['id_penggunaan'];
             $id_barang = $inputan['id_barang'];
-            $jumlah_penggunaan = $inputan['jumlah_penggunaan'];
+            $jumlah_penggunaan = $inputan['jumlah_penggunaan']; 
 
             $this->db->where('id_penggunaan', $id_penggunaan);
             $this->db->where('id_barang', $id_barang);
@@ -89,8 +99,7 @@
             $detail_penggunaan = $this->db->get('detail_penggunaan')->row_array();
             if (empty($detail_penggunaan)) {
                 $this->db->query("INSERT INTO `detail_penggunaan` (`id_detailpenggunaan`, `id_penggunaan`, `id_barang`, `jumlah_penggunaan`)
-                 VALUES (NULL, '$id_penggunaan', '$id_barang', '$jumlah_penggunaan');");
-
+                 VALUES (NULL, '$id_penggunaan', '$id_barang', '$jumlah_penggunaan');"); 
                 $this->db->query("UPDATE barang SET stock_toko = stock_toko - $jumlah_penggunaan WHERE id_barang = $id_barang");
                 
                 return 'sukses';
@@ -103,7 +112,6 @@
         {
             $this->db->query("UPDATE detail_penggunaan LEFT JOIN barang ON barang.id_barang = detail_penggunaan.id_barang
                             SET stock_toko = stock_toko + detail_penggunaan.jumlah_penggunaan WHERE detail_penggunaan.id_detailpenggunaan = $id_detailpenggunaan");
-
             $this->db->where('id_detailpenggunaan', $id_detailpenggunaan);
             $this->db->delete('detail_penggunaan');
         }
@@ -115,6 +123,44 @@
             $this->db->join('kategori', 'kategori.id_kategori = barang.id_kategori', 'left');
             $this->db->where('id_penggunaan', $id_penggunaan);
             $ambil = $this->db->get('detail_penggunaan');
+            return $ambil->result_array();
+        }
+
+        function konfirmasi_penggunaan($inputan, $id_penggunaan)
+        {
+            $status = $inputan['status'];
+            $this->db->query("UPDATE penggunaan SET status = '$status' WHERE penggunaan.id_penggunaan = $id_penggunaan");
+            return 'sukses';
+        }
+
+
+        function detail_detailpenggunaan($id_detailpenggunaan)
+        {
+            $this->db->join('barang', 'barang.id_barang = detail_penggunaan.id_barang', 'left');
+            $this->db->join('penggunaan', 'penggunaan.id_penggunaan = detail_penggunaan.id_penggunaan', 'left');
+
+            $this->db->where('id_detailpenggunaan', $id_detailpenggunaan);
+            $ambil = $this->db->get('detail_penggunaan');
+            return $ambil->row_array();
+        }
+
+
+        function ubah_detailpenggunaan($inputan, $id_detailpenggunaan)
+        {
+            // $id_barang = $inputan['id_barang'];
+            // $jumlah_penggunaan = $inputan['jumlah_penggunaan'];
+
+            // $this->db->where('id_detailpenggunaan', $id_detailpenggunaan);
+            // $this->db->where('id_barang', $id_barang);
+
+            // $this->db->query("UPDATE barang LEFT JOIN detail_penggunaan ON detail_penggunaan.id_barang= barang.id_barang SET stock_toko = stock_toko + detail_penggunaan.jumlah_penggunaan WHERE detail_penggunaan.id_detailpenggunaan = $id_detailpenggunaan");
+            // $this->db->query("UPDATE barang LEFT JOIN detail_penggunaan ON detail_penggunaan.id_barang =barang.id_barang SET stock_toko = stock_toko - $jumlah_penggunaan , jumlah_penggunaan = $jumlah_penggunaan WHERE barang.id_barang = $id_barang");
+        }
+
+
+        function tampil_penggunaan_tanggal()
+        {
+            $ambil = $this->db->query("SELECT DISTINCT tgl_penggunaan FROM `penggunaan`");
             return $ambil->result_array();
         }
     }

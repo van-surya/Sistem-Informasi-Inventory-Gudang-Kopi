@@ -33,6 +33,9 @@
                 } elseif ($petugas['level'] == 'gudang') {
                     $this->session->set_userdata("gudang", $petugas);
                     return "gudang";
+                } elseif ($petugas['level'] == 'management') {
+                    $this->session->set_userdata("management", $petugas);
+                    return "management";
                 } else {
                     return "gagal";
                 }
@@ -251,6 +254,64 @@
             $this->session->set_userdata("store", $user_petugas);
         }
 
+        function ubah_profilmanagement($inputan, $id_user)
+        {
+            // jika inputan['password'] kosong
+            if (empty($inputan['password'])) {
+                // buang dari array inputan agar tidak di update
+                unset($inputan['password']);
+            } else {
+
+                // ambil pass dari inputan
+                $pass_inputan = $inputan['password'];
+
+                // enkripsi pakai SHA1
+                $pass_enkrip = sha1($pass_inputan);
+
+                // masukan pass yg sudah di enkrip ke dalam array inputan index password
+                $inputan['password'] = $pass_enkrip;
+            }
+
+            // cek apakah ada file yang di upload
+            // kalau tidak kosong, jalankan proses upload foto/ubah foto
+            if (!empty($_FILES['foto_user']['name'])) {
+
+                $config['upload_path'] = './assets/img/user/';
+                $config['allowed_types'] = 'gif|png|jpg|jpeg';
+                $this->upload->initialize($config);
+
+                //proses upload
+                $ngupload = $this->upload->do_upload("foto_user");
+
+                //mendapatkan nama foto yg diupload
+                if ($ngupload) {
+                    $inputan["foto_user"] = $this->upload->data("file_name");
+
+                    // cari file lampiran lama 
+                    $user_petugas = $this->detail_user($id_user);
+                    $foto_user_lama = $user_petugas['foto_user'];
+
+                    // lokasi file lama 
+                    $lokasi = FCPATH . "assets/img/user/$foto_user_lama";
+                    // cek apakah ada file lama di folder trstb
+                    if (file_exists($lokasi) and !empty($foto_user_lama)) {
+                        // kalau ada filenya
+                        // hapus file lama dari folder assets/img/user
+                        unlink($lokasi);
+                    }
+                }
+            }
+
+            $this->db->where('id_user', $id_user);
+            $this->db->update('user_petugas', $inputan);
+
+            // ambil data user_petugas yg sedang barusan di ubah
+            $user_petugas = $this->detail_user($id_user);
+
+            // update session user_petugas dengan data user_petugas yang ter update
+            $this->session->set_userdata("management", $user_petugas);
+        }
+        
         function ubah_profilpurchasing($inputan, $id_user)
         {
             // jika inputan['password'] kosong

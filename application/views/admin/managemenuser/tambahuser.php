@@ -57,7 +57,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-sm-12 col-md-6 col-lg-6 md-2">
                     <label>Level</label>
                     <select class="custom-select" name="level">
@@ -66,6 +65,7 @@
                         <option value="store">Store</option>
                         <option value="purchasing">Purchasing</option>
                         <option value="gudang">Gudang</option>
+                        <option value="management">Management</option>
                     </select>
                 </div>
             </div>

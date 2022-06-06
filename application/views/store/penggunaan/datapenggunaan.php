@@ -31,6 +31,7 @@
                         <th>Kode Penggunaan</th>
                         <th>Tanggal</th>
                         <th>Oleh</th>
+                        <th>Shift</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -40,13 +41,23 @@
                             <td><?= $value['kode_penggunaan']; ?></td>
                             <td><?= tanggal($value['tgl_penggunaan']); ?></td>
                             <td><?= $value['nama']; ?></td>
+                            <td><?= $value['shift']; ?></td>
                             <td class="text-center">
-                                <a href="<?= base_url('store/penggunaan/detail/' . $value['id_penggunaan']) ?>" class="btn btn-info btn-icon-split btn-sm">
-                                    <span class="icon text-white-50">
-                                        <i class="fas fa-info"></i>
-                                    </span>
-                                    <span class="text">Detail</span>
-                                </a>
+                                <?php if ($value['status'] == 'ya') : ?>
+                                    <a href="<?= base_url('store/penggunaan/detail/' . $value['id_penggunaan']) ?>" class="btn btn-info btn-icon-split btn-sm">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-info"></i>
+                                        </span>
+                                        <span class="text">Detail</span>
+                                    </a>
+                                <?php else : ?>
+                                    <a href="<?= base_url('store/penggunaan/detail/' . $value['id_penggunaan']) ?>" class="btn btn-secondary btn-icon-split btn-sm">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-info"></i>
+                                        </span>
+                                        <span class="text">Detail</span>
+                                    </a>
+                                <?php endif; ?>
                                 <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_penggunaan']; ?>">
                                     <span class="icon text-white-50">
                                         <i class="fas fa-trash"></i>

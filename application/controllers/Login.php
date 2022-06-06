@@ -32,6 +32,9 @@ class Login extends CI_Controller
             } elseif ($login == "gudang") {
                 $this->session->set_flashdata('pesan', 'Selamat Datang Di Sistem Inventory Barang Senja Kopi');
                 redirect('gudang/beranda', 'refresh');
+            } elseif ($login == "management") {
+                $this->session->set_flashdata('pesan', 'Selamat Datang Di Sistem Inventory Barang Senja Kopi');
+                redirect('management/beranda', 'refresh');
             } elseif ($login == "gagal") {
                 $this->session->set_flashdata('pesan', 'Login Gagal, Cek Email dan Password Anda');
                 redirect('', 'refresh');

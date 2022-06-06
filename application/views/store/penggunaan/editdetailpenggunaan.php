@@ -8,7 +8,7 @@
 </nav>
 
 <!-- jika ada pesan gagal -->
-<?php if ($gagal) : ?>
+<?php if (!empty($gagal)) : ?>
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -30,28 +30,30 @@
         <div class="card-body">
             <form method="post" enctype="multipart/form-data">
                 <div class="row">
-                    <input type="hidden" class="form-control" id="id_penggunaan" name="id_penggunaan" value="<?= $id_penggunaan; ?>" readonly>
 
                     <div class="form-group col-md-12">
                         <label>Pilih Barang</label>
                         <select class="form-control" name="id_barang" id="id_barang">
                             <option value="">--Pilih Barang--</option>
                             <?php foreach ($barang as $key => $value) : ?>
-                                <option value="<?= $value['id_barang'] ?>" data-stocktoko="<?= $value['stock_toko'] ?>"> <?= $value['nama_barang'] ?></option>
+                                <?php $nama = $detailpenggunaan['nama_barang']; ?>
+                                <option value="<?= $value['id_barang'] ?>" data-stocktoko="<?= $value['stock_toko'] ?>" <?php if ($detailpenggunaan['nama_barang'] == $nama) {
+                                                                                                                            echo "selected";
+                                                                                                                        } ?>> <?= $value['nama_barang'] ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label>Stock Toko</label>
-                        <input type="number" class="form-control" id="stocktoko" readonly>
+                        <input type="number" class="form-control" id="stocktoko" value="<?= $value['stock_toko'] ?>" readonly>
                     </div>
 
                     <div class="form-group col-md-6">
                         <label>Jumlah Penggunaan</label>
-                        <input type="text" class="form-control" name="jumlah_penggunaan" id="jumlah_penggunaan" onkeyup="Jumlah()">
+                        <input type="text" class="form-control" name="jumlah_penggunaan" id="jumlah_penggunaan" value="<?= $detailpenggunaan['jumlah_penggunaan']; ?>" oninput="Jumlah()">
                     </div>
                 </div>
-                <input type="number" class="form-control" id="hasil" name="hasil" readonly hidden>
+                <input type="number" class="form-control" id="hasil" name="hasil" readonly>
         </div>
         <div class=" card-footer text-md-right">
             <a href="<?= base_url('store/penggunaan/detail/' . $id_penggunaan); ?>" class="btn btn-secondary">Batal</a>

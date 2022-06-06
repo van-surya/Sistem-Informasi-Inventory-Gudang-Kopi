@@ -42,9 +42,17 @@
                     <div class="form-group col-md-6">
                         <label>Tanggal Pembuatan</label>
                         <input type="date" class="form-control" name="tgl_penggunaan" id="tgl_penggunaan">
+                        <input type="name" class="form-control" name="status" value="tidak" readonly hidden>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Pilih Shift</label>
+                        <select class="custom-select" name="shift">
+                            <option value="">--Pilih Shift--</option>
+                            <option value="Pertama">Pertama</option>
+                            <option value="Kedua">Kedua</option>
+                        </select>
                     </div>
                 </div>
-
         </div>
         <div class="card-footer text-md-right">
             <a href="<?= base_url('store/penggunaan'); ?>" class="btn btn-secondary">Batal</a>
