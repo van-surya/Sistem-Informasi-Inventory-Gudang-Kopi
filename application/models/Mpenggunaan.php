@@ -128,8 +128,7 @@
             $status = $inputan['status'];
             $this->db->query("UPDATE penggunaan SET status = '$status' WHERE penggunaan.id_penggunaan = $id_penggunaan");
             return 'sukses';
-        }
-
+        } 
 
         function detail_detailpenggunaan($id_detailpenggunaan)
         {

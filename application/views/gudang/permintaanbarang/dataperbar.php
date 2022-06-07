@@ -12,7 +12,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered" id="custom-table" width="100%" cellspacing="0">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>Kode</th>
@@ -46,12 +46,22 @@
                                 </div>
                             </td>
                             <td class="text-center">
-                                <a href="<?= base_url('gudang/permintaanbarang/detail/' . $value['id_permintaanbarang']) ?>" class="btn btn-info btn-icon-split btn-sm">
-                                    <span class="icon text-white-50">
-                                        <i class="fas fa-info"></i>
-                                    </span>
-                                    <span class="text">Detail</span>
-                                </a>
+                                <?php if ($value['status_permintaanbarang'] == 'Meminta') : ?>
+                                    <a href="<?= base_url('gudang/permintaanbarang/detail/' . $value['id_permintaanbarang']) ?>" class="btn btn-secondary btn-icon-split btn-sm">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-info"></i>
+                                        </span>
+                                        <span class="text">Detail</span>
+                                    </a>
+                                <?php else : ?>
+                                    <a href="<?= base_url('gudang/permintaanbarang/detail/' . $value['id_permintaanbarang']) ?>" class="btn btn-info btn-icon-split btn-sm">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-info"></i>
+                                        </span>
+                                        <span class="text">Detail</span>
+                                    </a>
+                                <?php endif; ?>
+
                             </td>
                         </tr>
                     <?php endforeach ?>

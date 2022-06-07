@@ -45,13 +45,22 @@
                                      <?php endif; ?>
                                  </div>
                              </td>
-                             <td class="text-center">
-                                 <a href="<?= base_url('purchasing/permintaanpembelian/detail/' . $value['id_permintaanpembelian']) ?>" class="btn btn-info btn-icon-split btn-sm">
-                                     <span class="icon text-white-50">
-                                         <i class="fas fa-info"></i>
-                                     </span>
-                                     <span class="text">Detail</span>
-                                 </a>
+                             <td class="text-center"> <?php if ($value['status_permintaanpembelian'] == 'Meminta') : ?>
+                                     <a href="<?= base_url('purchasing/permintaanpembelian/detail/' . $value['id_permintaanpembelian']) ?>" class="btn btn-secondary btn-icon-split btn-sm">
+                                         <span class="icon text-white-50">
+                                             <i class="fas fa-info"></i>
+                                         </span>
+                                         <span class="text">Detail</span>
+                                     </a>
+                                 <?php else : ?>
+                                     <a href="<?= base_url('purchasing/permintaanpembelian/detail/' . $value['id_permintaanpembelian']) ?>" class="btn btn-info btn-icon-split btn-sm">
+                                         <span class="icon text-white-50">
+                                             <i class="fas fa-info"></i>
+                                         </span>
+                                         <span class="text">Detail</span>
+                                     </a>
+                                 <?php endif; ?>
+
                              </td>
                          </tr>
                      <?php endforeach ?>

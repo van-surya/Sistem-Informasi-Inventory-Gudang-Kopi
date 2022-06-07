@@ -85,4 +85,10 @@ class Po extends CI_Controller
 
         $this->load->view('purchasing/po/cetakpo', $data);
     }
+
+    public function hapus()
+    {
+        $idnya = $this->input->post("id");
+        $this->Mpo->hapus_po($idnya);
+    }
 }

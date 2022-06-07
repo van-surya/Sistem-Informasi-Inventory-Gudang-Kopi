@@ -116,9 +116,9 @@ class Penggunaan extends CI_Controller
             $data['gagal'] = validation_errors();
         }
 
+        $data['barang'] = $this->Mbarang->tampil_barang();
         $data['title'] = 'Tambah Penggunaan Bahan Baku';
         $data['id_penggunaan'] = $id_penggunaan;
-        $data['barang'] = $this->Mbarang->tampil_barang();
 
         $this->load->view('header', $data);
         $this->load->view('store/navbar', $data);
@@ -161,7 +161,6 @@ class Penggunaan extends CI_Controller
         $this->load->view('store/penggunaan/konfirmasi', $data);
         $this->load->view('footer');
     }
- 
 
     public function hapusdetail()
     {

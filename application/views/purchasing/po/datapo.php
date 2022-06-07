@@ -53,13 +53,13 @@
                             </td>
                             <td class="text-center">
                                 <?php if ($value['status_po'] == 'Mengirim') : ?>
-                                    <a href="<?= base_url('purchasing/po/detail/' . $value['id_po']) ?>" class="btn btn-info btn-icon-split btn-sm">
+                                    <a href="<?= base_url('purchasing/po/detail/' . $value['id_po']) ?>" class="btn btn-secondary btn-icon-split btn-sm">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-edit"></i>
                                         </span>
                                         <span class="text">Detail</span>
                                     </a>
-                                    </a> <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_po']; ?>">
+                                    <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_po']; ?>">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-trash"></i>
                                         </span>

@@ -75,7 +75,8 @@
         function hapus_supplier($id_supplier)
         {
             $this->db->where('id_supplier', $id_supplier);
-            $this->db->delete('supplier');
+            $this->db->delete('supplier'); 
+
         }
 
         function hitung_supplier()

@@ -66,5 +66,12 @@
             $this->db->where('id_po', $id_po);
             $ambil = $this->db->get('po');
             return $ambil->result_array();
-        } 
+        }
+
+        function hapus_po($id_po)
+        {
+            $this->db->where('id_po', $id_po);
+            $this->db->delete('po');
+        }
+
     }
