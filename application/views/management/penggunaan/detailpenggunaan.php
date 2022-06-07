@@ -11,10 +11,10 @@
     <div class="card-header py-3">
         <div class="row justify-content-between">
             <div class="col-md-6">
-                <h4 class="m-0 font-weight-bold text-primary"><?= $title; ?> <?= tanggal($tgl); ?></h4>
+                <h4 class="m-0 font-weight-bold text-primary"><?= $title; ?></h4>
             </div>
             <div class="col-md-6 text-md-right mt-2 mt-md-0">
-                <a href="<?= base_url('management/penggunaan/cetak/' . $tgl) ?>" target="_blank" class="btn btn-secondary btn-icon-split btn-sm">
+                <a href="<?= base_url('management/penggunaan/cetak/' . $penggunaan['id_penggunaan']); ?>" target="_blank" class="btn btn-secondary btn-icon-split btn-sm">
                     <span class="icon text-white-50">
                         <i class="fas fa-print"></i>
                     </span>
@@ -24,6 +24,17 @@
         </div>
     </div>
     <div class="card-body">
+        <table class="table table-borderless text-secondary font-weight-bold">
+            <tr>
+                <td>Kode : <?= $penggunaan['kode_penggunaan']; ?> </td>
+                <th>Tanggal : <?= tanggal($penggunaan['tgl_penggunaan']); ?></th>
+                <th>Status : Konfirmasi</th>
+            </tr>
+            <tr>
+                <td>Oleh : <?= $penggunaan['nama']; ?></td>
+                <th>Shift : <?= $penggunaan['shift']; ?></th>
+            </tr>
+        </table>
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
@@ -31,7 +42,10 @@
                         <th>No</th>
                         <th>Kode Barang</th>
                         <th>Nama Barang</th>
-                        <th>Total</th>
+                        <th>Kategori</th>
+                        <th>Stock Toko Sebelum</th>
+                        <th>Jumlah Penggunaan</th>
+                        <th>Hasil Stock Toko</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,7 +54,10 @@
                             <td><?= $key + 1; ?></td>
                             <td><?= $value['kode_barang']; ?></td>
                             <td><?= $value['nama_barang']; ?></td>
-                            <td><?= $value['total']; ?></td>
+                            <td><?= $value['nama_kategori']; ?></td>
+                            <td><?= $value['stock_toko'] + $value['jumlah_penggunaan']; ?></td>
+                            <td><?= $value['jumlah_penggunaan']; ?></td>
+                            <td><?= $value['stock_toko']; ?></td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>
@@ -51,67 +68,3 @@
         <a href="<?= base_url('management/penggunaan'); ?>" class="btn btn-secondary">Kembali</a>
     </div>
 </div>
-
-<!-- pesan  -->
-<?php if ($this->session->flashdata('pesan')) : ?>
-    <script>
-        swal({
-            icon: "success",
-            title: "Berhasil!",
-            text: "<?= $this->session->flashdata('pesan') ?>",
-            button: false,
-            timer: 2000,
-        });
-    </script>
-<?php endif; ?>
-
-<!-- pesan  -->
-<?php if ($this->session->flashdata('gagal')) : ?>
-    <script>
-        swal({
-            icon: "error",
-            title: "Gagal!",
-            text: "<?= $this->session->flashdata('gagal') ?>",
-            button: false,
-            timer: 2000,
-        });
-    </script>
-<?php endif; ?>
-
-
-<!-- hapus data -->
-<script>
-    $(document).ready(function() {
-        $(".btn-hapus").on("click", function(e) {
-            e.preventDefault();
-            var idnya = $(this).attr("idnya");
-            swal({
-                    title: "Apakah kamu yakin ?",
-                    text: "untuk menghapus data ini",
-                    icon: "warning",
-                    buttons: ["Batal", "Hapus Data!"],
-                    dangerMode: true,
-                })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        //disini ajax hapus data
-                        $.ajax({
-                            type: 'post',
-                            url: "<?= base_url("management/penggunaan/hapusdetail"); ?>",
-                            data: 'id=' + idnya,
-                            success: function() {
-                                swal("Data berhasil terhapus!", {
-                                    icon: "success",
-                                    button: true
-                                }).then((oke) => {
-                                    if (oke) {
-                                        location = "<?= base_url("management/penggunaan/detail/" . $penggunaan['id_penggunaan']); ?>"
-                                    }
-                                });
-                            }
-                        })
-                    }
-                });
-        })
-    })
-</script>

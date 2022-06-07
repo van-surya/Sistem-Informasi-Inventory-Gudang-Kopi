@@ -173,7 +173,6 @@ class Penggunaan extends CI_Controller
     {
         $data['penggunaan'] = $this->Mpenggunaan->detail_penggunaan($id_penggunaan);
         $data['detailpenggunaan'] = $this->Mpenggunaan->cetakdetail($id_penggunaan);
-
         $data['title'] = 'Cetak Penggunaan Bahan Baku';
 
         $this->load->view('store/penggunaan/cetakpenggunaan', $data);

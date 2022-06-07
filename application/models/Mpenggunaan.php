@@ -12,6 +12,14 @@
             return $ambil->result_array();
         }
 
+        function tampil_penggunaankonfirmasi()
+        {
+            $this->db->join('user_petugas', 'user_petugas.id_user = penggunaan.id_user', 'left');
+            $this->db->where('status', 'ya');
+            $ambil = $this->db->get('penggunaan');
+            return $ambil->result_array();
+        }
+
         function kode_penggunaan()
         {
             $this->db->select('RIGHT(penggunaan.kode_penggunaan,3) as kode_penggunaan', FALSE);
@@ -63,18 +71,7 @@
             $this->db->where('id_penggunaan', $id_penggunaan);
             $ambil = $this->db->get('penggunaan');
             return $ambil->row_array();
-        }
-        function tampil_detailpenggunaantanggal($tgl_penggunaan)
-        {
-            $tgl = $tgl_penggunaan;
-            $ambil = $this->db->query("SELECT kode_barang,nama_barang, SUM(jumlah_penggunaan) as total FROM detail_penggunaan 
-            LEFT JOIN penggunaan ON penggunaan.id_penggunaan=detail_penggunaan.id_penggunaan
-            LEFT JOIN user_petugas ON user_petugas.id_user=penggunaan.id_user
-            LEFT JOIN barang ON barang.id_barang=detail_penggunaan.id_barang
-            LEFT JOIN kategori ON kategori.id_kategori=barang.id_kategori
-            WHERE penggunaan.tgl_penggunaan = '$tgl' GROUP BY barang.id_barang ");
-            return $ambil->result_array();
-        }
+        } 
 
         function tampil_detailpenggunaan($id_penggunaan)
         {
@@ -144,10 +141,5 @@
             return $ambil->row_array();
         }
 
-
-        function tampil_penggunaan_tanggal()
-        {
-            $ambil = $this->db->query("SELECT DISTINCT tgl_penggunaan FROM `penggunaan`");
-            return $ambil->result_array();
-        }
+ 
     }

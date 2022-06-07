@@ -19,18 +19,22 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>No</th>
+                        <th>Kode</th>
                         <th>Tanggal</th>
+                        <th>Pembuat</th>
+                        <th>Shift</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($penggunaan as $key => $value) : ?>
                         <tr>
-                            <td><?= $key  + 1; ?></td>
-                            <td><?= $value['tgl_penggunaan']; ?></td>
+                            <td><?= $value['kode_penggunaan']; ?></td>
+                            <td><?= tanggal($value['tgl_penggunaan']); ?></td>
+                            <td><?= $value['nama']; ?></td>
+                            <td><?= $value['shift']; ?></td>
                             <td class="text-center">
-                                <a href="<?= base_url('management/penggunaan/detail/' . $value['tgl_penggunaan']) ?>" class="btn btn-info btn-icon-split btn-sm">
+                                <a href="<?= base_url('management/penggunaan/detail/' . $value['id_penggunaan']) ?>" class="btn btn-info btn-icon-split btn-sm">
                                     <span class="icon text-white-50">
                                         <i class="fas fa-info"></i>
                                     </span>
