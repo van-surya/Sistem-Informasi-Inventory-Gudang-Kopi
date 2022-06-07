@@ -75,6 +75,7 @@ class Po extends CI_Controller
         $this->load->view('purchasing/po/detailpo', $data);
         $this->load->view('footer');
     }
+    
     public function cetak($id_po)
     {
 

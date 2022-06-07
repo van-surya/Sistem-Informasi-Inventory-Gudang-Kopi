@@ -451,7 +451,7 @@
         function hitung_user()
         {
             $this->db->select('id_user');
-            $this->db->from('user_petugaS');
+            $this->db->from('user_petugas');
             $query = $this->db->get();
             $total = $query->num_rows();
             return $total;

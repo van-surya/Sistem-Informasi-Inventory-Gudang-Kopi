@@ -38,4 +38,15 @@ class Penggunaan extends CI_Controller
         $this->load->view('management/penggunaan/detailpenggunaan', $data);
         $this->load->view('footer');
     }
+
+    public function cetak($tgl_penggunaan)
+    {
+        $data['detailpenggunaan'] = $this->Mpenggunaan->tampil_detailpenggunaantanggal($tgl_penggunaan);
+        $data['title'] = 'Laporan Penggunaan Bahan Baku';
+        $data['tgl'] = $tgl_penggunaan;
+
+        $this->load->view('management/penggunaan/cetakpenggunaan', $data);
+    }
+
+    
 }

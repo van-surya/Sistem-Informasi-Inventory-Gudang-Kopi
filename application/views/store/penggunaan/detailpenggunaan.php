@@ -82,12 +82,6 @@
                                 <td><?= $value['nama_kategori']; ?></td>
                                 <?php if (!empty($penggunaan['status'] == 'tidak')) : ?>
                                     <td class="text-center">
-                                        <a href="<?= base_url('store/penggunaan/detailubah/' . $penggunaan['id_penggunaan'] . '/' . $value['id_detailpenggunaan']); ?>" class="btn btn-warning btn-icon-split btn-sm">
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-edit"></i>
-                                            </span>
-                                            <span class="text">Ubah</span>
-                                        </a>
                                         <a href="" class="btn btn-danger btn-icon-split btn-sm btn-hapus" idnya="<?= $value['id_detailpenggunaan']; ?>">
                                             <span class="icon text-white-50">
                                                 <i class="fas fa-trash"></i>

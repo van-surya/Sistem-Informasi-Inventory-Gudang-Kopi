@@ -13,6 +13,14 @@
             <div class="col-md-6">
                 <h4 class="m-0 font-weight-bold text-primary"><?= $title; ?> <?= tanggal($tgl); ?></h4>
             </div>
+            <div class="col-md-6 text-md-right mt-2 mt-md-0">
+                <a href="<?= base_url('management/penggunaan/cetak/' . $tgl) ?>" target="_blank" class="btn btn-secondary btn-icon-split btn-sm">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-print"></i>
+                    </span>
+                    <span class="text">Cetak</span>
+                </a>
+            </div>
         </div>
     </div>
     <div class="card-body">

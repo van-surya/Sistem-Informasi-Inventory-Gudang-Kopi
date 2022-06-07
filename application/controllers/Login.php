@@ -46,6 +46,6 @@ class Login extends CI_Controller
 
         $this->session->sess_destroy();
         $data = ['title' => 'Login'];
-        $this->load->view('Login', $data);
+        $this->load->view('login', $data);
     }
 }

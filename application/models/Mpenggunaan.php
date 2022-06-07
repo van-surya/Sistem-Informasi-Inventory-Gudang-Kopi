@@ -145,19 +145,6 @@
         }
 
 
-        function ubah_detailpenggunaan($inputan, $id_detailpenggunaan)
-        {
-            // $id_barang = $inputan['id_barang'];
-            // $jumlah_penggunaan = $inputan['jumlah_penggunaan'];
-
-            // $this->db->where('id_detailpenggunaan', $id_detailpenggunaan);
-            // $this->db->where('id_barang', $id_barang);
-
-            // $this->db->query("UPDATE barang LEFT JOIN detail_penggunaan ON detail_penggunaan.id_barang= barang.id_barang SET stock_toko = stock_toko + detail_penggunaan.jumlah_penggunaan WHERE detail_penggunaan.id_detailpenggunaan = $id_detailpenggunaan");
-            // $this->db->query("UPDATE barang LEFT JOIN detail_penggunaan ON detail_penggunaan.id_barang =barang.id_barang SET stock_toko = stock_toko - $jumlah_penggunaan , jumlah_penggunaan = $jumlah_penggunaan WHERE barang.id_barang = $id_barang");
-        }
-
-
         function tampil_penggunaan_tanggal()
         {
             $ambil = $this->db->query("SELECT DISTINCT tgl_penggunaan FROM `penggunaan`");
