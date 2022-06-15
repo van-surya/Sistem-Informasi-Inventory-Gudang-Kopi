@@ -51,7 +51,7 @@
                                 <td><?= $value['kode_barang']; ?></td>
                                 <td><?= $value['nama_barang']; ?></td>
                                 <td><?= $value['nama_kategori']; ?></td>
-                                <td><?= $value['jumlah_permintaanbarang']; ?></td>
+                                <td><?= $value['jumlah_permintaanbarang']; ?> <?= $value['satuan'] ?></td>
                             </tr>
                         <?php endforeach ?>
                     </tbody>

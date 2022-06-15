@@ -53,19 +53,18 @@
             </div>
         </div>
     </div>
-    <!-- End Card Profile  -->
+</div>
+<!-- End Card Profile  -->
 
-
-
-    <!-- pesan berhasil  -->
-    <?php if ($this->session->flashdata('pesan')) : ?>
-        <script>
-            swal({
-                icon: "success",
-                title: "Berhasil!",
-                text: "<?= $this->session->flashdata('pesan') ?>",
-                button: false,
-                timer: 2000,
-            });
-        </script>
-    <?php endif; ?>
+<!-- pesan berhasil  -->
+<?php if ($this->session->flashdata('pesan')) : ?>
+    <script>
+        swal({
+            icon: "success",
+            title: "Berhasil!",
+            text: "<?= $this->session->flashdata('pesan') ?>",
+            button: false,
+            timer: 2000,
+        });
+    </script>
+<?php endif; ?>

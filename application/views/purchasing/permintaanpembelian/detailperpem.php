@@ -66,7 +66,7 @@
                                 <td><?= $value['kode_barang']; ?></td>
                                 <td><?= $value['nama_barang']; ?></td>
                                 <td><?= $value['nama_kategori']; ?></td>
-                                <td><?= $value['jumlah_permintaanpembelian']; ?></td>
+                                <td><?= $value['jumlah_permintaanpembelian']; ?> <?= $value['satuan'] ?></td>
                                 <?php if ($permintaanpembelian['status_permintaanpembelian'] == 'Meminta') : ?>
                                     <td class="text-center">
                                         </a> <a href="<?= base_url('purchasing/permintaanpembelian/detailubah/' . $value['id_permintaanpembelian'] . '/' . $value['id_detailpermintaanpembelian']); ?>" class="btn btn-warning btn-icon-split btn-sm">

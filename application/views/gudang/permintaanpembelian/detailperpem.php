@@ -57,7 +57,7 @@
                                 <td><?= $key + 1; ?></td>
                                 <td><?= $value['kode_barang']; ?></td>
                                 <td><?= $value['nama_barang']; ?></td>
-                                <td><?= $value['jumlah_permintaanpembelian']; ?></td>
+                                <td><?= $value['jumlah_permintaanpembelian']; ?><?= $value['satuan'] ?></td>
                                 <td><?= $value['nama_kategori']; ?></td>
                                 <?php if ($permintaanpembelian['status_permintaanpembelian'] == 'Meminta') : ?>
                                     <td class="text-center">

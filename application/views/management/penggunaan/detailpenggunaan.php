@@ -55,9 +55,9 @@
                             <td><?= $value['kode_barang']; ?></td>
                             <td><?= $value['nama_barang']; ?></td>
                             <td><?= $value['nama_kategori']; ?></td>
-                            <td><?= $value['stock_toko'] + $value['jumlah_penggunaan']; ?></td>
-                            <td><?= $value['jumlah_penggunaan']; ?></td>
-                            <td><?= $value['stock_toko']; ?></td>
+                            <td><?= $value['stock_toko'] + $value['jumlah_penggunaan']; ?> <?= $value['satuan'] ?></td>
+                            <td><?= $value['jumlah_penggunaan']; ?> <?= $value['satuan'] ?></td>
+                            <td><?= $value['stock_toko']; ?> <?= $value['satuan'] ?></td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>

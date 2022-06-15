@@ -62,15 +62,15 @@
                                 <td>
                                     <?php if (($value['jumlah_permintaanbarang'] > $value['stock_gudang'])) : ?>
                                         <button type="button" class="btn btn-sm btn-danger" disabled>
-                                            <?= $value['jumlah_permintaanbarang']; ?>
+                                            <?= $value['jumlah_permintaanbarang']; ?> <?= $value['satuan'] ?>
                                         </button>
                                     <?php else : ?>
                                         <button type="button" class="btn btn-sm btn-primary" disabled>
-                                            <?= $value['jumlah_permintaanbarang']; ?>
+                                            <?= $value['jumlah_permintaanbarang']; ?> <?= $value['satuan'] ?>
                                         </button>
                                     <?php endif; ?>
                                 </td>
-                                <td><?= $value['stock_gudang']; ?></td>
+                                <td><?= $value['stock_gudang']; ?> <?= $value['satuan'] ?></td>
                                 <?php if ($permintaanbarang['status_permintaanbarang'] == 'Meminta') : ?>
                                     <td class="text-center">
                                         <a href="<?= base_url('gudang/permintaanbarang/detailubah/' . $value['id_permintaanbarang'] . '/' . $value['id_detailpermintaanbarang']); ?>" class="btn btn-warning btn-icon-split btn-sm">

@@ -33,7 +33,7 @@
                 <td scope="row"><?= $key + 1; ?></td>
                 <td><?= $value['kode_barang']; ?></td>
                 <td><?= $value['nama_barang']; ?></td>
-                <td><?= $value['jumlah_permintaanbarang']; ?></td>
+                <td><?= $value['jumlah_permintaanbarang']; ?><?= $value['satuan'] ?></td>
                 <!-- <td><?= $value['stock_gudang']; ?></td> -->
             </tr>
         <?php endforeach; ?>

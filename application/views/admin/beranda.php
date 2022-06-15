@@ -25,7 +25,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 
@@ -40,7 +39,6 @@
                     <?php $admin = $this->session->userdata('admin') ?>
                     <?php if (!empty($admin['foto_user'])) : ?>
                         <img class="img-thumbnail rounded" width="300" src="<?= base_url('assets/img/user/' . $admin['foto_user']); ?>" alt="<?= $admin['foto_user']; ?>">
-
                     <?php else : ?>
                         <img src="<?= base_url('assets/img/avatar.jpg'); ?>" class="img-thumbnail rounded" width="300" alt="Photo Profile">
                     <?php endif; ?>
@@ -73,7 +71,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- pesan berhasil  -->
 <?php if ($this->session->flashdata('pesan')) : ?>

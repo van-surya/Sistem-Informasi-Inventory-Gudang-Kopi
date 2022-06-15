@@ -78,7 +78,7 @@
                                 <td><?= $key + 1; ?></td>
                                 <td><?= $value['kode_barang']; ?></td>
                                 <td><?= $value['nama_barang']; ?></td>
-                                <td><?= $value['jumlah_penggunaan']; ?></td>
+                                <td><?= $value['jumlah_penggunaan']; ?> <?= $value['satuan']; ?></td>
                                 <td><?= $value['nama_kategori']; ?></td>
                                 <?php if (!empty($penggunaan['status'] == 'tidak')) : ?>
                                     <td class="text-center">

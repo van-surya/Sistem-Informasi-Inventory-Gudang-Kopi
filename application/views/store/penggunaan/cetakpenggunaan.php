@@ -34,7 +34,7 @@
                 <td><?= $value['kode_barang']; ?></td>
                 <td><?= $value['nama_barang']; ?></td>
                 <td><?= $value['nama_kategori']; ?></td>
-                <td><?= $value['jumlah_penggunaan']; ?></td>
+                <td><?= $value['jumlah_penggunaan']; ?> <?= $value['satuan']; ?></td>
             </tr>
         <?php endforeach; ?>
     </table>
